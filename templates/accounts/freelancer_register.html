@@ -1,0 +1,33 @@
+<style>
+  .helptext{
+    display: none;
+  }
+</style>
+{% load static %} 
+
+<!-- <link rel="stylesheet" href= "{% static 'css/add_skill.css' %}">
+<script src="{% static 'scripts/register.js' %}" type="text/javascript"></script> -->
+
+
+
+<form method="post" enctype= "multipart/form-data" action ="{% url 'register_freelancer' %}">
+    
+
+    {% csrf_token %}
+      {{ form }}
+  
+    <button type="submit">Submit</button>
+
+    <h4>Have an account<a href= "{% url 'login' %}"> Login</a> </h4> 
+    
+</form>
+
+
+
+<!-- <button onclick="formPopup()">Add Skill</button>
+
+<form method="post" style="display: none;" class='skillform' id="skillform" action ="{% url 'add-skill' %}">
+  {% csrf_token %}
+  {{skillform}}
+  <button type="submit">Submit</button>
+</form> -->

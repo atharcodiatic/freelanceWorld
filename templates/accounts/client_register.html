@@ -1,0 +1,17 @@
+<style>
+    .helptext{
+      display: none;
+    }
+  </style>
+  {% load static %} 
+  
+  <form method="post" enctype= "multipart/form-data" action ="{% url 'register_client' %}">
+      
+  
+      {% csrf_token %}
+        {{ form }}
+  
+      <button type="submit">Submit</button>
+      <h4>Have an account<a href= "{% url 'login' %}"> Login</a> </h4> 
+      
+  </form>
