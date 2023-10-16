@@ -162,3 +162,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'athar.hussain@codiatic.com'
 EMAIL_HOST_PASSWORD = passwd
 EMAIL_USE_TLS = True
+
+
+CSRF_COOKIE_NAME = "csrftoken"
+CSRF_HEADER_NAME = "HTTP_X_CSRFTOKEN"

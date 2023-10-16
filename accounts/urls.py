@@ -5,13 +5,15 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.userchangeview, name='userview'),
     path('register/freelancer', views.freelancer_registeration_view, name='register_freelancer'),
-    path('register/client', views.ClientRegistrationView.as_view(), name='register_client'),
+    path('register/client', views.ClientRegistrationView.as_view(), name= 'register_client'),
     path('register/', views.register_view,name='register'),
     path('login/', views.LoginPageView.as_view(), name='login'),
     path('home/', views.home, name='home'),
     path('<pk>/freelancer_profile', views.FreeLancerProfileView.as_view(), name = 'freelancer-profile'),
+    path('<pk>/freelancer_profile_update', views.FreeLancerUpdateView.as_view(), name = 'freelancer-updateprofile'),
+    path('<pk>/education/',views.education_view,name = 'educaiton'),
+    path('<pk>/skill/',views.SkillCreateView.as_view(),name = 'skill'),
 
-    # path('addskill/', views.SkillView.as_view(), name='add-skill'),
 
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name = "accounts/reset_password.html"), name ='reset_password'),

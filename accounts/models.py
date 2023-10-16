@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponse
-
+from django.urls import reverse 
 from .validators import validate_image
 
 from django.core.validators import FileExtensionValidator,MinValueValidator, MaxValueValidator,EmailValidator
@@ -47,6 +47,8 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['username', 'gender']
 
+    def get_absolute_url(self):
+        return reverse('freelancer-updateprofile',args= [{self.id}])
 
     def __str__(self):
         return self.email
@@ -79,7 +81,6 @@ class Freelancer(CustomUser):
     Profile model for freelancer user_type
     '''
     years_of_experience = models.PositiveIntegerField(null=True, default=0)
-    skills = models.ManyToManyField(Skill,blank=True)
     resume = models.FileField(upload_to = 'resumes/', 
                         validators = [FileExtensionValidator(
                         allowed_extensions = ['pdf', 'txt', 'doc'],
@@ -121,8 +122,10 @@ class SelfSkills(models.Model):
         ('INT', 'INTERMIDIATE'),
         ('EXP', 'EXPERT')
     ]
-    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
-    freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE)
+    # skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
+
+    skill_name = models.CharField(max_length=100)
+    freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE,null=True)
     level = models.CharField(max_length=3, choices=PROFIENCY_CHOICES)
 
 
@@ -143,13 +146,13 @@ class Education(models.Model):
     college_name = models.CharField(max_length=40) 
     start_date = models.DateField()
     end_date = models.DateField()
-    freelancer= models.ForeignKey(Freelancer , on_delete=models.CASCADE)
+    freelancer= models.ForeignKey(Freelancer, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name ='Education'
 
     def __str__(self):
-        return self.degree    
+        return self.course   
 
 
 class Client(CustomUser):

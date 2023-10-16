@@ -1,28 +1,60 @@
 
 <div> Profile Page </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{% load static %} 
+<script>
+    let pk = "{{object.pk}}"
+    console.log(pk,"*************")
+    localStorage.setItem('user_id',pk)
+</script>
+<script src="{% static 'scripts/register.js' %}" type="text/javascript"></script> 
 
-<img src="{{object.profile_pic.url}}"> 
+<div> <a href="/{{object.pk}}/freelancer_profile_update"><button>Edit</button></a></div>
 
-<p>UserName:{{object.username}}</p>
+<img src="{{object.profile_pic.url}}">
 
-<br>
-<p>Email:{{object.email}} </p>
-<p>Experience :{{object.years_of_experience}} </p>
-<p>Skills : {{objects.skills}}</p>
-<p>resume : {{object.resume.url}} </p>
-
-<embed
-    src="{{object.resume.url}}"
-    type="application/pdf"
-    frameBorder="0"
-    scrolling="auto"
-    height="200px"
-    width="50%"
-
-></embed>
+<p>UserName : {{object.username}}</p>
+<p>Name : {{object.first_name}} {{object.lastname}}</p>
+<p>Experience : {{object.years_of_experience}} </p>
 
 
+<p>Available Skills : 
+    <span>{% for skill in standard_skills %}
+    <button id ={{skill.name}} onclick='addSkill()'>{{skill.name}}</button>
+    {% endfor %}
+    </span>
+</p>
+<p>
+Skills :    
+<!-- {% for skill in skills %} -->
+                <!-- {{skill.skill_name }} ,
 
+    {% endfor %} -->
+    
+<a><button>Add Skills</button></a>
+</p> 
+<div id = 'education_section'>
+    Education : 
+    {% for edu in education %}
+        <span> {{edu.type}} : {{ edu.course}} </span>,
+
+    {% endfor%}
+
+
+</div> 
+<button onclick="formPopup()"> Add</button>
+
+<form method = 'post' id='education' class="education" style = "display:none;" action="/">
+    {% csrf_token %}
+{{edu_form}}
+
+<input type="submit">
+
+</form>
+
+<p>Location : {{object.city}} ,{{object.country}},  </p>
+
+<p>{{object.selfskills}}</p>
  
 
 

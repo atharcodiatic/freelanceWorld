@@ -89,16 +89,45 @@ class FreelancerProfile(forms.ModelForm):
         fields = '__all__'
 
         exclude = ["last_login", "is_superuser", 'groups', 'user_permissions',
-                   'date_joined', 'is_active', 'is_staff','skills']
-
-class SkillForm(forms.ModelForm):
-    class Meta:
-        model = Skill
-        fields = '__all__'
-        exclude = ['created_at',]
-
-
+                   'date_joined', 'is_active', 'is_staff', 'skills']
         
+class FreelancerProfileUpdate(forms.ModelForm):
+    ''' Form to update freelancer profile '''
+
+    class Meta:
+        model = Freelancer
+        fields ='__all__'
+        exclude = ["last_login", "is_superuser", 'groups', 'user_permissions',
+                   'date_joined', 'is_active', 'is_staff', 'skills', 'password',
+                    'username','password','confirm_password'  ]
+        
+
+# class SelfSkillForm(forms.Form):
+#     CHOICES = [
+#         ('BEG', 'BEGINEER'),
+#         ('EXP', "EXPERT"),
+#         ('INT','INTERMEDIATE')
+#     ]
+#     skill_choices = forms.MultipleChoiceField(
+#         widget = forms.CheckboxSelectMultiple, 
+#         queryset= Skill.objects.all())
+#     level = forms.ChoiceField(choices=CHOICES)
+#     name = forms.CharField(max_length=50, required=True)
+#     user_name = forms.CharField(max_length=30)
+
+from django.contrib.admin.widgets import AdminDateWidget
+from django.forms.fields import DateField
+
+
+class EducationForm(forms.ModelForm):
+    start_date = forms.DateField(widget = forms.SelectDateWidget)
+    end_date = forms.DateField(widget = forms.SelectDateWidget)
+    class Meta:
+        fields = '__all__'
+        model = Education
+        exclude = ['freelancer']
+
+
 class ClientProfile(forms.ModelForm):
 
     ''' Model Form For Client Profile'''
