@@ -24,15 +24,30 @@
     {% endfor %}
     </span>
 </p>
-<p>
+<div id = 'skills'>
 Skills :    
-<!-- {% for skill in skills %} -->
-                <!-- {{skill.skill_name }} ,
+{% for skill in self_skills %} 
+    <div id = {{skill.skill_name}} style="background-color: wheat;">
+        
+    Name: {{skill.skill_name }} ,
 
-    {% endfor %} -->
+    Level :{{skill.level}}
     
+    <label for="level"></label>
+
+    <select  name="level" onchange="selectedLevel(event)" id={{skill.skill_name}}>
+      <option value="BEG">"BEG"</option>
+      <option value="INT">"INT"</option>
+      <option value="EXP">"EXP"</option>
+    </select>
+
+    </div>
+    {% endfor %} 
+    
+
+</div> 
 <a><button>Add Skills</button></a>
-</p> 
+
 <div id = 'education_section'>
     Education : 
     {% for edu in education %}
@@ -59,3 +74,4 @@ Skills :
 
 
 <img {{profile_pic}}>
+

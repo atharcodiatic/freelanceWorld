@@ -11,8 +11,9 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('<pk>/freelancer_profile', views.FreeLancerProfileView.as_view(), name = 'freelancer-profile'),
     path('<pk>/freelancer_profile_update', views.FreeLancerUpdateView.as_view(), name = 'freelancer-updateprofile'),
-    path('<pk>/education/',views.education_view,name = 'educaiton'),
-    path('<pk>/skill/',views.SkillCreateView.as_view(),name = 'skill'),
+    path('<pk>/education/', views.education_view,name = 'education'),
+    path('<pk>/skill/', views.SkillCreateView.as_view(),name = 'skill'),
+
 
 
 

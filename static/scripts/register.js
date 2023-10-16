@@ -78,25 +78,65 @@ axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 
 function addSkill(){
 
-  
   let skill_to_add = addSkill.caller.arguments[0].target.id;
-  data = {
-    'skill' : skill_to_add,
-    
-  }
-debugger
-  console.log(user_id,"^^^^^^^^^^^^^^^^^^^^")
 
+  data = {
+    'skill' : skill_to_add,}
+
+  console.log(user_id,"^^^^^^^^^^^^^^^^^^^^")
 
   axios({
 
     method: 'post',
     url: '/'+user_id.toString()+'/skill/',
-    data:data ,
-    
+    data:JSON.stringify(data) ,
 
+  })
+  .then(res => freelancer_skill()) 
+ .catch(err => console.log(err)) 
+
+ let freelancer_skill = async()=>{
+  let response = await axios.get('/'+user_id.toString()+'/skill/')
+  response_data = response.data 
+  response_data.forEach(element => {
+
+  let skills_tag = document.getElementById('skills');
+
+  let each_skill = document.createElement('div')
+
+    each_skill.setAttribute('id',element.fields.skill_name)
+    each_skill.innerText= "Name : "+ element.fields.skill_name + "Level : "+ element.fields.level
+
+    skills_tag.append(each_skill)
+    ''' edit functionality will be added later remaining '''
+    skills_tag.style.backgroundColor = 'wheat';
+
+    console.log(element.fields,"*******")
+    console.log(element.fields.level , element.fields.skill_name)
     
-  }).then(res => res) 
+  });
+
+
+}
+}
+
+function selectedLevel(event){
+  
+  let skill = event.target.id
+  let level = event.target.value
+
+  data = {
+    "skill" : skill,
+    'level': level,
+  }
+  axios({
+
+    method: 'patch',
+    url: '/'+user_id.toString()+'/skill/',
+    data:data ,
+
+  })
+  .then(res => console.log(res))
  .catch(err => console.log(err)) 
 
 }

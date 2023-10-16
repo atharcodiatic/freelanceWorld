@@ -1,3 +1,5 @@
+from typing import Any
+from django import http
 from django.shortcuts import render
 
 # Create your views here.
@@ -123,10 +125,10 @@ class FreeLancerProfileView(DetailView):
         
         # add extra field   
         pk  = self.object.pk
-        skill = SelfSkills.objects.filter(freelancer__id = pk )
+        self_skill = SelfSkills.objects.filter(freelancer__id = pk )
         education = Education.objects.filter(freelancer__id = pk)
         all_skills = Skill.objects.all()[0:9]
-        context['skills'] = skill
+        context['self_skills'] = self_skill
         context['education'] = education
         context['edu_form'] = EducationForm()
         context['standard_skills'] = all_skills
@@ -190,25 +192,60 @@ def education_view(request, pk):
 
 
 class SkillCreateView(View):
-    
+    """This view adds FreeLancer skills  """
 
     def post(self, request, *args, **kwargs):
         """
         Handle POST requests: instantiate a form instance with the passed
         POST variables and then check if it's valid.
         """
-        print(args ,kwargs)
-
-        name = request.POST.get('skill')
-        breakpoint()
-        print('************',request.user)
-        user_id = request.user.id
+        
+        user_id = int(request.user.id)
         print(user_id)
-        print(args)
-
-        # model_obj = SelfSkills.objects.create(skill_name = )
+        request = json.loads(request.body)
+        skill_name = request.get('skill')
+        
+        freelancer = Freelancer.objects.get(id=user_id)
+        print(freelancer)
+        model_obj = SelfSkills.objects.create(skill_name = skill_name, freelancer=freelancer, level='EXP')
 
         return JsonResponse({'status':"success" })
+    
+    def get(self,request,*args,**kwargs):
+        pk = kwargs['pk']
+
+        skill = SelfSkills.objects.filter(freelancer__id=int(pk))
+        skill = [skill.last()]
+
+        serialized_data = serialize("json", skill)
+        serialized_data = json.loads(serialized_data)
+        
+        return JsonResponse(serialized_data, safe=False , status=200) 
+    
+    
+    def patch(self,request,*args,**kwargs):
+        pk = kwargs['pk']
+        request = json.loads(request.body)
+        skill_name = request.get('skill')
+        skill_level = request.get('level')
+        breakpoint()
+        
+        skill_obj = SelfSkills.objects.filter(freelancer=pk, 
+                                                 skill_name = skill_name)[0]
+        
+        print('OLDDDDDDDDDDDDDDDDDD',skill_obj.level)
+        skill_obj.level = skill_level
+        skill_obj.save()
+
+        print('updated %%%%%%%%%%%%%%%%%%%',skill_obj.level)
+        return JsonResponse({'status':"success" }, status=200)
+
+        
+
+
+
+
+
 
 
 
