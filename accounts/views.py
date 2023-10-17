@@ -132,6 +132,7 @@ class FreeLancerProfileView(DetailView):
         context['education'] = education
         context['edu_form'] = EducationForm()
         context['standard_skills'] = all_skills
+        context['add_skillform'] = SelfSkillForm()
 
         return context
 
@@ -179,7 +180,6 @@ def education_view(request, pk):
                                  end_date = end_date_obj, freelancer = freelancer_obj)
     
     elif request.method == "GET":
-        breakpoint
         education = Education.objects.filter(freelancer__id=int(pk))
         education = [education.last()]
 
@@ -199,27 +199,35 @@ class SkillCreateView(View):
         Handle POST requests: instantiate a form instance with the passed
         POST variables and then check if it's valid.
         """
-        
+    
         user_id = int(request.user.id)
-        print(user_id)
         request = json.loads(request.body)
-        skill_name = request.get('skill')
         
-        freelancer = Freelancer.objects.get(id=user_id)
-        print(freelancer)
-        model_obj = SelfSkills.objects.create(skill_name = skill_name, freelancer=freelancer, level='EXP')
+        skill_name = request.get('skill')
+        level = request.get('level')
 
+        """ we can handle this validation in forntend , just for learning purpsoes"""
+        
+        choices = ['INT', 'BEG', "EXP"]
+        if level not in choices:
+            return JsonResponse({'status':"failed" ,'message': 'Please select a valid level '})
+        
+    
+
+        # check if skill exist or not 
+        skillpresent = SelfSkills.objects.filter(freelancer=user_id, skill_name = skill_name).exists()
+        if not skillpresent:
+            freelancer = Freelancer.objects.get(id=user_id)
+            model_obj = SelfSkills.objects.create(skill_name = skill_name, freelancer=freelancer, level = level)
         return JsonResponse({'status':"success" })
     
     def get(self,request,*args,**kwargs):
         pk = kwargs['pk']
-
         skill = SelfSkills.objects.filter(freelancer__id=int(pk))
-        skill = [skill.last()]
-
+        # skill = [skill.last()]
         serialized_data = serialize("json", skill)
         serialized_data = json.loads(serialized_data)
-        
+
         return JsonResponse(serialized_data, safe=False , status=200) 
     
     
@@ -228,16 +236,21 @@ class SkillCreateView(View):
         request = json.loads(request.body)
         skill_name = request.get('skill')
         skill_level = request.get('level')
-        breakpoint()
-        
         skill_obj = SelfSkills.objects.filter(freelancer=pk, 
                                                  skill_name = skill_name)[0]
-        
-        print('OLDDDDDDDDDDDDDDDDDD',skill_obj.level)
         skill_obj.level = skill_level
         skill_obj.save()
 
-        print('updated %%%%%%%%%%%%%%%%%%%',skill_obj.level)
+        return JsonResponse({'status':"success" }, status=200)
+    
+    
+    def delete(self,request,*args,**kwargs):
+        pk = kwargs['pk']
+        request = json.loads(request.body)
+        skill_name = request.get('skill')
+        skill_obj = SelfSkills.objects.filter(freelancer=pk, skill_name = skill_name)
+        skill_obj.delete()
+        
         return JsonResponse({'status':"success" }, status=200)
 
         

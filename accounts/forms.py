@@ -102,18 +102,12 @@ class FreelancerProfileUpdate(forms.ModelForm):
                     'username','password','confirm_password'  ]
         
 
-# class SelfSkillForm(forms.Form):
-#     CHOICES = [
-#         ('BEG', 'BEGINEER'),
-#         ('EXP', "EXPERT"),
-#         ('INT','INTERMEDIATE')
-#     ]
-#     skill_choices = forms.MultipleChoiceField(
-#         widget = forms.CheckboxSelectMultiple, 
-#         queryset= Skill.objects.all())
-#     level = forms.ChoiceField(choices=CHOICES)
-#     name = forms.CharField(max_length=50, required=True)
-#     user_name = forms.CharField(max_length=30)
+class SelfSkillForm(forms.ModelForm):
+    
+    class Meta:
+        fields = '__all__'
+        model = SelfSkills
+        exclude = ['freelancer']
 
 from django.contrib.admin.widgets import AdminDateWidget
 from django.forms.fields import DateField
@@ -146,7 +140,7 @@ class ClientProfile(forms.ModelForm):
                 raise ValidationError(
                     "password does not match."
                 )
-
+            
     class Meta:
         
         model = Client

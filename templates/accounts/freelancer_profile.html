@@ -13,7 +13,7 @@
 
 <img src="{{object.profile_pic.url}}">
 
-<p>UserName : {{object.username}}</p>
+<p>UserName : {{object.username}} </p>
 <p>Name : {{object.first_name}} {{object.lastname}}</p>
 <p>Experience : {{object.years_of_experience}} </p>
 
@@ -41,12 +41,23 @@ Skills :
       <option value="EXP">"EXP"</option>
     </select>
 
+    <button id="id_{{skill.skill_name}}" onclick="deleteSkill(event)">Delete</button>
     </div>
     {% endfor %} 
     
 
 </div> 
-<a><button>Add Skills</button></a>
+
+
+<button onclick="addFormPop()">Add Skills</button>
+
+<div id="formError" style="color:red"></div>
+<form id="add_skillform"  class ="addSkillForm" style = "display:none;" >
+    {% csrf_token %}
+    
+    {{add_skillform}}
+    <input type="submit">
+</form>
 
 <div id = 'education_section'>
     Education : 
@@ -54,7 +65,7 @@ Skills :
         <span> {{edu.type}} : {{ edu.course}} </span>,
 
     {% endfor%}
-
+    
 
 </div> 
 <button onclick="formPopup()"> Add</button>

@@ -81,7 +81,9 @@ function addSkill(){
   let skill_to_add = addSkill.caller.arguments[0].target.id;
 
   data = {
-    'skill' : skill_to_add,}
+    'skill' : skill_to_add,
+    'level' :'EXP' ,
+  }
 
   console.log(user_id,"^^^^^^^^^^^^^^^^^^^^")
 
@@ -95,48 +97,137 @@ function addSkill(){
   .then(res => freelancer_skill()) 
  .catch(err => console.log(err)) 
 
- let freelancer_skill = async()=>{
+
+}
+
+// this function fetch freelancer skills and update them without refreshing the page
+let freelancer_skill = async()=>{
+
   let response = await axios.get('/'+user_id.toString()+'/skill/')
   response_data = response.data 
-  response_data.forEach(element => {
+
 
   let skills_tag = document.getElementById('skills');
+  skills_tag.innerHTML = '';
 
-  let each_skill = document.createElement('div')
+  console.log(skills_tag,'$$$$$$$')
+  response_data.forEach(element => {
+    let each_skill = document.createElement('div')
 
     each_skill.setAttribute('id',element.fields.skill_name)
-    each_skill.innerText= "Name : "+ element.fields.skill_name + "Level : "+ element.fields.level
+    each_skill.innerText= "Name : "+ element.fields.skill_name + ", Level : "+ element.fields.level
 
+
+    
+    let deleteButton = document.createElement('button')
+    deleteButton.setAttribute('id','id_'+element.fields.skill_name)
+    deleteButton.innerText ='delete'
+    deleteButton.style.height = '15px';
+    deleteButton.style.width = '40px';
+
+    deleteButton.addEventListener("click", deleteSkill);
+  
+    each_skill.append(deleteButton)
+
+    
     skills_tag.append(each_skill)
-    ''' edit functionality will be added later remaining '''
-    skills_tag.style.backgroundColor = 'wheat';
+    
 
-    console.log(element.fields,"*******")
-    console.log(element.fields.level , element.fields.skill_name)
+    //edit functionality will be added later remaining 
+    skills_tag.style.backgroundColor = 'wheat';
+    skills_tag.style.border = 'black';
+
+    // console.log(element.fields,"*******")
+    // console.log(element.fields.level , element.fields.skill_name)
     
   });
-
-
 }
-}
+
 
 function selectedLevel(event){
   
   let skill = event.target.id
   let level = event.target.value
-
+  
   data = {
     "skill" : skill,
     'level': level,
   }
+
   axios({
 
     method: 'patch',
     url: '/'+user_id.toString()+'/skill/',
     data:data ,
 
-  })
-  .then(res => console.log(res))
+  }).then(res => freelancer_skill())
  .catch(err => console.log(err)) 
 
 }
+
+function deleteSkill(event){
+
+  
+  let id = event.target.id
+  skill_name = id.substring(3, id.length)
+  
+  data = {
+    "skill" : skill_name,
+
+  }
+  axios({
+
+    method: 'delete',
+    url: '/'+user_id.toString()+'/skill/',
+    data:data ,
+
+  }).then(res => freelancer_skill())
+ .catch(err => console.log(err)) 
+  
+}
+
+function addFormPop(){
+
+  let formDisplay = document.getElementsByClassName("addSkillForm")[0]
+  formDisplay.style.display ='block';
+
+  let form = document.getElementById('add_skillform'); 
+  
+    form.addEventListener('submit', function(event) { 
+    event.preventDefault()
+
+    
+    skill= document.getElementById('id_skill_name').value  
+    level =  document.getElementById('id_level').value
+
+    data = {
+      "skill" : skill,
+      "level" : level,
+    }
+    
+    debugger
+    axios({
+
+      method: 'post',
+      url: '/'+user_id.toString()+'/skill/',
+      data:data ,
+      
+    })
+    .then(res => {
+      console.log('##############33',res.data)
+      if (res.data.status =="failed"){
+        let errorMessage = document.getElementById("formError")
+        errorMessage.innerText = res.data.message
+  
+      }
+      else{
+        formDisplay.style.display = 'none';
+        form.reset()
+      
+
+      return freelancer_skill()}
+    }) 
+   .catch(err => console.log(err))   
+    }
+    )
+ }
