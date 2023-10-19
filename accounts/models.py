@@ -38,10 +38,12 @@ class CustomUser(AbstractUser):
                 validators=[validate_image,
                 FileExtensionValidator(
                         allowed_extensions = ["png",'jpeg'],
-                        message = 'only jpeg and png extensions allowed')])
+                        message = 'only jpeg and png extensions allowed'),
+                        ], blank=True, null=True)
     
-    gender =  models.CharField(max_length = 1, choices=GENDER_CHOICES)
+    gender =  models.CharField(max_length = 1, choices=GENDER_CHOICES , blank=True ,null=True)
     
+    bio = models.CharField(max_length=100, blank=True, null=True)
 
    
     USERNAME_FIELD = "email"
@@ -84,11 +86,13 @@ class Freelancer(CustomUser):
     resume = models.FileField(upload_to = 'resumes/', 
                         validators = [FileExtensionValidator(
                         allowed_extensions = ['pdf', 'txt', 'doc'],
-                        message = 'only pdf , txt , doc extensions allowed')])
+                        message = 'only pdf , txt , doc extensions allowed')], 
+                        blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add = True)
     class Meta:
         verbose_name = 'Freelancer'
+        permissions = (("is_freelancer", "freelancer user type"),)
 
     def __str__(self):
         return self.username
@@ -171,6 +175,7 @@ class Client(CustomUser):
 
     class Meta:
         verbose_name = 'Client'
+        permissions = (("is_client", "client user type"),)
 
     def __str__(self):
         return self.username

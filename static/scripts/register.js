@@ -117,8 +117,25 @@ let freelancer_skill = async()=>{
     each_skill.setAttribute('id',element.fields.skill_name)
     each_skill.innerText= "Name : "+ element.fields.skill_name + ", Level : "+ element.fields.level
 
+      
 
-    
+      //Create array of options to be added
+      let array = ["BEG","INT","EXP",];
+
+      //Create and append select list
+      let  selectList = document.createElement("select");
+      selectList.id = element.fields.skill_name;
+      selectList.addEventListener("change",selectedLevel);
+      each_skill.appendChild(selectList);
+
+      //Create and append the options
+      for (var i = 0; i < array.length; i++) {
+          var option = document.createElement("option");
+          option.value = array[i];
+          option.text = array[i];
+          selectList.appendChild(option);
+      }
+
     let deleteButton = document.createElement('button')
     deleteButton.setAttribute('id','id_'+element.fields.skill_name)
     deleteButton.innerText ='delete'

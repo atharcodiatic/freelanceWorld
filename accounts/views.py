@@ -20,13 +20,10 @@ from django.http import JsonResponse
 
 from django.core.serializers import serialize
 import json
-
-
-def userchangeview(request):
-    context ={}
-    context ['form']= FreelancerProfile()
-
-    return render(request, 'accounts/changeforms.html', context)
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.contrib.auth.models import  Permission
+from django.contrib.contenttypes.models import ContentType
 
 User =  get_user_model()
 
@@ -38,10 +35,18 @@ def freelancer_registeration_view(request):
         form = FreelancerProfile(request.POST, request.FILES)
         if form.is_valid():
             pass_word = form['password'].data
-            print(pass_word)
             user = form.save()
             user.set_password(pass_word)
             user.save()
+            content_type = ContentType.objects.get_for_model(Freelancer)
+            is_fl_permission = Permission.objects.get(content_type=content_type , codename='is_freelancer')
+            user.user_permissions.add(is_fl_permission)
+
+            # fa = Freelancer.objects.get(email=user.email)
+            # user_flperm = fa.has_perm("accounts.is_freelancer")
+            # if user_flperm:
+            #     pass
+            
             user_id = user.id
             return redirect("/"+ str(user_id)+'/freelancer_profile')
 
@@ -51,8 +56,8 @@ def freelancer_registeration_view(request):
 
     return render(request, 'accounts/freelancer_register.html', {'form': form })
 
-def home(request):
-    return render(request,'accounts/home.html')
+# def home(request):
+#     return render(request,'accounts/home.html')
 
 def register_view(request):
     return render(request,'accounts/register.html')
@@ -78,7 +83,7 @@ class LoginPageView(View):
  
             if user is not None:
                 login(request, user)
-                redirect_url = reverse('home')
+                # redirect_url = reverse('home')
                 user_id = request.user.id
                 return redirect("/"+ str(user_id)+'/freelancer_profile')
             
@@ -86,7 +91,6 @@ class LoginPageView(View):
         message = 'Login failed!'
         return render(request, self.template_name, context={'form': form, 'message': message})
     
-
 
 class ClientRegistrationView(CreateView):
     ''' This view is responsible for creating  instance of Client Model  '''
@@ -107,6 +111,10 @@ class ClientRegistrationView(CreateView):
             user = form.save()
             user.set_password(pass_word)
             user.save()
+            content_type = ContentType.objects.get_for_model(Client)
+            cl_permission = Permission.objects.get(content_type=content_type , codename='is_client')
+            user.user_permissions.add(cl_permission)
+
             return self.form_valid(form)
         else:
             return self.form_invalid(form) 
@@ -118,6 +126,11 @@ class FreeLancerProfileView(DetailView):
 
     template_name = 'accounts/freelancer_profile.html'
     model = Freelancer
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user.id == int(kwargs['pk']):
+            return super().dispatch(request, *args, **kwargs)
+        return HttpResponseRedirect('/register/')
 
     def get_context_data(self, *args, **kwargs):
         context = super(FreeLancerProfileView,
@@ -143,6 +156,11 @@ class FreeLancerUpdateView(UpdateView):
     url_id = None
     template_name = 'accounts/freelancer_profile_update.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user.id == int(kwargs['pk']):
+            return super().dispatch(request, *args, **kwargs)
+        return HttpResponseRedirect('/register/')
+
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
         path_string = request.path.split('/')
@@ -161,7 +179,6 @@ def education_view(request, pk):
         type = request.POST.get('type')
         degree = request.POST.get('degree')
         course = request.POST.get('course')
-    
         
         end_date = request.POST.get('end_date').split(',')
 

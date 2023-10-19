@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'accounts',
+    'jobs',
+    # 'freelancer',
+    # 'common',
 ]
 
 MIDDLEWARE = [

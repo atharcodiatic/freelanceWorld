@@ -1,0 +1,59 @@
+.nav{
+    background-color: aquamarine ;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+
+}
+.all_parent{
+
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-start;
+    
+    background-color: wheat;
+    height:90vh;
+    align-self: center;
+
+}
+.freelancercards{
+    height:600px !important;
+    width:400px ;
+    display:flex;
+    flex-wrap: wrap;
+    /* background-color: white; */
+    height:400px ;
+    width:800px;
+    margin-right: 100px;
+    
+}
+.flcard{
+    flex-basis:1;
+    flex-shrink:1;
+}
+.clientcards{
+    height:600px !important;
+    width:400px ;
+    display:flex;
+    flex-wrap: wrap;
+    /* background-color: white; */
+    height:400px ;
+    width:800px;
+    margin-left: 100px;
+    
+}
+.signup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.topusers{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items:flex-end;
+    margin-top: 50px;
+    
+}
+

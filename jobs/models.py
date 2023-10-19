@@ -1,13 +1,14 @@
 from django.db import models
 
 # Create your models here.
-from ..accounts.models import Client , Freelancer ,CustomUser
+from accounts.models import Client , Freelancer ,CustomUser , Skill
 from django.core.validators import FileExtensionValidator
 
 
-class JobSkill(models.Model):
-    skill_name = models.CharField(max_length=40)
-    added_at = models.DateTimeField(auto_now_add = True)
+# class JobSkill(models.Model):
+#     name = models.CharField(max_length=40)
+#     created_at = models.DateTimeField(auto_now_add = True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
 class JobPost(models.Model):
 
@@ -36,14 +37,17 @@ class JobPost(models.Model):
     user = models.ForeignKey(Client, on_delete = models.CASCADE)
     posted_at = models.DateTimeField(auto_now_add = True)
     status = models.CharField(max_length = 10, choices = JOB_STATUS)
-    duration_type = models.CharField(choices = DURATION_CHOICES,
+    duration_type = models.CharField( max_length=10, choices = DURATION_CHOICES,
                                           help_text = 'duration must be in days')
     
     duration = models.PositiveIntegerField(null=True)
     
     salary = models.PositiveIntegerField(help_text = 'job salary per hour')
 
-    necessary_skill = models.ManyToManyField(JobSkill,null=True)
+    skill_required = models.ManyToManyField(Skill)
+
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     
     class Meta:
@@ -63,14 +67,14 @@ class JobProposal(models.Model):
     
     PROPASAL_STATUS =[
         ('ACCEPTED' , 'ACCEPTED'),
-        ('INPROCESS' , 'INPROCESS')
+        ('INPROCESS' , 'INPROCESS'),
         ('DENIED' , 'DENIED'),
     ]
 
     job = models.ForeignKey(JobPost , on_delete = models.CASCADE)
     user = models.ForeignKey(Freelancer , on_delete = models.CASCADE)
     status = models.CharField(max_length = 10, choices = PROPASAL_STATUS,
-                                       default=PROPASAL_STATUS[1][0])
+                                       default=PROPASAL_STATUS[1])
     resume = models.FileField(upload_to='certificates/',
                         validators=[FileExtensionValidator(
                         allowed_extensions = ['pdf','txt','doc'],
@@ -78,6 +82,7 @@ class JobProposal(models.Model):
     bid  = models.PositiveIntegerField()
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.proposal_status
@@ -92,20 +97,21 @@ class Contract(models.Model):
     client and freelancer
 
     '''
-    proposal = models.OneToOneField(JobProposal)
+    proposal = models.OneToOneField(JobProposal, on_delete=models.RESTRICT)
     created_at = models.DateTimeField(auto_now_add = True)
+    
     # total_payment = models.PositiveIntegerField()
-
 
     def __str__(self):
         return self.proposal
 
-
+'''
+logic model not useful for project 
 class ClientReviews(models.Model):
 
-    ''' logic model not useful for project '''
+    
     rating_from  = models.ForeignKey(Freelancer, on_delete = models.CASCADE)
-    rating_to = models.OneToOneField(JobPost)
+    rating_to = models.OneToOneField(JobPost , on_delete=models.CASCADE)
     review_rating  = models.IntegerField(max_length = 25)
     review_message = models.TextField()
 
@@ -113,20 +119,23 @@ class ClientReviews(models.Model):
         return self.review_rating
     class Meta:
         managed = False
+        
+'''
     
-class Reviews(models.Model):
+class Review(models.Model):
     """
     Clients can review Freelancer and Freelancer can review Client 
     """
-    rating_by = models.ForeignKey(CustomUser , on_delete = models.CASCADE)
-    rating_to = models.ForeignKey(CustomUser , on_delete = models.CASCADE)
+    rating_by = models.ForeignKey(CustomUser , on_delete = models.CASCADE, related_name='rated_by')
+    rating_to = models.ForeignKey(CustomUser , on_delete = models.CASCADE, related_name='rating_to')
     star_rating = models.PositiveIntegerField(default = 0)
     review_message = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)
-    job = models.OneToOneField(JobPost)
+    updated_at = models.DateTimeField(auto_now=True)
+    job = models.OneToOneField(JobPost,on_delete = models.CASCADE)
     # connect with job
 
     def __str__(self) -> str:
-        return self.star_rating 
+        return str(self.star_rating) 
     
 

@@ -1,7 +1,11 @@
 
 <div> Profile Page </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 {% load static %} 
+
+    <link rel="stylesheet" href = "{% static 'css/accounts/freelancer.css' %}">
+
 <script>
     let pk = "{{object.pk}}"
     console.log(pk,"*************")
@@ -9,13 +13,17 @@
 </script>
 <script src="{% static 'scripts/register.js' %}" type="text/javascript"></script> 
 
+
+<a href="{% url 'logout' %}"><button>Logout</button></a>
 <div> <a href="/{{object.pk}}/freelancer_profile_update"><button>Edit</button></a></div>
 
-<img src="{{object.profile_pic.url}}">
+<div class="profile_image"><img class="imgs" src="{{object.profile_pic.url}}"></div>
+
 
 <p>UserName : {{object.username}} </p>
 <p>Name : {{object.first_name}} {{object.lastname}}</p>
 <p>Experience : {{object.years_of_experience}} </p>
+<p>Bio : {{object.bio}}</p>
 
 
 <p>Available Skills : 
