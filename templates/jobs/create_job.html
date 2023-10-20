@@ -1,0 +1,29 @@
+
+{% extends './home.html' %} 
+{% load static %}
+<script src="{% static 'scripts/jobs/jobpost.js' %}" type="text/javascript"></script> 
+
+{% block userinfo %}
+<h1>Create a job </h1>  
+  <div style ="display: flex; ">
+    <form method="post" action="{% url 'jobs:createjob' %}" style ="display: flex; flex-direction: column;">
+        {% csrf_token %} 
+        {{job_form}}
+
+        <button onclick="jobSkillForm()">Add skill</button>
+        
+        <input type =submit>
+    </form>
+
+</div>
+<div>
+<h1>Add another skill</h1>
+<form id="job_skillform"  class ="jobSkillForm" style = "display:none;" >
+    {% csrf_token %}
+
+    {{skill_form}}
+    <input type="submit">
+</form>
+</div>
+
+{% endblock %}

@@ -49,9 +49,7 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['username', 'gender']
 
-    def get_absolute_url(self):
-        return reverse('freelancer-updateprofile',args= [{self.id}])
-
+    
     def __str__(self):
         return self.email
     
@@ -60,21 +58,6 @@ class CustomUser(AbstractUser):
 
 
 
-class Skill(models.Model):
-    '''
-    This model contains skill details of freelancer and refrence freelancer model
-
-    '''
-
-    name = models.CharField(max_length=30)
-    
-
-    created_at = models.DateTimeField(auto_now_add = True)
-    class Meta:
-        verbose_name = 'Skill'
-
-    def __str__(self):
-        return self.name 
 
   
 class Freelancer(CustomUser):
@@ -96,6 +79,9 @@ class Freelancer(CustomUser):
 
     def __str__(self):
         return self.username
+    
+
+
 
 class Certificate(models.Model):
     
@@ -180,6 +166,22 @@ class Client(CustomUser):
     def __str__(self):
         return self.username
 
+
+class Skill(models.Model):
+    '''
+    This model stores standard skills and skills created by clients(jobposters,) 
+
+    '''
+
+    name = models.CharField(max_length=30)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE , null=True)
+    created_at = models.DateTimeField(auto_now_add = True)
+
+    class Meta:
+        verbose_name = 'Skill'
+
+    def __str__(self):
+        return self.name 
     
 
 

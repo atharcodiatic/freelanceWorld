@@ -41,11 +41,6 @@ def freelancer_registeration_view(request):
             content_type = ContentType.objects.get_for_model(Freelancer)
             is_fl_permission = Permission.objects.get(content_type=content_type , codename='is_freelancer')
             user.user_permissions.add(is_fl_permission)
-
-            # fa = Freelancer.objects.get(email=user.email)
-            # user_flperm = fa.has_perm("accounts.is_freelancer")
-            # if user_flperm:
-            #     pass
             
             user_id = user.id
             return redirect("/"+ str(user_id)+'/freelancer_profile')
@@ -85,7 +80,11 @@ class LoginPageView(View):
                 login(request, user)
                 # redirect_url = reverse('home')
                 user_id = request.user.id
-                return redirect("/"+ str(user_id)+'/freelancer_profile')
+                if user.has_perm('accounts.is_client'):
+                    return redirect(reverse("jobs:clienthome"))
+                
+                else:
+                    return redirect("/"+ str(user_id)+'/freelancer_profile')
             
         
         message = 'Login failed!'
@@ -141,6 +140,7 @@ class FreeLancerProfileView(DetailView):
         self_skill = SelfSkills.objects.filter(freelancer__id = pk )
         education = Education.objects.filter(freelancer__id = pk)
         all_skills = Skill.objects.all()[0:9]
+        # Skill.objects.filter(client=None)
         context['self_skills'] = self_skill
         context['education'] = education
         context['edu_form'] = EducationForm()

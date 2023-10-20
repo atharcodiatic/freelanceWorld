@@ -38,9 +38,9 @@ class JobPost(models.Model):
     posted_at = models.DateTimeField(auto_now_add = True)
     status = models.CharField(max_length = 10, choices = JOB_STATUS)
     duration_type = models.CharField( max_length=10, choices = DURATION_CHOICES,
-                                          help_text = 'duration must be in days')
+                                          )
     
-    duration = models.PositiveIntegerField(null=True)
+    duration = models.PositiveIntegerField(null=True, help_text = 'duration must be an integer')
     
     salary = models.PositiveIntegerField(help_text = 'job salary per hour')
 
