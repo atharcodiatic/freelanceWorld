@@ -1,0 +1,28 @@
+.detailheadline{
+    /* background-color: grey; */
+    width :50%;
+    height:60px;
+    display: flex ;
+    justify-content: flex-start ;
+    align-items: center;
+    gap: 50px;
+
+}
+
+.headlinebutton{
+
+margin-left: 20px;
+ height: 60%;
+width:100px;
+
+}
+
+.Clientprofile{
+    
+    width :20%;
+    display: flex;
+    gap :20px;
+    position: absolute;
+    top :160px;
+    left:2700px;
+}

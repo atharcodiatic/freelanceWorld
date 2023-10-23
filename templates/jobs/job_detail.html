@@ -1,0 +1,80 @@
+{% extends 'jobs/home.html' %}
+{% block head %}
+    {{block.super}}
+    {% load static %}
+    <link rel = "stylesheet" href = "{% static 'css/jobs/job_detail.css' %}">
+    <script> 
+    function formopen(){
+
+    let formclass = document.getElementsByClassName('job_edit_form')[0]
+    formclass.style.display = 'block';
+
+    }
+    </script>
+{% endblock head%}
+
+{% block body %}
+
+{% if user.is_authenticated and user.id == object.user.id %}
+<button style="margin-top: 10px;" onclick="formopen()">Edit</button>
+<form style="display: none" class ="job_edit_form" method="post">
+    {% csrf_token %}
+    {{job_form.as_div}}
+    <input type="submit">
+    </form>
+{% endif %}
+
+<div>
+    
+    <h1 style="width:160px;display:inline-block ;">{{object.title}} </h1>
+    <span style="border-radius: 1rem;margin-bottom: 100px; ;background-color: rgb(124, 213, 160);">{{object.status|lower}}</span>
+    <span style="margin-left:500px">{{object.posted_at}}</span>
+</div>
+<div class="detailheadline">
+    <button class="headlinebutton"><a href="{% url 'jobs:jobdetail' object.id %}">Details</a></button>
+    <button class="headlinebutton"><a>Proposals</a></button>
+</div>
+
+{% if user.is_authenticated and  user.id != object.user.id %}
+<div class ="Clientprofile">
+    
+    <div class='img'>
+        <img style='width:300px  ;' src="{{object.user.profile_pic.url}}"> 
+    </div>
+    <div style="display:flex;flex-direction: column;">
+        
+        <div>Username : {{object.user.username}}</div>
+        <div >Member Since :{{object.user.date_joined}}</div>
+        <div >Location :{{object.user.city}},{{object.user.country}} </div>
+        <div style="color:green">Profile Completed </div>
+        <div style="color:green">Email Verified </div>
+        <div style="color:green">Phone Verified</div>
+    </div>
+
+</div>
+{% endif %}
+
+<div class = 'jobdetail'>
+    <div><h1>Project Details</h1></div>
+    <p>{{object.description}}</p>
+    <div><h1>Skills Required</h1></div>
+    {% for skill in object.skill_required.all %} 
+    
+        <span style="background-color: lightgrey; margin-left:10px;color:rgb(227, 50, 180);font-weight: bold ; border-radius: 2rem;";> 
+            {{skill|title}}
+        </span>
+    {% endfor %}
+    <div>
+        <h1>Experience Required:</h1>
+        <span sytle="font-weight: bold;">{{object.experience_required}} years</span>
+    </div>
+    <div>
+        <h1>Duration and Salary </h1>
+        <div>Duration : {{object.duration}}   {{object.duration_type}}</div>
+        <div>Salary   : {{object.salary}} ₹/hr </div>
+        
+        
+    </div>
+</div>
+
+{% endblock body %}

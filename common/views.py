@@ -13,8 +13,8 @@ class HomePageView(TemplateView):
     def get_context_data(self,*args, **kwargs):
         context = super(HomePageView, self).get_context_data(*args,**kwargs)
 
-        freelancers = Freelancer.objects.all().exclude(profile_pic='').distinct()[0:4]
-        clients = Client.objects.all().exclude(profile_pic='')[0:4]
+        freelancers = Freelancer.objects.all().exclude(profile_pic='').distinct()[0:8]
+        clients = Client.objects.all().exclude(profile_pic='')[0:8]
         
         context['freelancer_obj'] = freelancers
         context['client_obj']   = clients

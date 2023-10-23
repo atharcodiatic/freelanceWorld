@@ -42,8 +42,8 @@
             {% for client in client_obj %}
             <div class = "flcard">
 
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="media/{{client.profile_pic}}" alt="Card image cap">
+                <div class="card" style="width: 12rem;">
+                    <img style='width:200px'class="card-img-top" src="media/{{client.profile_pic}}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Name : {{client.username}}</h5>
                         <p class="card-text">Bio :{{client.bio}}</p>
@@ -61,11 +61,11 @@
             {% for freelancer in freelancer_obj %}
             <div class = "flcard">
 
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="media/{{freelancer.profile_pic}}" alt="Card image cap">
-                    <div class="card-body">
-                    <h5 class="card-title">Name : {{freelancer.username}}</h5>
-                    <p class="card-text">Bio :{{freelancer.bio}}</p>
+                <div class="card" style="width: 12rem;">
+                    <img style='width:250px; height:250px; margin-bottom: 0px;'class="card-img-top" src="media/{{freelancer.profile_pic}}" alt="Card image cap">
+                    <div style='width:200px;'class="card-body">
+                    <h5 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;";class="card-title">username : {{freelancer.username}}</h5>
+                    <p class="card-text">Bio : {{freelancer.bio}}</p>
                     
                     </div>
             </div>
@@ -84,8 +84,9 @@
         </div> -->
 
     </div>
-    <footer>
+    <footer class="footer-wrapper">
         <p>©Copyright 2050 by nobody. All rights reversed.</p>
+        <div class></div>
     </footer>
     
 </body>

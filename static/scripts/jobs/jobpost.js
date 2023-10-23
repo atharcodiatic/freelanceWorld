@@ -1,32 +1,60 @@
-// function jobFormOpen(event){
-//     // Get the elements by their ID
-//   var popupLink = document.getElementById("popup-link");
-//   var popupWindow = document.getElementById("popup-window");
-//   var closeButton = document.getElementById("close-button");
-//   // Show the pop-up window when the link is clicked
-//   popupLink.addEventListener("click", function(event) {
-//     event.preventDefault();
-//     popupWindow.style.display = "block";
-//   });
-//   // Hide the pop-up window when the close button is clicked
-//   closeButton.addEventListener("click", function() {
-//     popupWindow.style.display = "none";
-//   });
-// }
+
 
 function jobSkillForm(){
     console.log('runniing')
     formButton = document.getElementsByClassName('jobSkillForm')[0]
     formButton.style.display = 'block';
 
-    let form = document.getElementById('education'); // selecting the form
+    let form = document.getElementById("job_skillform"); // selecting the form
   
     form.addEventListener('submit', function(event) { // 1
     event.preventDefault()
 
-    data = {}
+    skill= document.getElementById('id_name').value
+    console.log(skill,'***********************')
+    data = {
+        "skill" : skill,
+    }
+    axios.defaults.xsrfCookieName = 'csrftoken'
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+    axios({
 
-    // axios.post()
+        method: 'post',
+        url: '/skillcreate/',
+        data:data ,
+        
+      })
+      .then(res => {
+        console.log('##############33',res.data)
+        if( res.data.status == "success"){
+            console.log(res.data.id,'())))0000000)')
+            id = res.data.id
+            let add_skill = document.getElementById('id_skill_required')
+
+            let skillDiv = document.createElement('div')
+            let label = document.createElement('label');
+
+            label.setAttribute('for',"id_skill_required_"+id.toString());
+            label.textContent = skill
+
+
+            checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'skill_required'
+            id = res.data.id
+            console.log(typeof id)
+            checkbox.value = id.toString()
+            checkbox.id = "id_skill_required_"+id.toString()
+            checkbox.checked = true
+            label.appendChild(checkbox)
+            skillDiv.appendChild(label)
+            add_skill.appendChild(skillDiv)
+            form.reset();
+            formButton.style.display = 'none';
+
+        }
+    
+    })
     
 
 })

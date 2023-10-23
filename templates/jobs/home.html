@@ -4,32 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clients </title>
-
-    
     {% load static %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    {% block head %}
+    
     <script href ="{% static 'scripts/jobs/jobpost.js' %}" type="text/javascript"></script>
-
-
-    <nav class='nav' >
-        <div>
-        <h1> F</h1>
-        </div>
-        <div>
-            <input type="text" placeholder=" Search...">
-        </div>
-        <button>Home</button>
-        <div>
-        
-            <button><a href="{% url 'logout' %}">Logout</a></button>
-            <button ><a href="{% url 'jobs:createjob' %}">NewJob</a></button>
-            
-        </div>
-    </nav>
-
+    <link rel = "stylesheet" href = "{% static 'css/jobs/home.css' %}">
+    
+    {% endblock head %}
     
 </head>
 <body>
-    {% block userinfo %}
+    {% include "jobs/navbar.html" %}
+    {% block body %}
+        <div id="job_wrapper">
+            {% for job in client_jobs %}
+
+                <div class="jobbox" onclick="location.href='{%url 'jobs:jobdetail' job.id %}'">
+                    <h1 style = "color: rgb(83, 131, 220);">{{job.title}}</h1>
+                    <span>Price : {{job.salary}} ₹/hr</span>
+                    <p style = "overflow: hidden;">{{job.description}}</p>
+                    {% if job.skill_required.all %}
+                    <div style = "color: rgb(83, 131, 220);">
+                
+                        {% for job_skill in job.skill_required.all %}
+                        • {{job_skill |title}} 
+                        {% endfor %}
+                        
+                    {% endif %}
+                    
+                    </div>
+                    
+                </div>
+              
+            {% endfor %}
+        </div>
+
+
     {% endblock %}
 </body>
 </html>

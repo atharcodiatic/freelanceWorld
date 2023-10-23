@@ -54,7 +54,7 @@ class JobPost(models.Model):
         verbose_name = 'Post'
 
     def __str__(self):
-        return self.job_title
+        return self.title
     
 
      
