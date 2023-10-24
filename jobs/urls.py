@@ -9,5 +9,6 @@ urlpatterns = [
     path('skillcreate/', views.SkillCreateView.as_view(), name="skillcreate"),
     
     path('jobdetail/<int:pk>', views.JobDetailView.as_view(), name="jobdetail"),
+    # path('browsefreelancer/',views.BrowseFreelancer.as_view(),name='browse-freelancer')
     
 ]

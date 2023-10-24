@@ -1,0 +1,46 @@
+{% extends 'freelancer/home.html' %}
+
+{% block head %}
+    {{block.super}}
+    {% load static %}
+    <link rel = "stylesheet" href = "{% static 'css/freelancer/feed.css' %}">
+    
+{% endblock head %}
+
+{% block body %}
+    
+    <div class="all_feedwrapper">
+        {% if result %}
+            {% for res in result %}
+            
+            <div class="post" >
+                
+                <div class = "imgpro">
+                    <div class="img">
+                        <img style="width:80px ;height:50px;" src="{{res.user.profile_pic.url}}" >
+                    </div>
+                    <div>
+                        <div style="font-weight:bold ; height:20px;" >{{res.user.username}}</div>
+                        <div style="font-weight:light; font-family: sans-serif;"> post_id :{{res.id}}</div>
+                    </div>
+                </div>
+
+                <div style=" margin-top: 10px;font-weight:bold ;">{{res.title|upper}}</div>
+                
+                <div>
+                    
+                <span style="color:mediumvioletred">Description :</span>
+                    <p>{{res.description}}</p>
+                        
+                </div>
+                <button onclick="location.href='{%url 'jobs:jobdetail' res.id %}'" style="height:40px; width:200px; margin-bottom:5px;">View Detail</button>
+                <br>
+            </div>
+                {% endfor %}
+        {% endif %}
+        
+    </div>
+
+    
+
+{% endblock body %}

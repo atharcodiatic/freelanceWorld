@@ -85,7 +85,7 @@ class JobProposal(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.proposal_status
+        return self.status
     
     
 

@@ -79,3 +79,10 @@ class SkillForm(forms.ModelForm):
         fields = '__all__'
         model = Skill
         exclude = ['client']
+
+
+class JobProposalForm(forms.ModelForm):
+    class Meta:
+        fields = '__all__'
+        model = JobProposal
+        exclude = ['updated_at ', 'created_at', 'user', 'job','status']

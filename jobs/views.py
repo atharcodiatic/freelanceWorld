@@ -11,7 +11,7 @@ from django.http import QueryDict
 
 from django.views.generic.base import TemplateView 
 from django.views.generic import DetailView
-from django.views.generic.edit import ModelFormMixin
+from django.views.generic.edit import ModelFormMixin, CreateView
  
 class ClientHomePage(TemplateView):
     template_name = 'jobs/home.html'
@@ -94,6 +94,7 @@ class JobDetailView(ModelFormMixin, DetailView):
     def get_context_data(self,*args,**kwargs):
         context = super().get_context_data(**kwargs)
         context ['job_form'] = self.get_form()
+        context['proposal_form'] = JobProposalForm()
         return context
     
     def get_success_url(self):
@@ -114,9 +115,30 @@ class JobDetailView(ModelFormMixin, DetailView):
     
 
     def get_initial(self):
+        """ 
+        This method is passing initial data in form
+        Passing Initial Data in Form
+        """
         obj = self.get_object()
         return {  'job_id': obj.title }
 
+
+class JopProposalView(CreateView):
+
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST requests: instantiate a form instance with the passed
+        POST variables and then check if it's valid.
+        """
+
+        # user = request.user.id
+        form = self.get_form()
+        if form.is_valid():
+            form.save(commit=False)
+            
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
         
     

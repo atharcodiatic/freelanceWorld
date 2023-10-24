@@ -10,11 +10,21 @@
     formclass.style.display = 'block';
 
     }
+    function openProposalForm(){
+        let formclass = document.getElementsByClassName('formearlier')[0]
+        console.log(formclass.classList)
+        formclass.classList.remove('formearlier');
+        formclass.classList.add('popup');
+    console.log(formclass.classList,'PPPPPPPPP')
+
+
+    }
     </script>
 {% endblock head%}
 
 {% block body %}
 
+{{perm}}
 {% if user.is_authenticated and user.id == object.user.id %}
 <button style="margin-top: 10px;" onclick="formopen()">Edit</button>
 <form style="display: none" class ="job_edit_form" method="post">
@@ -25,7 +35,6 @@
 {% endif %}
 
 <div>
-    
     <h1 style="width:160px;display:inline-block ;">{{object.title}} </h1>
     <span style="border-radius: 1rem;margin-bottom: 100px; ;background-color: rgb(124, 213, 160);">{{object.status|lower}}</span>
     <span style="margin-left:500px">{{object.posted_at}}</span>
@@ -35,7 +44,10 @@
     <button class="headlinebutton"><a>Proposals</a></button>
 </div>
 
-{% if user.is_authenticated and  user.id != object.user.id %}
+
+{% if user.id != object.user.id and user.is_authenticated %}
+
+
 <div class ="Clientprofile">
     
     <div class='img'>
@@ -73,8 +85,19 @@
         <div>Duration : {{object.duration}}   {{object.duration_type}}</div>
         <div>Salary   : {{object.salary}} ₹/hr </div>
         
-        
     </div>
+    {% if user.id != object.user.id and user.is_authenticated %}
+        <div class="formid">
+            <form class ="formearlier" method='Post' enctype="multipart/form-data">
+            
+                {{proposal_form}}
+                <input type="submit" placeholder="submit">
+            </form>
+        </div>
+        <div id="proposalform" >
+            <button onclick="openProposalForm()">Proposal</button>
+        </div>
+    {% endif %}
 </div>
 
 {% endblock body %}

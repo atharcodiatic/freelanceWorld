@@ -27,6 +27,7 @@ urlpatterns = [
     path('',include('accounts.urls')),
     path('',include("common.urls")),
     path('',include("jobs.urls")),
+    path('',include('freelancer.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
