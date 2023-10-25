@@ -81,7 +81,6 @@ class SkillCreateView(View):
     
 
 class JobDetailView(ModelFormMixin, DetailView):
-
     """
     ModelFormMixin provides form to update the jobpost and handles form data with post method , 
     DetailView shows the detail of JobPost with pk.
@@ -95,6 +94,12 @@ class JobDetailView(ModelFormMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context ['job_form'] = self.get_form()
         context['proposal_form'] = JobProposalForm()
+        user_id = self.request.user.id
+        context['proposal_exist'] = JobProposal.objects.filter(job= self.object.pk, user=user_id).exists()
+        job_prop = JobProposal.objects.filter(job= self.object.pk).exists()
+        if job_prop:
+            proposals = JobProposal.objects.filter(job= self.object.pk)
+            context['job_proposols']  =  proposals
         return context
     
     def get_success_url(self):
@@ -119,11 +124,23 @@ class JobDetailView(ModelFormMixin, DetailView):
         This method is passing initial data in form
         Passing Initial Data in Form
         """
+
         obj = self.get_object()
         return {  'job_id': obj.title }
 
 
 class JopProposalView(CreateView):
+    """
+    this view creates a job proposal
+    """
+    form_class = JobProposalForm
+    model = JobProposal
+
+
+    def dispatch(self, request, *args, **kwargs):
+        setattr(self, 'user_id', request.user.id) 
+        setattr(self,'pk',kwargs['pk'])
+        return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         """
@@ -134,11 +151,21 @@ class JopProposalView(CreateView):
         # user = request.user.id
         form = self.get_form()
         if form.is_valid():
-            form.save(commit=False)
-            
+            form_obj = form.save(commit=False)
+            user_obj = Freelancer.objects.get(id=request.user.id)
+            job_obj = JobPost.objects.get(id= kwargs['pk'])
+            form_obj.user = user_obj
+            form_obj.job = job_obj
+            form_obj.save()
+
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+    
+        
+    
+    def get_success_url(self):
+        return reverse("jobs:job-proposal", kwargs={"pk": self.object.pk})
 
         
     

@@ -15,9 +15,16 @@
     {% endblock head %}
     
 </head>
+
+
 <body>
-    {% include "jobs/navbar.html" %}
+    {% block nav %}
+        {% include "jobs/navbar.html" %}
+    {% endblock nav %}
+    
+
     {% block body %}
+
         <div id="job_wrapper">
             {% for job in client_jobs %}
 

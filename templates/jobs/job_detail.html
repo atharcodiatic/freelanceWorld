@@ -1,30 +1,61 @@
 {% extends 'jobs/home.html' %}
+
 {% block head %}
     {{block.super}}
     {% load static %}
     <link rel = "stylesheet" href = "{% static 'css/jobs/job_detail.css' %}">
     <script> 
-    function formopen(){
 
-    let formclass = document.getElementsByClassName('job_edit_form')[0]
-    formclass.style.display = 'block';
-
+    function formopen(event){
+        let formclass = document.getElementsByClassName('job_edit_form')[0]
+        formclass.style.display = 'block';
     }
+
     function openProposalForm(){
         let formclass = document.getElementsByClassName('formearlier')[0]
         console.log(formclass.classList)
         formclass.classList.remove('formearlier');
         formclass.classList.add('popup');
-    console.log(formclass.classList,'PPPPPPPPP')
-
-
     }
+
+    
+    function prepareResume(event){
+        console.log(event.target.value)
+        
+    }
+    
+    function hideOpen(event){
+
+        let propDiv = document.getElementsByClassName('proposal_tab')[0]
+        
+        let detailDiv = document.getElementsByClassName('jobdetail')[0]
+
+        console.log(event.target)
+        if (event.target.value == 'detail'){
+            propDiv.style.display = 'none'
+            detailDiv.style.display = 'block'            
+
+        }
+        else if(event.target.value =='proposal'){
+            detailDiv.style.display = 'none'
+            propDiv.style.display = 'block'}
+
+        }
+
     </script>
 {% endblock head%}
 
+{% block nav %}
+    {% if user.id == object.user.id  and  perms.accounts.is_client  and user.isauthenticated %}
+        {{block.super}}
+    {% elif user.id != object.user.id  and perms.accounts.is_freelancer and user.is_authenticated %}
+        {% include 'freelancer/navbar.html'%}
+    
+    {% endif %}
+{% endblock nav %}
+
 {% block body %}
 
-{{perm}}
 {% if user.is_authenticated and user.id == object.user.id %}
 <button style="margin-top: 10px;" onclick="formopen()">Edit</button>
 <form style="display: none" class ="job_edit_form" method="post">
@@ -34,14 +65,17 @@
     </form>
 {% endif %}
 
+
+
 <div>
     <h1 style="width:160px;display:inline-block ;">{{object.title}} </h1>
     <span style="border-radius: 1rem;margin-bottom: 100px; ;background-color: rgb(124, 213, 160);">{{object.status|lower}}</span>
     <span style="margin-left:500px">{{object.posted_at}}</span>
 </div>
+
 <div class="detailheadline">
-    <button class="headlinebutton"><a href="{% url 'jobs:jobdetail' object.id %}">Details</a></button>
-    <button class="headlinebutton"><a>Proposals</a></button>
+    <button class="headlinebutton" onclick="hideOpen(event)" value="detail" >Details</button>
+    <button class="headlinebutton" onclick="hideOpen(event)"  value="proposal">Proposals</button>
 </div>
 
 
@@ -66,7 +100,7 @@
 </div>
 {% endif %}
 
-<div class = 'jobdetail'>
+<div class = 'jobdetail' >
     <div><h1>Project Details</h1></div>
     <p>{{object.description}}</p>
     <div><h1>Skills Required</h1></div>
@@ -88,16 +122,55 @@
     </div>
     {% if user.id != object.user.id and user.is_authenticated %}
         <div class="formid">
-            <form class ="formearlier" method='Post' enctype="multipart/form-data">
-            
+            <form class ="formearlier" method='Post' action="{% url 'jobs:job-proposal' object.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
                 {{proposal_form}}
                 <input type="submit" placeholder="submit">
             </form>
         </div>
-        <div id="proposalform" >
-            <button onclick="openProposalForm()">Proposal</button>
-        </div>
+            {% if not proposal_exist %}
+            <div id="proposalform" >
+                <button onclick="openProposalForm()">Proposal</button>
+            </div>
+            {% else %}
+            <div id="proposalform" class="proposal-button" >
+                <button disabled> Proposal Sent </button>
+            </div>
+            {%endif %}
     {% endif %}
+</div>
+
+<div class = 'proposal_tab' >
+    <div class = "proposal-wrapper">
+        {% for proposal in job_proposols %}
+            <div class="proposal-card">
+                <div>
+                    <div class="frontline">
+                        <div>
+                            <img style ="width:120px ;height:120px ;" src = "{{proposal.user.profile_pic.url}}">
+                        </div>
+                        <div class="detailprofile">
+                            <div> {{proposal.user.username}}</div>
+                            <div style="font-weight: bold;">Price :{{proposal.bid}}</div>
+                            <div>created_at: {{proposal.created_at}}</div>
+                        </div>
+                        
+                        <div>
+                            <button value="{{proposal.resume.url}}" onclick="prepareResume(event)">Open Resume</button>
+                        </div>
+                        <div>
+                            <button>Accept Proposal</button>
+                        </div>
+                        
+                    </div>
+                </div>
+               <div style="margin-left: 40px;">
+                    <p>{{proposal.message}}</p>
+               </div>
+                
+            </div>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock body %}

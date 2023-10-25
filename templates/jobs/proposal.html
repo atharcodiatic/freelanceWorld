@@ -1,0 +1,16 @@
+{% extends "jobs/job_detail.html" %}
+
+
+{% block body %}
+    id :{{id_user}}
+    kwargs :{{kwargs}}
+    args :{{args}}
+
+    {% for proposal in job_proposols %}
+
+        {{proposal}}
+
+    {% endfor %}
+
+
+{% endblock %}

@@ -23,9 +23,19 @@ width:100px;
     display: flex;
     gap :20px;
     position: absolute;
-    top :160px;
-    left:1200px;
+    top :150px;
+    left:1800px;
 }
+
+/* @keyframes mymove {
+    from    {translate : 0px 0px}
+    25%  {translate : 150px -30px;}
+    50%  {translate : 300px -60px;}
+    75%  {translate : 480px -80px;}
+    to {translate:600px -100px;}
+  } */
+
+
 .popup{
     width: 600px;
     height:500px;
@@ -34,8 +44,13 @@ width:100px;
     display: flex ;
     flex-direction: column;
     justify-content: space-between;
-
     translate:600px -100px;
+
+    
+    /* animation-name: mymove;
+    animation-duration: 1s;
+    animation-iteration-count: 1; */
+    
 }
 .formid{
     display: flex;
@@ -47,4 +62,39 @@ width:100px;
     height:0px;
     display: none;
     
+}
+
+.proposal-button{
+    position: relative;
+    top: 100px;
+    left :30px;   
+}
+
+.proposal-wrapper{
+    display:flex;
+    flex-direction: column;
+    margin-top:50px;
+    justify-content: space-between;
+    
+    
+}
+.proposal-card{
+    display: flex;
+    flex-direction: column;
+    background-color:lightgrey;
+
+}
+
+.frontline{
+    display: flex;
+    flex-direction: row ;
+    gap:30px;
+    margin-left: 25px ;
+    margin-top:23px;
+}
+
+.detailprofile{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
 }

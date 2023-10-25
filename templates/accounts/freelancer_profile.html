@@ -1,11 +1,12 @@
 
-<div> Profile Page </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 {% load static %} 
 
     <link rel="stylesheet" href = "{% static 'css/accounts/freelancer.css' %}">
-
+    {% block cssfiles %}
+    <link rel="stylesheet" href = "{% static 'css/freelancer/home.css' %}">
+    {% endblock cssfiles %}
 <script>
     let pk = "{{object.pk}}"
     console.log(pk,"*************")
@@ -13,8 +14,9 @@
 </script>
 <script src="{% static 'scripts/register.js' %}" type="text/javascript"></script> 
 
+{% include 'freelancer/navbar.html' %}
+{% block body %}
 
-<a href="{% url 'logout' %}"><button>Logout</button></a>
 <div> <a href="/{{object.pk}}/freelancer_profile_update"><button>Edit</button></a></div>
 
 <div class="profile_image"><img class="imgs" src="{{object.profile_pic.url}}"></div>
@@ -94,3 +96,4 @@ Skills :
 
 <img {{profile_pic}}>
 
+{% endblock body %}
