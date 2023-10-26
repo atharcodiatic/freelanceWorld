@@ -12,6 +12,9 @@ from django.http import QueryDict
 from django.views.generic.base import TemplateView 
 from django.views.generic import DetailView
 from django.views.generic.edit import ModelFormMixin, CreateView
+
+from django.views.generic import ListView
+from django.views.generic.detail import SingleObjectMixin
  
 class ClientHomePage(TemplateView):
     template_name = 'jobs/home.html'
@@ -141,6 +144,7 @@ class JopProposalView(CreateView):
         setattr(self, 'user_id', request.user.id) 
         setattr(self,'pk',kwargs['pk'])
         return super().dispatch(request, *args, **kwargs)
+    
 
     def post(self, request, *args, **kwargs):
         """
@@ -167,8 +171,22 @@ class JopProposalView(CreateView):
     def get_success_url(self):
         return reverse("jobs:job-proposal", kwargs={"pk": self.object.pk})
 
-        
+
+class CreateContract(View):
+
+    def post(self, request, *args, **kwargs):
+        proposal_id = kwargs['pk']
+        Contract.objects.create(proposal = proposal_id)
+
+        return HttpResponse('contract created')
     
+
+
+class FreelancerView(ListView):
+    paginate_by = 2
+    template_name = "browse_freelancer.html"
+    model = Freelancer
+
 
 
     

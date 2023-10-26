@@ -1,0 +1,75 @@
+{% extends "jobs/home.html" %}
+
+{% block head %}
+{% load static %}
+<link rel = "stylesheet" href = "{% static 'css/jobs/browse_fl.css' %}">
+
+{% endblock head %}
+
+{% block body %}
+
+    <h2> All Freelancers </h2>
+
+<div style="max-width:60%; margin:auto;background-color:grey;">
+    <!-- <ol>
+      {% for freelancer in page_obj %}
+        <li>{{ freelancer.email }}</li>
+      {% endfor %}
+    </ol> -->
+    <div class = "proposal-wrapper">
+        {% for freelancer in page_obj %}
+            <div class="proposal-card">
+                <div>
+                    <div class="frontline">
+                        <div>
+                            {% if freelancer.profile_pic %}
+                            <img style ="width:120px ;height:120px ;" src = "{{freelancer.profile_pic.url}}" alt="image">
+                            {% endif %}
+                        </div>
+                        <div class="detailprofile">
+                            <div> {{freelancer.username}}</div>
+                            <div style="font-weight: bold;">Price :</div>
+                            <div>created_at: {{proposal.created_at}}</div>
+                            <div>
+                                
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                            </div>
+                        </div>
+                        
+                        
+                     
+                    </div>
+                </div>
+               <div style="margin-left: 40px;">
+                    <p>{{freelancer.bio}}</p>
+               </div>
+                
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+{% endblock body%}
+

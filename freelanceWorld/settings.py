@@ -70,6 +70,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'context_processors.access_common_data',
             ],
+            'libraries':{
+            'custom_filter': 'freelancer.templatetags.custom_filter',
+            
+            }
         },
     },
 ]

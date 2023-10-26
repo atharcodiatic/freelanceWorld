@@ -4,12 +4,38 @@
     {{block.super}}
     {% load static %}
     <link rel = "stylesheet" href = "{% static 'css/freelancer/feed.css' %}">
+    <script src ="{% static 'scripts/freelancer/feed.js' %}" type="text/javascript"></script>
     
 {% endblock head %}
 
+
+
 {% block body %}
-    
+<div class="detailheadline">
+    <button class="headlinebutton" onclick="hideOpen(event)" value="feed" > Feed</button>
+    <button class="headlinebutton" onclick="hideOpen(event)"  value="showall">All Jobs</button>
+</div>
+
+    </div>
     <div class="all_feedwrapper">
+
+
+
+        {{switch}}
+{% with result=result %}
+{% if switch == 'showFeed' %}
+
+    {result|update_variable:result}
+    {% for res in result %}
+        {{res.user.username}}
+    {% endfor %}
+    
+{% elif switch == 'all_job' %}
+        
+    {% load custom_filter %}
+        
+        {result|update_variable:all_jobs}
+        
         {% if result %}
             {% for res in result %}
             
@@ -38,7 +64,10 @@
             </div>
                 {% endfor %}
         {% endif %}
-        
+
+    
+{% endif %}
+{% endwith %}          
     </div>
 
     

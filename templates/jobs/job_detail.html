@@ -1,7 +1,9 @@
 {% extends 'jobs/home.html' %}
 
+    
 {% block head %}
     {{block.super}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {% load static %}
     <link rel = "stylesheet" href = "{% static 'css/jobs/job_detail.css' %}">
     <script> 
@@ -20,8 +22,17 @@
 
     
     function prepareResume(event){
-        console.log(event.target.value)
+    
+        let fileurl= event.target.value;
+        let anchorTag = document.getElementById('proposal_resume')
         
+        fetch(fileurl)
+        .then((response)=>response.blob())
+        .then((blob)=>{
+            const objecturl = URL.createObjectURL(blob)
+            anchorTag.setAttribute("href", objecturl)
+        })
+        .catch((error)=> console.log(error))       
     }
     
     function hideOpen(event){
@@ -44,10 +55,11 @@
 
     </script>
 {% endblock head%}
-
+{{user.is_authenticated}}
 {% block nav %}
-    {% if user.id == object.user.id  and  perms.accounts.is_client  and user.isauthenticated %}
+    {% if user.id == object.user.id %}
         {{block.super}}
+        
     {% elif user.id != object.user.id  and perms.accounts.is_freelancer and user.is_authenticated %}
         {% include 'freelancer/navbar.html'%}
     
@@ -140,7 +152,7 @@
     {% endif %}
 </div>
 
-<div class = 'proposal_tab' >
+<div class = 'proposal_tab'  style = "display:none;">
     <div class = "proposal-wrapper">
         {% for proposal in job_proposols %}
             <div class="proposal-card">
@@ -151,17 +163,29 @@
                         </div>
                         <div class="detailprofile">
                             <div> {{proposal.user.username}}</div>
-                            <div style="font-weight: bold;">Price :{{proposal.bid}}</div>
+                            <div style="font-weight: bold;">Price : {{proposal.bid}}</div>
                             <div>created_at: {{proposal.created_at}}</div>
+                            <div>
+                                
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                            </div>
                         </div>
                         
-                        <div>
-                            <button value="{{proposal.resume.url}}" onclick="prepareResume(event)">Open Resume</button>
-                        </div>
-                        <div>
-                            <button>Accept Proposal</button>
-                        </div>
-                        
+                        {% if user.is_authenticated and user.id == object.user.id %}
+                            <div>
+                                <a id="proposal_resume"><button value="{{proposal.resume.url}}" onclick="prepareResume(event)">Open Resume</button></a>
+                            </div>
+                            <div>
+                                <form method="post" action="">
+                                    <button>Accept Proposal</button>
+                                </form>
+                            </div>
+                        {% endif %}
+                         
                     </div>
                 </div>
                <div style="margin-left: 40px;">

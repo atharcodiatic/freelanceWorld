@@ -1,0 +1,32 @@
+.proposal-wrapper{
+    display:flex;
+    flex-direction: column;
+    margin-top:50px;
+    justify-content: space-between;
+    
+    
+}
+.proposal-card{
+    display: flex;
+    flex-direction: column;
+    background-color:lightgrey;
+
+}
+
+.frontline{
+    display: flex;
+    flex-direction: row ;
+    gap:30px;
+    margin-left: 25px ;
+    margin-top:23px;
+}
+
+.detailprofile{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+.checked {
+    color: rgb(183, 59, 183);
+  }

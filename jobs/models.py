@@ -39,7 +39,6 @@ class JobPost(models.Model):
     status = models.CharField(max_length = 10, choices = JOB_STATUS)
     duration_type = models.CharField( max_length=10, choices = DURATION_CHOICES,
                                           )
-    
     duration = models.PositiveIntegerField(null=True, help_text = 'duration must be an integer')
     
     salary = models.PositiveIntegerField(help_text = 'job salary per hour')
@@ -87,6 +86,7 @@ class JobProposal(models.Model):
     def __str__(self):
         return self.status
     
+
     
 
 
@@ -100,7 +100,7 @@ class Contract(models.Model):
     proposal = models.OneToOneField(JobProposal, on_delete=models.RESTRICT)
     created_at = models.DateTimeField(auto_now_add = True)
     
-    # total_payment = models.PositiveIntegerField()
+    total = models.PositiveIntegerField()
 
     def __str__(self):
         return self.proposal
