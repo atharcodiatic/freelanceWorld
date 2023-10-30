@@ -3,7 +3,10 @@
     <h1> clientHome </h1>
     </div>
     <div>
-        <input type="text" placeholder=" Search...">
+        <form method="get"  action="{% url 'jobs:browse-freelancer' %}">
+            <input type="text" name="freelancer" placeholder=" Search freelancers...">
+            <input type="submit">
+        </form>
     </div>
     
     

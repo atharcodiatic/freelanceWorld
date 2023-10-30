@@ -2,34 +2,88 @@
 
 {% block head %}
 {% load static %}
+{{block.super}}
 <link rel = "stylesheet" href = "{% static 'css/jobs/browse_fl.css' %}">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock head %}
 
 {% block body %}
 
-    <h2> All Freelancers </h2>
+{% block filter %}
+    <div style="max-width: 30% ; position: absolute; left:30px;top:230px ;height: 400px; ;background-color: lightgrey;">
+        <h2> Filter BY </h2>
+        <form method='get' name="filter" action="{% url 'jobs:browse-freelancer' %}" style="display:flexbox; flex-direction: column;" >
+            <div class="form-element">
+                <label for="skill">Skills:</label>
+                <input type="text" id="skill" name='skill'placeholder="filter by skill1, skill2">
+            </div>
+            <div class="form-element">
+                <label for="level">Level: </label>
+                <select name="level" id="level">
+                    <option value="BEG">Beginner</option>
+                    <option value="INT">Intermediate</option>
+                    <option value="Exp">Expert</option>
+                </select>
+            </div>
+            <div class="form-element">
+                <label for="course">Qualification:</label>
+                <input type="text" id="course" name ="education" placeholder="filter by course">
+            </div>
+            <div class="form-element">
+                <label for="experience">Experience:</label>
+                <input type="number" id="experience" name="experience" min="0" placeholder="filter by experience">
+            </div>
+            <input type="submit">
+        </form>
+    </div>
+{% endblock %}
+<!-- <div>
+    object_lst:{{object_list}} End
+    <br>
+    
+    freelancer_list:{{freelancer_list}}
+    <br>
+    Pageobj >>>>>>>>>>>:{{page_obj}}
+</div> -->
+
+    <div style="max-width:60%; margin:auto;  height:80px; background-color: grey;">
+        <h1 style="position: relative; left:38%; top:28%;"> All Freelancers </h2>
+    </div>
 
 <div style="max-width:60%; margin:auto;background-color:grey;">
-    <!-- <ol>
-      {% for freelancer in page_obj %}
-        <li>{{ freelancer.email }}</li>
-      {% endfor %}
-    </ol> -->
+    
     <div class = "proposal-wrapper">
-        {% for freelancer in page_obj %}
+    {% if object_list %}
+        {% for freelancer in object_list %}
             <div class="proposal-card">
                 <div>
                     <div class="frontline">
                         <div>
                             {% if freelancer.profile_pic %}
-                            <img style ="width:120px ;height:120px ;" src = "{{freelancer.profile_pic.url}}" alt="image">
+                                <img style ="width:120px ;height:120px ;" src = "{{freelancer.profile_pic.url}}" alt="image">
+
+                                {% else %}
+                                <img style ="width:120px ;height:120px ;"  alt="image">
                             {% endif %}
                         </div>
                         <div class="detailprofile">
-                            <div> {{freelancer.username}}</div>
-                            <div style="font-weight: bold;">Price :</div>
-                            <div>created_at: {{proposal.created_at}}</div>
+                            <div style="font-weight: bold;">{{freelancer.username}} </div>
+                            <div> Member Since - {{freelancer.created_at}}</div>
+
+                            {% with freelancer.selfskills_set.all.values  as fl_skill %}
+                                <div>
+                                    {% for skill in fl_skill %}
+                                        
+                                        {% if skill %}
+                                            <span style="background-color: lightgrey;background-color: whitesmoke ;margin-right:10px;color:rgb(227, 50, 180);font-weight: bold ; border-radius: 2rem;";> 
+                                                {{skill.skill_name|title}}
+                                            </span>
+                                        {% else %}
+                                            <div>None</div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endwith %}
                             <div>
                                 
                                 <span class="fa fa-star checked"></span>
@@ -50,14 +104,17 @@
                 
             </div>
         {% endfor %}
+        {% else %}
+            <h1> Search Not Found</h1>
+    {% endif %}
     </div>
 
 
 
-    <div class="pagination">
+    <div class="pagination" style="display:flex; justify-content:center; height:50px; align-items: center; ">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                <a href="?page={{ page_obj.previous_page_number }}" style="color:white; font-weight: bold; margin-right:50px">Previous</a>
             {% endif %}
 
             <span class="current">
@@ -65,7 +122,7 @@
             </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.next_page_number }}" style="color:white; font-weight: bold; margin-left:50px; ;">Next</a>
             {% endif %}
         </span>
     </div>

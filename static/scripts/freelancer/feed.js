@@ -1,6 +1,7 @@
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 function hideOpen(event){
+    console.log(event.target.value)
     let data = { 
     "showFeed":null,
     "allJob":null,

@@ -10,6 +10,7 @@
 
 
 
+
 {% block body %}
 <div class="detailheadline">
     <button class="headlinebutton" onclick="hideOpen(event)" value="feed" > Feed</button>
@@ -17,30 +18,14 @@
 </div>
 
     </div>
-    <div class="all_feedwrapper">
-
-
-
-        {{switch}}
-{% with result=result %}
-{% if switch == 'showFeed' %}
-
-    {result|update_variable:result}
-    {% for res in result %}
-        {{res.user.username}}
-    {% endfor %}
-    
-{% elif switch == 'all_job' %}
-        
-    {% load custom_filter %}
-        
-        {result|update_variable:all_jobs}
+    <div class="all_feedwrapper">    
         
         {% if result %}
+       
             {% for res in result %}
-            
-            <div class="post" >
-                
+
+    <div class="post" >
+
                 <div class = "imgpro">
                     <div class="img">
                         <img style="width:80px ;height:50px;" src="{{res.user.profile_pic.url}}" >
@@ -64,10 +49,10 @@
             </div>
                 {% endfor %}
         {% endif %}
+        
 
     
-{% endif %}
-{% endwith %}          
+
     </div>
 
     

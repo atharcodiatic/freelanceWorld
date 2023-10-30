@@ -26,6 +26,10 @@ class JobPost(models.Model):
                        ('MONTH' , 'MONTH'),
                        
                        ] 
+    CURRENCY_CHOICES = [
+        ('RS','RUPPEES'),
+        ('USD','DOLLAR')
+    ]
 
     title = models.CharField(max_length=200)
 
@@ -37,14 +41,11 @@ class JobPost(models.Model):
     user = models.ForeignKey(Client, on_delete = models.CASCADE)
     posted_at = models.DateTimeField(auto_now_add = True)
     status = models.CharField(max_length = 10, choices = JOB_STATUS)
-    duration_type = models.CharField( max_length=10, choices = DURATION_CHOICES,
-                                          )
+    duration_type = models.CharField( max_length=10, choices = DURATION_CHOICES,)
     duration = models.PositiveIntegerField(null=True, help_text = 'duration must be an integer')
-    
+    currency = models.CharField(max_length=3,choices=CURRENCY_CHOICES)
     salary = models.PositiveIntegerField(help_text = 'job salary per hour')
-
     skill_required = models.ManyToManyField(Skill)
-
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -61,13 +62,16 @@ class JobPost(models.Model):
 class JobProposal(models.Model):
     '''
     This model store data of JobProposal , User can send to client to get job
-
     '''
-    
+
     PROPASAL_STATUS =[
         ('ACCEPTED' , 'ACCEPTED'),
         ('INPROCESS' , 'INPROCESS'),
         ('DENIED' , 'DENIED'),
+    ]
+    CURRENCY_CHOICES = [
+        ('RS','RUPPEES'),
+        ('USD','DOLLAR')
     ]
 
     job = models.ForeignKey(JobPost , on_delete = models.CASCADE)
@@ -78,7 +82,9 @@ class JobProposal(models.Model):
                         validators=[FileExtensionValidator(
                         allowed_extensions = ['pdf','txt','doc'],
                         message = 'only pdf, txt, doc extensions allowed')])
+    
     bid  = models.PositiveIntegerField()
+    currency = models.CharField(max_length=3,choices=CURRENCY_CHOICES)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -86,9 +92,6 @@ class JobProposal(models.Model):
     def __str__(self):
         return self.status
     
-
-    
-
 
 class Contract(models.Model):
 
@@ -101,6 +104,7 @@ class Contract(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     
     total = models.PositiveIntegerField()
+    currency = models.CharField(max_length=7)
 
     def __str__(self):
         return self.proposal

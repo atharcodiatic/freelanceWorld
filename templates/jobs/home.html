@@ -30,7 +30,7 @@
 
                 <div class="jobbox" onclick="location.href='{%url 'jobs:jobdetail' job.id %}'">
                     <h1 style = "color: rgb(83, 131, 220);">{{job.title}}</h1>
-                    <span>Price : {{job.salary}} ₹/hr</span>
+                    <span style="font-weight: bold;">Price : {{job.salary}} {{job.currency}}/hr</span>
                     <p style = "overflow: hidden;">{{job.description}}</p>
                     {% if job.skill_required.all %}
                     <div style = "color: rgb(83, 131, 220);">

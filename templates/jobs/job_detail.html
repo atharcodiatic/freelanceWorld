@@ -117,7 +117,6 @@
     <p>{{object.description}}</p>
     <div><h1>Skills Required</h1></div>
     {% for skill in object.skill_required.all %} 
-    
         <span style="background-color: lightgrey; margin-left:10px;color:rgb(227, 50, 180);font-weight: bold ; border-radius: 2rem;";> 
             {{skill|title}}
         </span>
@@ -129,12 +128,15 @@
     <div>
         <h1>Duration and Salary </h1>
         <div>Duration : {{object.duration}}   {{object.duration_type}}</div>
-        <div>Salary   : {{object.salary}} ₹/hr </div>
+        <div>Salary   : {{object.salary}} {{object.currency}}/hr </div>
         
     </div>
+    {% url 'jobs:job-proposal' object.id %}
+                {{object.id}}
     {% if user.id != object.user.id and user.is_authenticated %}
         <div class="formid">
-            <form class ="formearlier" method='Post' action="{% url 'jobs:job-proposal' object.id %}" enctype="multipart/form-data">
+            <form class ="formearlier" method='Post' action="{% url 'jobs:job-proposal' %}" enctype="multipart/form-data">
+                
                 {% csrf_token %}
                 {{proposal_form}}
                 <input type="submit" placeholder="submit">
@@ -163,7 +165,24 @@
                         </div>
                         <div class="detailprofile">
                             <div> {{proposal.user.username}}</div>
-                            <div style="font-weight: bold;">Price : {{proposal.bid}}</div>
+                                
+                                    <div style="font-weight: bold;">Bid :
+                                        {% if object.currency == proposal.currency %}
+                                            {{proposal.bid}} {{proposal.currency}}
+                                            {% elif object.currency != proposol.currency %}
+                                            {% load custom_filter %}
+                                                {% if object.currency == "USD"%}
+
+                                                    {{proposal.bid|divide:83}} {{object.currency}}
+                                                {% elif object.currency == "RS" %}
+                                                    {% load custom_filter %}
+                                                        {{proposal.bid|multiply:83}} {{object.currency}}
+
+                                                {% endif %}
+
+                                        {% endif %}
+                                        </div>
+                                
                             <div>created_at: {{proposal.created_at}}</div>
                             <div>
                                 
@@ -180,7 +199,7 @@
                                 <a id="proposal_resume"><button value="{{proposal.resume.url}}" onclick="prepareResume(event)">Open Resume</button></a>
                             </div>
                             <div>
-                                <form method="post" action="">
+                                <form method="post" action="{% url 'jobs:create-contract' proposal.id %}">
                                     <button>Accept Proposal</button>
                                 </form>
                             </div>

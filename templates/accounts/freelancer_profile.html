@@ -26,6 +26,10 @@
 <p>Name : {{object.first_name}} {{object.lastname}}</p>
 <p>Experience : {{object.years_of_experience}} </p>
 <p>Bio : {{object.bio}}</p>
+<p>Related:{% for edu in object.education_set.all %}
+        {{edu.course}} 
+    {% endfor %}
+</p>
 
 
 <p>Available Skills : 

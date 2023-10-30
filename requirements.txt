@@ -1,0 +1,6 @@
+"axios cdn "
+"python-dotenv 1.0.0"
+"django 4.2.5"
+"pillow 4.2.1"
+"simplejson 3.19.2"
+

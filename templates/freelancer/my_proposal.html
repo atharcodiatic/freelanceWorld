@@ -1,0 +1,20 @@
+{% extends "freelancer/feed.html"%}
+{% block body %}
+    <div style="display: flex; margin:auto; margin-top: 2%; gap:10px ;height:90vh; width:60%; background-color: grey; flex-direction: column;">
+        
+        {% for pl in my_proposal %}
+            <div class='my-proposal-card' style="display: flex; gap:10px;flex-direction: column;margin-top:2%; margin-right:1%; margin-left:1% ;width:98%; height: 10%;background-color: lightgray;">
+                <div style="display:flex;gap:200px;">
+                    
+                    <div style="margin-left:10px; margin-top:5px;"><a style="font-weight: bold;" href="{% url 'jobs:jobdetail' pl.job.id %}">{{pl.job.title|title}}</a></div>
+                    <div style ="margin-top:5px;"">{{pl.bid}}{{pl.currency}}</div>
+                    <div><button><a></a>Edit</button></div>
+                </div>
+                <div style="overflow: scroll; margin-left: 20px;">
+                    <p>Message:{{pl.message}}</p>
+                </div>
+            </div>
+        {% endfor %}
+        
+    </div>
+{% endblock body %}
