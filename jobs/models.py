@@ -40,7 +40,7 @@ class JobPost(models.Model):
 
     user = models.ForeignKey(Client, on_delete = models.CASCADE)
     posted_at = models.DateTimeField(auto_now_add = True)
-    status = models.CharField(max_length = 10, choices = JOB_STATUS)
+    status = models.CharField(max_length = 10, choices = JOB_STATUS,  default=JOB_STATUS[1][0])
     duration_type = models.CharField( max_length=10, choices = DURATION_CHOICES,)
     duration = models.PositiveIntegerField(null=True, help_text = 'duration must be an integer')
     currency = models.CharField(max_length=3,choices=CURRENCY_CHOICES)
@@ -71,13 +71,13 @@ class JobProposal(models.Model):
     ]
     CURRENCY_CHOICES = [
         ('RS','RUPPEES'),
-        ('USD','DOLLAR')
+        ('USD','DOLLAR'),
     ]
 
     job = models.ForeignKey(JobPost , on_delete = models.CASCADE)
     user = models.ForeignKey(Freelancer , on_delete = models.CASCADE)
     status = models.CharField(max_length = 10, choices = PROPASAL_STATUS,
-                                       default=PROPASAL_STATUS[1])
+                                       default=PROPASAL_STATUS[1][0])
     resume = models.FileField(upload_to='certificates/',
                         validators=[FileExtensionValidator(
                         allowed_extensions = ['pdf','txt','doc'],
@@ -105,9 +105,15 @@ class Contract(models.Model):
     
     total = models.PositiveIntegerField()
     currency = models.CharField(max_length=7)
+    remaining = models.PositiveIntegerField()
 
     def __str__(self):
-        return self.proposal
+        return f"{self.proposal.job.user.username} - {self.proposal.user.username}"  
+
+class Transaction(models.Model):
+    contract = models.ForeignKey(Contract, on_delete=models.PROTECT)
+    amount = models.PositiveIntegerField()
+    
 
 '''
 logic model not useful for project 

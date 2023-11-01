@@ -6,7 +6,8 @@ from .forms import *
 from .models import *
 from accounts.models import *
 # Create your views here.
-from django.http import HttpResponse, JsonResponse,HttpResponseForbidden
+from django.http import HttpResponse, JsonResponse,HttpResponseForbidden,\
+HttpResponseRedirect
 import json 
 from django.http import QueryDict
 from django.urls import reverse_lazy
@@ -16,6 +17,7 @@ from django.views.generic.edit import ModelFormMixin, CreateView
 from django.db.models import Q
 from django.views.generic import ListView
 from django.views.generic.detail import SingleObjectMixin
+from .utility import *
  
 class ClientHomePage(TemplateView):
     template_name = 'jobs/home.html'
@@ -56,9 +58,6 @@ class JobCreateView(View):
             form_obj.user = client_obj
             form_obj.save()
             form.save_m2m()
-            # print(form.skill_required.all())
-            # print(form.__dict__)
-        
             return redirect(reverse('jobs:clienthome'))
         return HttpResponse('failed', status=500)
         
@@ -78,8 +77,6 @@ class SkillCreateView(View):
     def post(self,request,*args,**kwargs):
         data = json.loads(request.body)
         skill = data.get('skill')
-        
-        
         client_obj = Client.objects.get(id = request.user.id)
         skill_obj = Skill.objects.create(name=skill, client=client_obj)
         skill_obj.save()
@@ -128,10 +125,8 @@ class JobDetailView(ModelFormMixin, DetailView):
 
     def get_initial(self):
         """ 
-        This method is passing initial data in form
-        Passing Initial Data in Form
+        This method is passing initial data in form Passing Initial Data in Form
         """
-
         obj = self.get_object()
         return {  'job_id': obj.title }
 
@@ -142,12 +137,9 @@ class JopProposalView(CreateView):
     """
     form_class = JobProposalForm
     model = JobProposal
-
+    job_id = None
     def dispatch(self, request, *args, **kwargs):
-        breakpoint()
-        
         setattr(JopProposalView, 'user_id', request.user.id) 
-        
         return super().dispatch(request, *args, **kwargs)
     
 
@@ -155,100 +147,83 @@ class JopProposalView(CreateView):
         """
         Handle POST requests: instantiate a form instance with the passed
         POST variables and then check if it's valid.
-        """
-
-        # user = request.user.id
-
+        """ 
         form = self.get_form()
         if form.is_valid():
             form_obj = form.save(commit=False)
             user_obj = Freelancer.objects.get(id=request.user.id)
             # bug  -> job id can be extracted from Http referrer
-            job_obj = JobPost.objects.get(id= kwargs['pk'])
-            form_obj.user = user_obj
-            form_obj.job = job_obj
-            form_obj.save()
-
-            return self.form_valid(form)
+            # bug fixed -> status ok
+            self.job_id = request.META.get('HTTP_REFERER').split('/')[-1]
+            job_obj = JobPost.objects.get(id = self.job_id)
+            if not JobProposal.objects.filter(job=self.job_id,user=self.user_id).exists():
+                form_obj.user = user_obj
+                form_obj.job = job_obj
+                form_obj.save()
+                return self.form_valid(form)
+            else:
+                url = reverse_lazy("jobs:jobdetail", kwargs={"pk":self.job_id})
+                return HttpResponseRedirect(url)
         else:
             return self.form_invalid(form)
     
     def get_success_url(self):
-        pk = self.pk
-        return reverse_lazy("jobs:job-proposal", kwargs={"pk": pk})
+        
+        return reverse_lazy("jobs:jobdetail", kwargs={"pk":self.job_id})
     
 
-
-def currency_converter(job_currency,bid,freelancer_currency):
-            amount = None
-            payment_currency = None
-            if job_currency == freelancer_currency:
-                amount = bid
-                payment_currency = job_currency
-            elif job_currency != freelancer_currency:
-                if job_currency == "USD":
-                    amount = bid / 83 
-                    payment_currency = job_currency
-                elif job_currency == "RS":
-                    amount = bid * 83 
-                    payment_currency = job_currency
-            return [amount,payment_currency]
-
-def calculate_total(duration, duration_type, per_hour_amount):
-            working_hours = 8 
-            one_week = 7
-            one_month = 30
-            total_amount = None 
-            if duration_type == "DAY":
-                total_amount = working_hours * duration
-            elif duration_type == 'WEEK':
-                total_amount = one_week * duration * working_hours
-            elif duration_type == 'MONTH':
-                total_amount = one_month * duration * working_hours
-            return total_amount
-
 class CreateContract(View):
+    """
+    This View Create contract (payment details) 
+    """
+    
+    """
+    this get method is for testing purpose -> breakpoint
     def get(self, request, *args, **kwargs):
         proposal_id = kwargs['pk']
         prop_obj = JobProposal.objects.get(id = proposal_id)
-
+    """
 
     def post(self, request, *args, **kwargs):
         
         
         proposal_id = kwargs['pk']
         prop_obj = JobProposal.objects.get(id = proposal_id)
+        # freelancer Info - bid and currency (prop_obj.user)
         bid = prop_obj.bid
         freelancer_currency = prop_obj.currency
-        job_currency = prop_obj.job.currency
-
-        bid = prop_obj.bid
-        currency = prop_obj.currency
+        # Client Info - bid and currency (client= prop_obj.job)
         job_currency = prop_obj.job.currency
         duration_type = prop_obj.job.duration_type
         duration = prop_obj.job.duration
-
+        # currency and calculation
         converter = currency_converter(job_currency, bid, freelancer_currency)
         total = calculate_total(duration, duration_type, converter[0])
         contract_currency = converter[1]
-
+        redirect_address = request.META.get("HTTP_REFERER")
         
-        # Contract.objects.create(proposal = proposal_id,total=total)
+        Contract.objects.create(proposal = prop_obj, total=total, currency=contract_currency)
 
-        return HttpResponse('contract created')
+        job = JobPost.objects.get(id=prop_obj.job.id)
+        job.status = 'CLOSED'
+        job.save()
+
+        prop_obj.status = 'ACCEPTED'
+        prop_obj.save()
+
+        response = HttpResponseRedirect(redirect_to = redirect_address)
+        response.content = 'Contract Created Successfully'
+        response.status = 201
+        return response
     
-
 
 class FreelancerView(ListView):
-    
     paginate_by = 4
     template_name = "jobs/browse_freelancer.html"
     model = Freelancer  
-    # queryset = Freelancer.objects.all().order_by('-selfskills__id').distinct()=
-
+    queryset = Freelancer.objects.all().order_by('-selfskills__freelancer_id').distinct()
 
     def get(self, request, *args, **kwargs):
-        breakpoint()
         skill = request.GET.get("skill")
         education = request.GET.get("education")
         level = request.GET.get("level")
@@ -256,16 +231,32 @@ class FreelancerView(ListView):
         if request.GET.get("freelancer") or skill or experience or education or level:
             object_list = self.get_queryset()
             user_search = request.GET.get("freelancer")
-            search_data = None
-            if Freelancer.objects.filter(Q(Q(username__icontains=user_search) | Q(selfskills__skill_name__icontains=user_search ))).exists():
-                search_data = Freelancer.objects.filter(Q(Q(username__icontains=user_search) | Q(selfskills__skill_name__icontains=user_search)))
+            search_data = ''
+            
+            referer = request.META.get("HTTP_REFERER").split('/')[-1].split('=')[-1]
+            if '+' in referer:
+                referer = referer.replace('+', ' ')
+            breakpoint()
+            if user_search:
+                education = Freelancer.objects.filter(education__course__icontains=user_search)
+                if Freelancer.objects.filter(Q(username__icontains=user_search) | Q(selfskills__skill_name__icontains=user_search ) | Q(education__course__icontains=user_search)).exists():
+                    search_data = Freelancer.objects.filter(Q(username__icontains=user_search) | Q(selfskills__skill_name__icontains=user_search)|Q(education__course__icontains=user_search)).distinct()
+            else:
+                search_data = Freelancer.objects.filter(Q(username__icontains=referer) | Q(selfskills__skill_name__icontains=referer)|Q(education__course__icontains=referer)).distinct()
             
             context = super(FreelancerView, self).get_context_data(object_list=object_list, *args, **kwargs)
             print(context)
             context['object_list'] = search_data
-            # if skill or education or level or experience:
-            #     search_data = search_data.filter()
-            
+            if skill or education or level or experience:
+                if ',' in skill:
+                    skill = skill.split(',')
+                if not experience:
+                    experience = 0
+                search_data = search_data.filter(Q(Q(selfskills__skill_name__in = skill) and Q(selfskills__level__icontains=level))\
+                                    | Q(education__course__icontains=education)| Q(years_of_experience = experience))
+                
+                context['object_list'] = search_data
+
             return render(request, self.template_name, context)
         else:
             return super().get(request,args,kwargs)

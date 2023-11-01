@@ -5,13 +5,16 @@ from django.views import View
 from django.views.generic.base import TemplateView
 from accounts.models import *
 from jobs.models import *
+from jobs.forms import *
 from django.db.models import Q
 from django.http import JsonResponse
 import json 
+from django.views.generic.edit import ModelFormMixin
+from django.http import HttpResponseForbidden
 
 class FreelancerHome(TemplateView):
     template_name = 'freelancer/feed.html'
-    switch = None
+    switch = "all_job"
 
     def get_context_data(self,*args,**kwargs):
 
@@ -65,8 +68,31 @@ class FreelancerPropsalView(TemplateView):
         if JobProposal.objects.filter(user=self.request.user.id).exists():
             user_proposal = JobProposal.objects.filter(user=self.request.user.id)
         context["my_proposal"] = user_proposal
-        context['proposal_form'] = ''
+        context['proposal_form'] = JobProposalForm()
         return context
     
-
-
+class ProposalEditView(ModelFormMixin,View):
+    """
+    We use ModelFormMixin(post) to update the proposal of freelancer 
+    """
+    model = JobProposal
+    template_name = ''
+    form_class = JobProposalForm
+    
+    def get_success_url(self):
+        # referer_id = self.request.META.get("HTTP_REFERER").split('/')[-1].split('=')[-1]
+        return reverse("freelancer:myproposal")
+    
+    def post(self, request, *args, **kwargs):
+        breakpoint()
+        if not request.user.is_authenticated:
+            return HttpResponseForbidden()
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+        
+    def form_valid(self, form):
+        return super().form_valid(form)

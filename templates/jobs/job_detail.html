@@ -90,7 +90,6 @@
     <button class="headlinebutton" onclick="hideOpen(event)"  value="proposal">Proposals</button>
 </div>
 
-
 {% if user.id != object.user.id and user.is_authenticated %}
 
 
@@ -131,7 +130,7 @@
         <div>Salary   : {{object.salary}} {{object.currency}}/hr </div>
         
     </div>
-    {% url 'jobs:job-proposal' object.id %}
+    {% url 'jobs:jobdetail' object.id %}
                 {{object.id}}
     {% if user.id != object.user.id and user.is_authenticated %}
         <div class="formid">
@@ -184,6 +183,7 @@
                                         </div>
                                 
                             <div>created_at: {{proposal.created_at}}</div>
+                            <div> status : {{proposal.status}}</div>
                             <div>
                                 
                                 <span class="fa fa-star checked"></span>
@@ -200,7 +200,10 @@
                             </div>
                             <div>
                                 <form method="post" action="{% url 'jobs:create-contract' proposal.id %}">
-                                    <button>Accept Proposal</button>
+                                    {% csrf_token %}
+                                    {% if proposal.job.status == "OPEN" %}
+                                        <button id = "accept-proposal" onclick="disableButton(event)" type="submit">Accept Proposal</button>
+                                    {% endif %}
                                 </form>
                             </div>
                         {% endif %}

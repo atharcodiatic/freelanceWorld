@@ -1,20 +1,53 @@
 {% extends "freelancer/feed.html"%}
+{% block head %}
+    {{block.super}}
+    <script>
+        function openForm(event){
+            console.log(event.target)
+            let form = document.getElementsByClassName('form-div')[0]
+            
+            form.style.display = 'block';
+            let formaction = document.getElementById('action_form')
+            id = event.target.value
+            formaction.setAttribute("action",'/proposaledit/'+ id.toString())
+            console.log(formaction)
+        }
+    </script>
+{% endblock %}
 {% block body %}
-    <div style="display: flex; margin:auto; margin-top: 2%; gap:10px ;height:90vh; width:60%; background-color: grey; flex-direction: column;">
+<div style="display:flex; gap:70px; justify-content: space-evenly;">
+    <div style="display: flex;  margin-top: 2%; gap:10px ;height:90vh; width:60%; background-color: grey; flex-direction: column;">
         
         {% for pl in my_proposal %}
             <div class='my-proposal-card' style="display: flex; gap:10px;flex-direction: column;margin-top:2%; margin-right:1%; margin-left:1% ;width:98%; height: 10%;background-color: lightgray;">
                 <div style="display:flex;gap:200px;">
                     
                     <div style="margin-left:10px; margin-top:5px;"><a style="font-weight: bold;" href="{% url 'jobs:jobdetail' pl.job.id %}">{{pl.job.title|title}}</a></div>
-                    <div style ="margin-top:5px;"">{{pl.bid}}{{pl.currency}}</div>
-                    <div><button><a></a>Edit</button></div>
+                    <div style ="margin-top:5px;">{{pl.bid}}{{pl.currency}}</div>
+                    
+                        {% if pl.status == 'INPROCESS' or pl.status == 'DENIED' %}
+                            <div><button value="{{pl.id}}" onclick="openForm(event)">Edit</button></div>
+                        {% endif %}
+                    
                 </div>
                 <div style="overflow: scroll; margin-left: 20px;">
+                    {{pl.status}}
                     <p>Message:{{pl.message}}</p>
                 </div>
             </div>
         {% endfor %}
         
     </div>
+
+    <div class="form-div" style="display:none; margin-top: 50px;">
+        <form method="post" enctype=multipart/form-data  id='action_form' 
+        style="border: 20px solid lightgray; background-color: lightgray;">
+            <div style="display: flex; flex-direction: column;" >
+                {% csrf_token %}
+            {{proposal_form}}
+            <input type="submit">
+            </div>
+        </form>
+    <div>
+</div>
 {% endblock body %}
