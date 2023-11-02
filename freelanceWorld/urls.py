@@ -28,6 +28,8 @@ urlpatterns = [
     path('',include("common.urls")),
     path('',include("jobs.urls")),
     path('',include('freelancer.urls')),
+    path("stripe/", include("djstripe.urls", namespace="djstripe")),
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

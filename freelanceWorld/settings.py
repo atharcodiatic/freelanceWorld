@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-db!on)q8(oq43v6=jdw-9h13%-rih=jde30s^p*pcy1qleraoe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0df5-49-249-141-82.ngrok-free.app']
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'accounts',
     'jobs',
+    "djstripe",
+    'payment',
     # 'freelancer',
     # 'common',
 ]
@@ -172,5 +174,18 @@ EMAIL_HOST_PASSWORD = passwd
 EMAIL_USE_TLS = True
 
 
+
 CSRF_COOKIE_NAME = "csrftoken"
 CSRF_HEADER_NAME = "HTTP_X_CSRFTOKEN"
+
+
+STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY",)
+STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
+STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY",)
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY",)
+STRIPE_LIVE_MODE = False
+DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx" 
+
+""" Stripe"""
+STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY",)
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")

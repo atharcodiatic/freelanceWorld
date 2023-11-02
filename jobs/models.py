@@ -100,20 +100,37 @@ class Contract(models.Model):
     client and freelancer
 
     '''
+    
     proposal = models.OneToOneField(JobProposal, on_delete=models.RESTRICT)
     created_at = models.DateTimeField(auto_now_add = True)
     
     total = models.PositiveIntegerField()
+    # def remaining_default(self):
+    #     return self.total
     currency = models.CharField(max_length=7)
-    remaining = models.PositiveIntegerField()
+    remaining = models.PositiveIntegerField(null=True)
+    """
+    Remaining added field add later 
+    Approach 1 - default = total -> Error , cannot be positiveinteger 
+    Approach 2 - default = remaining_default (callable function) 
+    Approach 3 - data migration -> successs 
+    """
+
+    # def save(self, *args, **kwargs):
+    #     """
+    #  
+    #     We Override the save because we need to set value of ramining field to 
+    #     total value for every contract that has been created .
+    #     """
+    #     if not self.remaining:
+    #         self.remaining = self.remaining_default()
+    #     super(Contract, self).save(*args, **kwargs)
+
 
     def __str__(self):
         return f"{self.proposal.job.user.username} - {self.proposal.user.username}"  
 
-class Transaction(models.Model):
-    contract = models.ForeignKey(Contract, on_delete=models.PROTECT)
-    amount = models.PositiveIntegerField()
-    
+
 
 '''
 logic model not useful for project 

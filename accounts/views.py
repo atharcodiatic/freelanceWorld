@@ -118,7 +118,7 @@ class ClientRegistrationView(CreateView):
         else:
             return self.form_invalid(form) 
  
-
+from django.core.exceptions import PermissionDenied
 class FreeLancerProfileView(DetailView):
 
     """ This view shows the Profile Details of FreelancerInstance and uses pk"""
@@ -129,7 +129,8 @@ class FreeLancerProfileView(DetailView):
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated and request.user.id == int(kwargs['pk']):
             return super().dispatch(request, *args, **kwargs)
-        return HttpResponseRedirect('/register/')
+        raise PermissionDenied("Not Allowed")
+        # return HttpResponseRedirect('/register/')
 
     def get_context_data(self, *args, **kwargs):
         context = super(FreeLancerProfileView,
