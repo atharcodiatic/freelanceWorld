@@ -28,7 +28,8 @@ urlpatterns = [
     path('',include("common.urls")),
     path('',include("jobs.urls")),
     path('',include('freelancer.urls')),
-    path("stripe/", include("djstripe.urls", namespace="djstripe")),
+    # path("stripe/", include("djstripe.urls", namespace="djstripe")),
+    path('', include('payment.urls')),
 
 ]
 if settings.DEBUG:

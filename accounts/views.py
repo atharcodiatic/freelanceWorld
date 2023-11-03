@@ -12,18 +12,17 @@ from django.urls import reverse , reverse_lazy
 from django.shortcuts import HttpResponseRedirect
 import datetime
 ''' HttpResponseRedirect for firefox'''
-
 from django.views.generic.edit import CreateView , UpdateView 
 from django.contrib.auth import get_user_model
-
 from django.http import JsonResponse
-
 from django.core.serializers import serialize
 import json
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib.auth.models import  Permission
 from django.contrib.contenttypes.models import ContentType
+from django.views.generic.edit import ModelFormMixin
+from jobs.forms import ReviewForm
 
 User =  get_user_model()
 
@@ -119,6 +118,7 @@ class ClientRegistrationView(CreateView):
             return self.form_invalid(form) 
  
 from django.core.exceptions import PermissionDenied
+
 class FreeLancerProfileView(DetailView):
 
     """ This view shows the Profile Details of FreelancerInstance and uses pk"""
@@ -220,18 +220,14 @@ class SkillCreateView(View):
     
         user_id = int(request.user.id)
         request = json.loads(request.body)
-        
         skill_name = request.get('skill')
         level = request.get('level')
-
-        """ we can handle this validation in forntend , just for learning purpsoes"""
-        
+        """
+        we can handle this validation in forntend, just for learning purpsoes
+        """
         choices = ['INT', 'BEG', "EXP"]
         if level not in choices:
             return JsonResponse({'status':"failed" ,'message': 'Please select a valid level '})
-        
-    
-
         # check if skill exist or not 
         skillpresent = SelfSkills.objects.filter(freelancer=user_id, skill_name = skill_name).exists()
         if not skillpresent:
@@ -245,7 +241,6 @@ class SkillCreateView(View):
         # skill = [skill.last()]
         serialized_data = serialize("json", skill)
         serialized_data = json.loads(serialized_data)
-
         return JsonResponse(serialized_data, safe=False , status=200) 
     
     
@@ -268,12 +263,29 @@ class SkillCreateView(View):
         skill_name = request.get('skill')
         skill_obj = SelfSkills.objects.filter(freelancer=pk, skill_name = skill_name)
         skill_obj.delete()
-        
         return JsonResponse({'status':"success" }, status=200)
 
         
+class ClientProfileView(ModelFormMixin, DetailView):
+    model = Client
+    template_name = "accounts/client_profile.html"
+    form_class = ClientProfileUpdate
 
-
+    def get_context_data(self, *args, **kwargs):
+        context = super(ClientProfileView,
+             self).get_context_data(*args, **kwargs)
+        context ['update_client_form'] = self.get_form()
+        context ['review_form'] = ReviewForm
+        return context
+    def get_success_url(self):
+        return reverse_lazy("jobs:jobdetail", kwargs={"pk":self.object.pk})
+    
+    def get_initial(self):
+        """ 
+        This method pass initial data in form
+        """
+        obj = self.get_object()
+        return {  'job_id': obj.username }
 
 
 

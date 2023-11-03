@@ -101,6 +101,16 @@ class FreelancerProfileUpdate(forms.ModelForm):
                    'date_joined', 'is_active', 'is_staff', 'skills', 'password',
                     'username','password','confirm_password'  ]
         
+class ClientProfileUpdate(forms.ModelForm):
+    ''' Form to update freelancer profile '''
+
+    class Meta:
+        model = Client
+        fields ='__all__'
+        exclude = ["last_login", "is_superuser", 'groups', 'user_permissions',
+                   'date_joined', 'is_active', 'is_staff', 'password',
+                    'username','password','confirm_password'  ]
+        
 
 class SelfSkillForm(forms.ModelForm):
     
@@ -148,3 +158,4 @@ class ClientProfile(forms.ModelForm):
         field_order = ['username', 'email', 'password', 'confirm_password']
         exclude = ["last_login", "is_superuser", 'groups', 'user_permissions',
                    'date_joined', 'is_active', 'is_staff',]
+        

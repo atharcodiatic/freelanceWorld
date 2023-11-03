@@ -156,7 +156,7 @@ class Review(models.Model):
     rating_by = models.ForeignKey(CustomUser , on_delete = models.CASCADE, related_name='rated_by')
     rating_to = models.ForeignKey(CustomUser , on_delete = models.CASCADE, related_name='rating_to')
     star_rating = models.PositiveIntegerField(default = 0)
-    review_message = models.TextField()
+    review_message = models.TextField(blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now=True)
     job = models.OneToOneField(JobPost,on_delete = models.CASCADE)

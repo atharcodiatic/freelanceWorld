@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-db!on)q8(oq43v6=jdw-9h13%-rih=jde30s^p*pcy1qleraoe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0df5-49-249-141-82.ngrok-free.app']
+ALLOWED_HOSTS = ['0df5-49-249-141-82.ngrok-free.app','127.0.0.1','localhost']
 
 
 # Application definition
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'accounts',
     'jobs',
-    "djstripe",
+    # "djstripe",
     'payment',
     # 'freelancer',
     # 'common',
@@ -179,13 +179,15 @@ CSRF_COOKIE_NAME = "csrftoken"
 CSRF_HEADER_NAME = "HTTP_X_CSRFTOKEN"
 
 
-STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY",)
-STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
-STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY",)
-STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY",)
-STRIPE_LIVE_MODE = False
-DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx" 
+# STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY",)
+# STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
+# STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY",)
+# STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY",)
+# STRIPE_LIVE_MODE = False
+# DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx" 
 
 """ Stripe"""
 STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY",)
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
+
+STRIPE_ENDPOINT_SECRET = "whsec_688cb9a144ce17309c659b2969ca4ce862cd47dd214d447cfaf9f64b338429d2"

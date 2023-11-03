@@ -15,7 +15,7 @@
         <button><a href="{% url 'jobs:browse-freelancer' %}">Browse Fleelancers</a></button>
         <button><a href="{% url 'jobs:clienthome' %}">MYPost</a></button>
         <button ><a href="{% url 'jobs:createjob' %}">NewJob</a></button>
-        <button style="border-radius: 200%;"><a >Profile</a></button>
+        <button style="border-radius: 200%;"><a href="{% url 'client-profile' user.id %}">Profile</a></button>
         <button><a href="{% url 'logout' %}">Logout</a></button>
         
     </div>

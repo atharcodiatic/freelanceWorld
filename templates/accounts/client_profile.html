@@ -1,0 +1,49 @@
+{% if user.id == object.id %}
+    {% include "jobs/navbar.html" %}
+{%else %}
+    {% include 'freelancer/navbar.html'%}
+{% endif %}
+{% load static %}
+<link rel="stylesheet" href = "{% static 'css/accounts/freelancer.css' %}">
+<link rel="stylesheet" href = "{% static 'css/accounts/client_profile.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href = "{% static 'css/freelancer/home.css' %}">
+<script src="{% static 'css/accounts/client_profile.js' %}" type="text/javascript"></script>
+
+<div class="profile-box">
+    <div class= "image-detail" >
+        <div class="image">
+            <img style="height:220px" src ="{{object.profile_pic.url}}" >
+        </div>
+        <div class="details">
+            <div style="font-weight: bold;"> {{object.username}}</div>
+            <div>{{object.type|title}}</div>
+            {% if object.type == "Community"%}
+                <div>{{object.company_name|title}}</div>
+            {% endif %}
+            <div>📍{{object.country|title}}</div>
+            <div>{{object.city|title}}</div>
+            <div>Member Since: {{object.created_at}}</div>
+            <div>                
+                <span value=1 onclick="ratingCollecter(event)" class="fa fa-star checked"></span>
+                <span value=2 onclick="ratingCollecter(event)" class="fa fa-star checked"></span>
+                <span value=3 onclick="ratingCollecter(event)" class="fa fa-star checked"></span>
+                <span value=4 onclick="ratingCollecter(event)" class="fa fa-star checked"></span>
+                <span value=5 onclick="ratingCollecter(event)" class="fa fa-star checked"></span>
+            </div>
+        </div>
+    </div>
+    <div class="description">
+            <p> About : {{object.bio}}</p>
+    </div>
+</div>
+
+{% if user.id == object.id %}
+{% endif %}
+<div >
+    <form class ="form-update-cl" method="post"  action= "{% url 'client-profile' object.id %}" enctype="multipart/form-data">
+        {{update_client_form}}
+        <input type="submit">
+    </form>
+</div>
+

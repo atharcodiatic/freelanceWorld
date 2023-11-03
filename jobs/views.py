@@ -168,7 +168,6 @@ class JopProposalView(CreateView):
             return self.form_invalid(form)
     
     def get_success_url(self):
-        
         return reverse_lazy("jobs:jobdetail", kwargs={"pk":self.job_id})
     
 
@@ -236,7 +235,6 @@ class FreelancerView(ListView):
             referer = request.META.get("HTTP_REFERER").split('/')[-1].split('=')[-1]
             if '+' in referer:
                 referer = referer.replace('+', ' ')
-            breakpoint()
             if user_search:
                 education = Freelancer.objects.filter(education__course__icontains=user_search)
                 if Freelancer.objects.filter(Q(username__icontains=user_search) | Q(selfskills__skill_name__icontains=user_search ) | Q(education__course__icontains=user_search)).exists():
@@ -271,15 +269,11 @@ class MyHireView(View):
     # queryset = Contract.objects.get(proposal=)
 
     def get(self, request, *args, **kwargs):
-        
         client_jobs =JobPost.objects.filter(user=request.user.id, status="CLOSED")
-
         #<QuerySet [<JobPost: Python Job>, <JobPost: Python Job>]>
-        
         # proposal = JobProposal.objects.filter(job__id__in=client_jobs) #.values_list("id",flat=True)
         #<QuerySet [<JobProposal: INPROCESS>, <JobProposal: ACCEPTED>]>
         proposal = JobProposal.objects.filter(job__id__in=client_jobs, status="ACCEPTED") 
-        
         # <QuerySet [<JobProposal: ACCEPTED>]>
         proposal.all()
         # <QuerySet [<JobProposal: ACCEPTED>]>
@@ -288,16 +282,5 @@ class MyHireView(View):
         context['contract_detail'] = contract
         return render(request, self.template_name, context=context)
 
-
-        # >>> proposal.values()
-        # <QuerySet [{'id': 1, 'job_id': 14, 'user_id': 34, 'status': 'ACCEPTED', 'resume': 'certificates/resum_EgufrY7.txt', 'bid': 40, 'currency': 'RS', 'message': 'Im skilled python developer , i will do project on time .', 'created_at': datetime.datetime(2023, 10, 25, 7, 9, 27, 472188, tzinfo=datetime.timezone.utc), 'updated_at': datetime.datetime(2023, 11, 1, 10, 0, 42, 807078, tzinfo=datetime.timezone.utc)}]>
-        # >>> proposal.values("user_id","job_id")
-        # <QuerySet [{'user_id': 34, 'job_id': 14}]>
-
-        # >>> proposal.values_list("user_id","job_id")
-        # <QuerySet [(34, 14)]>
-        # >>> proposal.values_list("user_id","job_id")[0]
-        # (34, 14)
-        # >>> proposal.first().user
-        # <Freelancer: rishabh>
-        # >>> proposal.first().user
+class RatingReview(View):
+    pass 

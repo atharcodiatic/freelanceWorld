@@ -1,0 +1,27 @@
+.profile-box{
+    display: flex;
+    flex-direction: column;
+    width :900px;
+    height: 700px;
+    background-color: grey;
+    border:2px solid black; 
+}
+
+.image-detail{
+    display: flex;
+    gap:20px;
+    background-color: whitesmoke;
+    height:250px;
+}
+
+.form-update-cl{
+    display: flex;
+    flex-direction: column;
+    width:250px;
+}
+.checked{
+    color:gray;
+}
+.rated{
+    color:orange
+}

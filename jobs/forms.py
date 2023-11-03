@@ -86,3 +86,8 @@ class JobProposalForm(forms.ModelForm):
         fields = '__all__'
         model = JobProposal
         exclude = ['updated_at ', 'created_at', 'user', 'job','status']
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['star_rating', 'review_message']
