@@ -2,6 +2,8 @@
 {% block head %}
     {{block.super}}
     <script>
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
         function openForm(event){
             console.log(event.target)
             let form = document.getElementsByClassName('form-div')[0]
@@ -12,6 +14,23 @@
             formaction.setAttribute("action",'/proposaledit/'+ id.toString())
             console.log(formaction)
         }
+
+        function deleteProposal(event){
+            console.log(event.target.value)
+            prop_id= event.target.value.toString()
+            axios({
+
+                method: 'delete',
+                url: '/proposaledit/'+prop_id,
+                
+            }).then(res => {if(res.data.status=="deleted successfully"){
+                // after successful deletion we referesh the page.
+                location.reload(true)
+            }
+        
+        })
+            .catch(err => console.log(err)) 
+                    }
     </script>
 {% endblock %}
 {% block body %}
@@ -27,6 +46,7 @@
                     
                         {% if pl.status == 'INPROCESS' or pl.status == 'DENIED' %}
                             <div><button value="{{pl.id}}" onclick="openForm(event)">Edit</button></div>
+                            <div><button value="{{pl.id}}" onclick="deleteProposal(event)">Delete</button></div>
                         {% endif %}
                     
                 </div>

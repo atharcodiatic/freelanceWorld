@@ -151,7 +151,8 @@ class ClientReviews(models.Model):
     
 class Review(models.Model):
     """
-    Clients can review Freelancer and Freelancer can review Client 
+    Clients can review Freelancer and Freelancer can review Client ,
+    created and updated field can be inherited from abstract model 
     """
     rating_by = models.ForeignKey(CustomUser , on_delete = models.CASCADE, related_name='rated_by')
     rating_to = models.ForeignKey(CustomUser , on_delete = models.CASCADE, related_name='rating_to')
@@ -159,8 +160,9 @@ class Review(models.Model):
     review_message = models.TextField(blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now=True)
-    job = models.OneToOneField(JobPost,on_delete = models.CASCADE)
+    job = models.ForeignKey(JobPost,on_delete = models.CASCADE)
     # connect with job
+
 
     def __str__(self) -> str:
         return str(self.star_rating) 

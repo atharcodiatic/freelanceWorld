@@ -1,0 +1,101 @@
+<head>
+{% load static %}
+    <link rel = "stylesheet" href = "{% static 'css/jobs/browse_fl.css' %}">
+    <link rel = "stylesheet" href = "{% static 'css/freelancer/home.css' %}">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+        
+    </script>
+    <script>
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+        console.log('****************8')
+
+        function submitForm(event){
+            event.preventDefault()
+            let message = document.getElementById("id_review_message").value
+            job_id = localStorage.getItem("job_id")*1
+            let data = {
+                "message":message,
+                "job_id" : job_id,
+                "message_indicator":true,
+            }
+            console.log(message)
+            axios({
+
+            method: 'post',
+            url: '/rating/',
+            data:data ,
+
+        }).then(res => {
+        if(res.data.status=='success'){
+            window.history.back()
+        }
+
+        })
+                    
+                    
+            }
+        
+        function postRating(event){
+            let job_id = localStorage.getItem("job_id")*1
+            let client_id = localStorage.getItem("client_id") *1
+            let freelancer_id = localStorage.getItem('freelancer_id')*1
+            let star_rating = event.target.getAttribute('value')*1
+
+            console.log(star_rating)
+
+            data = {
+                "client_id":client_id,
+                "job_id" : job_id,
+                "star_rating": star_rating,
+                "message_indicator":false,
+            }
+            console.log(data)
+            
+            axios({
+
+            method: 'post',
+            url: '/rating/',
+            data:data ,
+
+            }).then(res => {
+            if(res.data.status=='success'){
+                let enableBtn = document.getElementById("button-submit");
+                enableBtn.disabled=false
+            }
+        
+            
+    })}
+    </script>
+</head>
+<body>
+{% if perms.accounts.is_freelancer and user.is_authenticated %}
+    {% include 'freelancer/navbar.html'%}
+{% else %}
+    {% include 'jobs/navbar.html'%}
+{% endif %}
+
+<span class="fa fa-star checked"  id =1 value=1 onclick="postRating(event)"></span>
+<span class="fa fa-star checked" id = 2 value=2 onclick="postRating(event)"></span>
+<span class="fa fa-star checked" value=3 onclick="postRating(event)"></span>
+<span class="fa fa-star checked" value=4 onclick="postRating(event)"></span>
+<span class="fa fa-star checked" value=5 onclick="postRating(event)"></span>
+
+<div>
+    <form onsubmit="submitForm(event)" method="post" >
+        {% for fm in review_rating_form %}
+            {% csrf_token %}
+            <div>
+                <label>{{fm.label}}</label>
+                <p>{{fm}} </p>
+            </div>
+        {% endfor %}
+        <input id="button-submit"  type="submit" disabled>
+    </form>
+    
+</div>
+</body>

@@ -1,0 +1,81 @@
+{% extends 'freelancer/home.html' %} 
+
+{% block head %}
+    {{block.super}}
+    {% load static %}
+    
+{% endblock head %}
+
+{% block body %}
+
+
+    <div style="max-width:60%; margin:auto;  height:80px; background-color: grey;">
+        <h1 style="position: relative; left:38%; top:28%;"> All Clients </h2>
+    </div>
+
+<div style="max-width:60%; margin:auto;background-color:grey;">
+    
+    <div class = "proposal-wrapper">
+    {% if object_list %}
+        {% for client in object_list %}
+            <div class="proposal-card">
+                <div>
+                    <div class="frontline">
+                        <div>
+                            {% if client.profile_pic %}
+                                <img style ="width:120px ;height:120px ;" src = "{{client.profile_pic.url}}" alt="image">
+
+                                {% else %}
+                                <img style ="width:120px ;height:120px ;"  alt="image">
+                            {% endif %}
+                        </div>
+                        <div class="detailprofile">
+                            <div style="font-weight: bold;" onclick="location.href='{%url 'client-profile' client.id %}'">{{client.username}} </div>
+                            <div> Member Since - {{client.created_at}}</div>
+
+                            
+                            <div>
+                                
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                            </div>
+                        </div>
+                        
+                        
+                     
+                    </div>
+                </div>
+               <div style="margin-left: 40px;">
+                    <p>{{client.bio}}</p>
+               </div>
+                
+            </div>
+        {% endfor %}
+        {% else %}
+            <h1> Search Not Found</h1>
+    {% endif %}
+    </div>
+
+
+
+    <div class="pagination" style="display:flex; justify-content:center; height:50px; align-items: center; ">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" style="color:white; font-weight: bold; margin-right:50px">Previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" style="color:white; font-weight: bold; margin-left:50px; ;">Next</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+{% endblock body%}

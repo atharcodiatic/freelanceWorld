@@ -9,7 +9,7 @@ from jobs.forms import *
 from django.db.models import Q
 from django.http import JsonResponse
 import json 
-from django.views.generic.edit import ModelFormMixin
+from django.views.generic.edit import ModelFormMixin , DeletionMixin
 from django.http import HttpResponseForbidden
 
 class FreelancerHome(TemplateView):
@@ -60,6 +60,9 @@ class FreelancerHome(TemplateView):
 
     
 class FreelancerPropsalView(TemplateView):
+    """
+    This View Show all the proposals.
+    """
     template_name = 'freelancer/my_proposal.html'
 
     def get_context_data(self,*args,**kwargs):
@@ -71,14 +74,18 @@ class FreelancerPropsalView(TemplateView):
         context['proposal_form'] = JobProposalForm()
         return context
     
-class ProposalEditView(ModelFormMixin,View):
+class ProposalEditView(ModelFormMixin, View,):
     """
     We use ModelFormMixin(post) to update the proposal of freelancer 
+    View - we can not use ModelFormMixin Directly , so we inherit view
+    DeletionMixin will not work because deletemixin also has post , so
+    conflict between  modelformMixin Post Method 
     """
+    
     model = JobProposal
     template_name = ''
     form_class = JobProposalForm
-    
+     
     def get_success_url(self):
         # referer_id = self.request.META.get("HTTP_REFERER").split('/')[-1].split('=')[-1]
         return reverse("freelancer:myproposal")
@@ -96,3 +103,30 @@ class ProposalEditView(ModelFormMixin,View):
         
     def form_valid(self, form):
         return super().form_valid(form)
+    
+    def delete(self,request,*args,**kwargs):
+        delete_prop = self.model.objects.filter(id=kwargs['pk']).delete()
+        return JsonResponse({"status":"deleted successfully"}, status=202)
+    
+class MyJobsView(TemplateView):
+    template_name = 'freelancer/my_jobs.html'
+
+    def get_context_data(self,*args,**kwargs):
+        context = super().get_context_data(**kwargs)
+        user_jobs = None
+        queryset = JobProposal.objects.filter(user=self.request.user.id, status="ACCEPTED")
+        if queryset.exists():
+            user_jobs = queryset
+        context["my_jobs"] = user_jobs
+        return context
+    
+from django.views.generic import ListView
+class BrowseView(ListView):
+    paginate_by = 4
+    template_name = "freelancer/browse.html"
+    model = Client 
+    queryset = Client.objects.all().distinct()
+    
+
+
+    

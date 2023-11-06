@@ -11,8 +11,8 @@ from .validators import validate_image
 
 from django.core.validators import FileExtensionValidator,MinValueValidator, MaxValueValidator,EmailValidator
 from django.core.exceptions import ValidationError
-
-
+from jobs.models import *
+from django.db.models import Avg
 
 class CustomUser(AbstractUser):
     '''
@@ -52,6 +52,10 @@ class CustomUser(AbstractUser):
     
     def __str__(self):
         return self.email
+    
+    @property
+    def average_rating(self):
+        return Review.objects.filter(rating_by=self).aggregate(Avg('star_rating')).get('rating__avg', 0.00)
     
     class Meta:
         verbose_name ='CustomUser'

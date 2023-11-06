@@ -67,7 +67,7 @@
                             {% endif %}
                         </div>
                         <div class="detailprofile">
-                            <div style="font-weight: bold;">{{freelancer.username}} </div>
+                            <div style="font-weight: bold;" onclick="location.href='{%url 'freelancer-profile' freelancer.id %}'">{{freelancer.username}} </div>
                             <div> Member Since - {{freelancer.created_at}}</div>
 
                             {% with freelancer.selfskills_set.all.values  as fl_skill %}

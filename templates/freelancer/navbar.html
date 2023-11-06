@@ -8,8 +8,9 @@
     
     
     <div>
+        <button ><a href="{% url 'freelancer:browse' %}">Browse</a></button>
         <button><a href="{% url 'freelancer:freelancerfeed' %}">Feed </a></button>
-        <!-- <button><a>AllJobs</a></button> -->
+        <button><a href="{% url 'freelancer:my-jobs' %}">MyJobs</a></button>
         <button ><a href="{% url 'freelancer:myproposal' %}">MyProposals</a></button>
         <button style="border-radius: 200%;"><a href="{% url 'freelancer-profile' user.id %}">Profile</a></button>
         <button><a href="{% url 'logout' %}">Logout</a></button>

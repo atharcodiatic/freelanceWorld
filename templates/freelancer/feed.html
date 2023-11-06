@@ -31,7 +31,7 @@
                         <img style="width:80px ;height:50px;" src="{{res.user.profile_pic.url}}" >
                     </div>
                     <div>
-                        <div style="font-weight:bold ; height:20px;" >{{res.user.username}}</div>
+                        <div style="font-weight:bold ; height:20px;" onclick="location.href='{%url 'client-profile' res.user.id %}'">{{res.user.username}}</div>
                         <div style="font-weight:light; font-family: sans-serif;"> post_id :{{res.id}}</div>
                     </div>
                 </div>
