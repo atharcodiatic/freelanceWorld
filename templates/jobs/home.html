@@ -30,26 +30,32 @@
     {% block body %}
 
         <div id="job_wrapper">
-            {% for job in client_jobs %}
+            {% if client_jobs %}
+                {% for job in client_jobs %}
 
-                <div class="jobbox" onclick="location.href='{%url 'jobs:jobdetail' job.id %}'">
-                    <h1 style = "color: rgb(83, 131, 220);">{{job.title}}</h1>
-                    <span style="font-weight: bold;">Price : {{job.salary}} {{job.currency}}/hr</span>
-                    <p style = "overflow: hidden;">{{job.description}}</p>
-                    {% if job.skill_required.all %}
-                    <div style = "color: rgb(83, 131, 220);">
-                
-                        {% for job_skill in job.skill_required.all %}
-                        • {{job_skill |title}} 
-                        {% endfor %}
+                    <div class="jobbox" onclick="location.href='{%url 'jobs:jobdetail' job.id %}'">
+                        <h1 style = "color: rgb(83, 131, 220);">{{job.title}}</h1>
+                        <span style="font-weight: bold;">Price : {{job.salary}} {{job.currency}}</span>
+                        <div style="overflow:hidden;"><p style = "overflow: hidden;">{{job.description}}</p></div>
+                        {% if job.skill_required.all %}
+                        <div style = "color: rgb(83, 131, 220);">
+                    
+                            {% for job_skill in job.skill_required.all %}
+                            • {{job_skill |title}} 
+                            {% endfor %}
+                            
+                        {% endif %}
                         
-                    {% endif %}
-                    
+                        </div>
+                        
                     </div>
-                    
-                </div>
-              
-            {% endfor %}
+                
+                {% endfor %}
+            {%else%}
+            <div>
+                <h1> You have not Posted Any Job </h1>
+            </div>
+            {% endif %}
         </div>
 
 

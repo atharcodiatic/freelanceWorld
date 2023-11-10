@@ -33,6 +33,9 @@
 .checked {
     color: rgb(183, 59, 183);
   }
+.checked:hover{
+    background-color: orange;
+}
 .form-element{
     height: 50px;
 }

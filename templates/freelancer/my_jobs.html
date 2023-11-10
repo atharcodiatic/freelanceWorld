@@ -8,6 +8,7 @@
         localStorage.setItem('rating_to', client_id)
         localStorage.setItem('rating_by', freelancer_id)
         console.log(freelancer_id,'***********')
+        console.log(job_id,client_id,freelancer_id)
         location.href="{%url 'common:rating' %}"
     }
 </script>
@@ -22,31 +23,52 @@
                </div>
                <div style="display:flex;flex-direction: column; gap: 40px;">
                     <div style="font-weight: bold;"> Rate Client </div>
+
+
+                {% with job.job.review_set.all as review %}
+                    {% if review %}
+                        {% load custom_filter %}
+                            {% with review|filter_queryset:user.id as r%}
+                                {% if r %}
+                                    <div>rated</div>
+                                    {% with ''|center:r as range %}
+                                        {% for _ in range %}
+                                        <span class="fa fa-star checked"></span>
+                                        {% endfor %}
+                                        {% load custom_filter %}
+                
+                                        {% with 5|subtract:r as nonstar %}
+                                            {% with ''|center:nonstar as non_star %}  
+                                                {% for _ in non_star %}
+                                                    <span class="fa fa-star "></span>
+                                                {% endfor %}
+                                            {% endwith %}
+                                        {%endwith%}
+                                    {% endwith %}
+                                {% else %}
+                                <div onclick="sendData(event,'{{job.job.id}}','{{job.job.user.id}}','{{job.user.id}}')">          
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                </div>
+                                {% endif %}
                     
-                    {% if job.job.review_set.all %}
-                        {% for s_rating in job.job.review_set.all %}  
-                            {% if s_rating.rating_by.id == user.id %}
-                                Rating :{{s_rating.star_rating}}
-        
-                            {% else %}
-                            <div onclick="sendData(event,'{{job.job.id}}','{{job.job.user.id}}','{{job.user.id}}')">          
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </div> 
-                            {% endif %}
-                        {% endfor %}
+                            {%endwith%}
                     {% else %}
-                    <div onclick="sendData(event,'{{job.job.id}}','{{job.job.user.id}}',{{job.}})">          
+
+                    <div onclick="sendData(event,'{{job.job.id}}','{{job.job.user.id}}','{{job.user.id}}')">          
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                    </div>
+                    </div> 
                     {% endif %}
+                {%endwith%}
+                            
+            
 
                </div>
                <div>

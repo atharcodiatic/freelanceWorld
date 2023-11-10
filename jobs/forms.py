@@ -58,11 +58,20 @@ skill_required = forms.ModelMultipleChoiceField(
 '''
 
 class JobPostForm(forms.ModelForm):
-    skill_required = SkillRequiredField(
-        queryset = Skill.objects.filter(client=None), 
-        widget  = forms.CheckboxSelectMultiple,
-    )
+    # skill_required = SkillRequiredField(
+    #     queryset = Skill.objects.filter(client=None), 
+    #     widget  = forms.CheckboxSelectMultiple,
+    # )
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['skill_required'].queryset = Skill.objects.filter(client=None)
+
+        if 'title' in self.data:
+            try:
+                self.fields['skill_required'].queryset = Skill.objects.all()
+            except (ValueError, TypeError):
+                pass
     def clean_skill_required(self):
         data = self.cleaned_data["skill_required"]
         return data
@@ -70,7 +79,10 @@ class JobPostForm(forms.ModelForm):
     class Meta:
         fields = '__all__'
         model = JobPost
-        exclude= ['updated_at ', 'created_at', 'user', 'posted_at']
+        widgets = {
+            'skill_required': forms.CheckboxSelectMultiple,
+        }
+        exclude= ['updated_at ', 'created_at', 'user', 'posted_at','status']
 
 
 

@@ -10,11 +10,18 @@
 <link rel="stylesheet" href = "{% static 'css/freelancer/home.css' %}">
 <script src="{% static 'css/accounts/client_profile.js' %}" type="text/javascript"></script>
 
+<div class="all-wrapper">
 <div class="profile-box">
     <div class= "image-detail" >
+        {% if object.profile_pic.url %}
         <div class="image">
             <img style="height:220px" src ="{{object.profile_pic.url}}" >
         </div>
+        {%else%}
+        <div class="image">
+        <img style="height:220px" alt="0"></div>
+        {%endif%}
+        
         <div class="details">
             <div style="font-weight: bold;"> {{object.username}}</div>
             <div>{{object.type|title}}</div>
@@ -25,25 +32,66 @@
             <div>{{object.city|title}}</div>
             <div>Member Since: {{object.created_at}}</div>
             <div>                
-                <span value=1 onclick="ratingCollecter(event)" class="fa fa-star checked"></span>
-                <span value=2 onclick="ratingCollecter(event)" class="fa fa-star checked"></span>
-                <span value=3 onclick="ratingCollecter(event)" class="fa fa-star checked"></span>
-                <span value=4 onclick="ratingCollecter(event)" class="fa fa-star checked"></span>
-                <span value=5 onclick="ratingCollecter(event)" class="fa fa-star checked"></span>
+                {% with object.average_rating as r%}
+                                    
+                    {% with ''|center:r as range %}
+                        {% for _ in range %}
+                        <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                        {% load custom_filter %}
+
+                        {% with 5|subtract:r as nonstar %}
+                            {% with ''|center:nonstar as non_star %}  
+                                {% for _ in non_star %}
+                                    <span class="fa fa-star "></span>
+                                {% endfor %}
+                            {% endwith %}
+                        {%endwith%}
+                    {% endwith %}
+                {% endwith %}
             </div>
         </div>
     </div>
-    <div class="description">
-            <p> About : {{object.bio}}</p>
+    <div style="display: flex; flex-direction: row ;">
+        <div class="description">
+            <div style="color:Green">About :</div>
+                <p>{{object.bio}}</p>
+                
+        </div>
+        <div style="display: flex; flex-direction: column; overflow:scroll;">
+            {% for reviw in object.rating_to.all %}
+            <div style="border :2px solid black;">
+                
+                    <div style="font-weight: Bold;">Review By :{{reviw.rating_by.username}}</div>
+                    <div>Star:{{reviw.star_rating}} </div>
+                    <div>Review:{{reviw.review_message}}</div>
+                    
+                
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
-
+<div class="job-section" style="display:flex;flex-direction: column ;overflow: hidden;">
+    <h1>Jobs By Client</h1>
+    {% if object.jobpost_set.all%}
+        {% for job in object.jobpost_set.all %}
+            <div class="job-wrapper">
+                <a href="{%url 'jobs:jobdetail' job.id %}">{{job.title|title}}</a>
+            </div>
+        {% endfor %}
+        {%else%}
+            <div>NO Job Post </div>
+    {%endif%}
+</div>
+</div>
 {% if user.id == object.id %}
-{% endif %}
+
 <div >
     <form class ="form-update-cl" method="post"  action= "{% url 'client-profile' object.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
         {{update_client_form}}
         <input type="submit">
     </form>
 </div>
-
+{% endif %}

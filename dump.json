@@ -1,0 +1,3650 @@
+[
+{
+  "model": "sessions.session",
+  "pk": "1i1tk5n8zhrt2a8uqhfp183wbmeaq9ba",
+  "fields": {
+    "session_data": ".eJxVjEsOwjAMBe-SNYqSNmlslux7hsqODSmgRupnhbg7VOoCtm9m3ssMtK1l2Badh1HM2TRoTr8jU37otBO503SrNtdpnUe2u2IPuti-ij4vh_t3UGgp35oRFCEk78R3QAIKjtrADjWmBhIGjglQ2iie9ZopZCDsuIUUQs7OvD_4bTfN:1r0Oce:lxxjbTHbeZDn-bjP5n7sNWKLT1r5Aql0qX2-mQm5JbQ",
+    "expire_date": "2023-11-21T16:08:12.569Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2fveim9h8b1mvaea6y1qqqf45u6nad19",
+  "fields": {
+    "session_data": ".eJxVjEsOwjAMBe-SNYqSNmlslux7hsqODSmgRupnhbg7VOoCtm9m3ssMtK1l2Badh1HM2TRoTr8jU37otBO503SrNtdpnUe2u2IPuti-ij4vh_t3UGgp35oRFCEk78R3QAIKjtrADjWmBhIGjglQ2iie9ZopZCDsuIUUQs7OvD_4bTfN:1qvxIL:oFM38BJEcfEcIjeISjwuRdMr3wcE7HtQ1hs-8nyJNA8",
+    "expire_date": "2023-11-09T10:08:53.003Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3jlk6t23wz9e4k501kes3bg9t4rs7wxk",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAUBe_C2hCgKODSvWdoPp-HVA0kpV0Z765NutDtm5n3EiOtSxnXjnmckjiLIA6_WyR-oG4g3anemuRWl3mKclPkTru8toTnZXf_Dgr18q0tRzaUndYKcD4M-oiQDRsDJq9gBsD6xC47hcTk4LUGWxdNwimSeH8ABlA5Iw:1qsGKQ:pKqjJVUFi234_o5THkcjN2s-VfPtFFTbhKwSnVcl2vY",
+    "expire_date": "2023-10-30T05:39:46.103Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7q8datj46jay8fj1twr2wbh2jehr4sau",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln-fyjpOYNl765xADlSnFSIu0OkFNC-mXkvlvK2trQNWtKE7My0YaffsWR4UN8J3nO_zRzmvi5T4bvCDzr4dUZ6Xg7376Dl0b51BGGCQWu8rjmiF04WC7KCCiAj6SJVsDIoj4Toi9QORCwuOPLeVZXZ-wP35De3:1qx1qn:g4WLgUDajrf3K5iOlIcJLaf6fOJ3olzeSqMyx4Bx2l4",
+    "expire_date": "2023-11-12T09:12:53.481Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7qor5ctc2526vm1c2aeucj374e7pwhd0",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHDu7h07zcQGBipGkhKuzL-uzbpQrf3nHNfLMRtrWEbZQlzZmemLTv9jinio7Sd5Htst86xt3WZE98VftDBrz2X5-Vw_w5qHPVbO0JlnSTSGqwXwiYS2ZlETvkJpTIKCbWS3uZiJyEApClGu4iQCBDY-wP0zzd3:1r0IeM:Tjq--V8hoBVjzG8BI0IzGIxt53p_afIsRKE4HQlrIJU",
+    "expire_date": "2023-11-21T09:45:34.838Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bpl4b74hkt2bssvzb54i40pqv5phd969",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln-fyjpOYNl765xADlSnFSIu0OkFNC-mXkvlvK2trQNWtKE7My0YaffsWR4UN8J3nO_zRzmvi5T4bvCDzr4dUZ6Xg7376Dl0b51BGGCQWu8rjmiF04WC7KCCiAj6SJVsDIoj4Toi9QORCwuOPLeVZXZ-wP35De3:1r0OwA:_yzceDRgar8ifwIOzv4WrCtD0blRoIoUjhU31N2Q_jg",
+    "expire_date": "2023-11-21T16:28:22.341Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "sp4vz8t7l6hx2aj0qyaar7am62sevplt",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnsOv5R0nMGy-u1cQA5UpxUiLuTSCmgfTPz3iLEdalh7XkOI4uLAHH63SimZ2474Eds90mmqS3zSHJX5EG7vE2cX9fD_TuosdetJg8JUGdQpJnJ68EZZKv9gMrAGQZdCF12xsKGqRArsLkYdoiKIorPF806N5w:1qlQtN:lDDjJuPT062t8hvDL5HXBM0inYqcbosYuxGZzRdkUFY",
+    "expire_date": "2023-10-11T09:31:37.893Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "u8guc9aax1ueangzgb737jc2llijtbx3",
+  "fields": {
+    "session_data": ".eJxVjMEOwiAQBf-FsyFAoYBH7_0GsiyLVA0kpT0Z_9026UGvM_PemwXY1hK2TkuYE7uyYWCXXxgBn1QPkx5Q741jq-syR34k_LSdTy3R63a2fwcFetnXzmAmytFo4X0WyiYQKWZAZ5zI2igzkvFkR6ktepRSwIBR7Sw7BwDs8wUhrjij:1qwzbn:exrsH5W7bE706s43CQd0mIs-tZs0dsugAqrwTshVmck",
+    "expire_date": "2023-11-12T06:49:15.472Z"
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$IzmRVSUgnClGyYxfJPtIlQ$akrzZf155U1OQGwEUbjwZMoNIaa6UBz+O4kDN89dodU=",
+    "last_login": "2023-09-27T09:31:37.886Z",
+    "is_superuser": true,
+    "username": "super",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-09-27T09:19:26.672Z",
+    "email": "super@gmail.com",
+    "country": "",
+    "city": "",
+    "pin_code": null,
+    "phone_number": "",
+    "profile_pic": "",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$iuSpbIzGh09ix5xsWOCyUF$Aavs6L0w7kkhz11eXjIELLY7mYMBeISfbbqbvmlPzfg=",
+    "last_login": "2023-10-05T10:09:32.655Z",
+    "is_superuser": false,
+    "username": "",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-09-27T09:34:23.673Z",
+    "email": "super2@gmail.com",
+    "country": "",
+    "city": "",
+    "pin_code": null,
+    "phone_number": "",
+    "profile_pic": "profile_pics/Image_created_with_a_mobile_phone_09Ll9TK.png",
+    "gender": "F",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$biElZLUmv4XxBA2tL0xy5t$CRPLge1rwnSy5GKAc0k3achCL7Gf20yRLji6UHUFARU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "first",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-27T10:17:14.149Z",
+    "email": "first@gmail.com",
+    "country": "",
+    "city": "",
+    "pin_code": 5599,
+    "phone_number": "",
+    "profile_pic": "",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$GTsrYyWv7lbPrgpC6OckXq$a29Ivtzp4NfE0pvzCCWvDOIFpYFaMmVVpUtBSZwFCJA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "second",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-29T07:01:08.139Z",
+    "email": "second@gmail.com",
+    "country": "",
+    "city": "",
+    "pin_code": 5672,
+    "phone_number": "",
+    "profile_pic": "profile_pics/Sample-png-image-500kb.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$QpOF4KfOtUdJxrKi00eY70$IN8hlpqeMq7lL9gPNVjTv4kEIeqOd49cZiULjRY3/vo=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "third",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-29T07:06:31.867Z",
+    "email": "third@gmail.com",
+    "country": "",
+    "city": "",
+    "pin_code": 354,
+    "phone_number": "",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_4P4UPXj.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$9BkIvSKUZFsjg1wXBh0ljY$sYRzCOh27dF1F81O2aCwEij5N/UaaWIVX2jRvF7d2eg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "forth",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-29T07:46:48.684Z",
+    "email": "forth@gmail.com",
+    "country": "",
+    "city": "",
+    "pin_code": 4634,
+    "phone_number": "",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_RnZtaVT.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$VQkSgRItn3EVfYTYuB283E$2XWypE2li4TKoTedROqKbwunnSpYDR0lXszTrp58LUU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "fifth",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-29T08:58:21.286Z",
+    "email": "fifth@gmail.com",
+    "country": "",
+    "city": "",
+    "pin_code": 42,
+    "phone_number": "",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_2KlvQ1X.png",
+    "gender": "F",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "password",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "client1",
+    "first_name": "client",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-09-29T10:09:17Z",
+    "email": "client@gmail.com",
+    "country": "india",
+    "city": "indore",
+    "pin_code": 679,
+    "phone_number": "473047923",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_QzMeb4G.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$vjuMbsF6j69rjCyMS82JXR$by3R8/isrGkMzr/rGavRZVY0AUjsr9BwrDHpM3fBfzM=",
+    "last_login": "2023-11-06T11:15:54.521Z",
+    "is_superuser": true,
+    "username": "superuser",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-10-05T10:11:37.644Z",
+    "email": "super1@gmail.com",
+    "country": "",
+    "city": "",
+    "pin_code": null,
+    "phone_number": "",
+    "profile_pic": "",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$wxlZPmLieG0hbCT1nSHCuO$ij8seP86/xItPNXtZaoq/Lp24MI8vcyOw8Ji2q4YOMA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user3",
+    "first_name": "daaw",
+    "last_name": "asfd",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-05T12:52:45.211Z",
+    "email": "user3@gmail.com",
+    "country": "india",
+    "city": "indore",
+    "pin_code": 56789,
+    "phone_number": "32423673",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_dvEfy4Q.png",
+    "gender": "F",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$U0wx65aQoLkkZh1uPi0c4c$5xJqE19N/D5MM+ndqd9g2iRd7ek32OsG8922+fkQQXo=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user4",
+    "first_name": "daawfsd",
+    "last_name": "asfdfds",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-05T12:57:29.112Z",
+    "email": "user4@gmail.com",
+    "country": "india",
+    "city": "indore",
+    "pin_code": 56789,
+    "phone_number": "32423673fs",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_zumRP8H.png",
+    "gender": "F",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$SOxvMgBhCsR2Cqihf6G4Bo$M2G59xIbCODh07RJzI8+mViLdGDFOsQe9782QsWbKEM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user5",
+    "first_name": "daawfafwe",
+    "last_name": "asfdffdsf",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-05T12:59:40.738Z",
+    "email": "user5@gmail.com",
+    "country": "india",
+    "city": "indore",
+    "pin_code": 56789,
+    "phone_number": "32423673fs",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_m9Ko4bo.png",
+    "gender": "F",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$dmW2jcaRXaiUKcx8SIZBcl$qTrjgy7hpk6RFEcQ+8Ttnq3pntsn+d63ZDBTZb6i0O4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user6",
+    "first_name": "d",
+    "last_name": "a",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-05T13:28:59.322Z",
+    "email": "user6@gmail.com",
+    "country": "india",
+    "city": "indore",
+    "pin_code": 56789,
+    "phone_number": "46789089",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_WhBpPlM.png",
+    "gender": "F",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$2F9QrCm1nm8TgjQuaay8ll$726UuLoK2VtCVKraUPfj8h5DMVJ2ZWGqVV9DocmJEpA=",
+    "last_login": "2023-10-06T07:32:12.997Z",
+    "is_superuser": false,
+    "username": "user9",
+    "first_name": "dq",
+    "last_name": "aw",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-05T13:32:01.855Z",
+    "email": "user9@gmail.com",
+    "country": "india",
+    "city": "indore",
+    "pin_code": 56789,
+    "phone_number": "46789089",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_MQcDYXR.png",
+    "gender": "F",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$Jw5Fis4nfmAnxyc3BbUJ1W$YX+GMEzVHWkJSa3cIqiKXIHwFkK3igmg0/hv+nsQkQE=",
+    "last_login": "2023-10-06T11:46:16.016Z",
+    "is_superuser": false,
+    "username": "athar",
+    "first_name": "athar",
+    "last_name": "hussain",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-06T11:21:21.218Z",
+    "email": "athar110011@gmail.com",
+    "country": "india",
+    "city": "indore",
+    "pin_code": 445678,
+    "phone_number": "23456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_ovYZgga.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$KViDIRu85AJWXGO0dbCO5Y$DWSwJqSHeFh8qaRR3u5D3vSXfdsVznSZk049XQJu6rY=",
+    "last_login": "2023-10-09T05:31:06.678Z",
+    "is_superuser": true,
+    "username": "superuser1",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-10-06T11:24:19.761Z",
+    "email": "superuser@gmail.com",
+    "country": "",
+    "city": "",
+    "pin_code": null,
+    "phone_number": "",
+    "profile_pic": "",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$ALg1xIhlki2lUqsHZeerZ1$vwEIxl7IVBmsQkAI65gyDZrP0xRbYFNg4iR9/zd735k=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "freel",
+    "first_name": "lancer",
+    "last_name": "free",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T05:48:15.640Z",
+    "email": "user.freel@gmail.com",
+    "country": "india",
+    "city": "Inodre",
+    "pin_code": 233423,
+    "phone_number": "23456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_Rk1adFc.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$ADTqyi4Vya47aaK2nj0o6T$G0te0WCV3k7ACXpC+0E5C3Fae5ELzbWtQ0keOWglfMg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "freelancer1",
+    "first_name": "lancer",
+    "last_name": "free",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T05:53:01.497Z",
+    "email": "freelancer1@gmail.com",
+    "country": "india",
+    "city": "Inodre",
+    "pin_code": 233423,
+    "phone_number": "23456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_B3IuY13.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$J2Ds2IJAEtpUbe2ZvXFAP5$65qzcIoj28afK5lHQyivhSCcm5gP6bPAb8OMtUyZKbg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "freelancer2",
+    "first_name": "lancer",
+    "last_name": "free",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T05:56:28.756Z",
+    "email": "freelancer2@gmail.com",
+    "country": "india",
+    "city": "Inodre",
+    "pin_code": 233423,
+    "phone_number": "23456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_qPq5O4c.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$AifSAvON2pLfkg8vnrzE9r$gPgwE6Hoa3mZ3KH0AZRGuVC5+qnvvfqmvHzjG0GNNxY=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "freelancer3",
+    "first_name": "free",
+    "last_name": "lancer3",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T06:07:40.805Z",
+    "email": "freelancer3@gmail.com",
+    "country": "india",
+    "city": "indore",
+    "pin_code": 345678,
+    "phone_number": "23456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_v8ghMhQ.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$uQilx2LyFGdZFIxonL4mx8$X7k/pWpXGQo7YSI1w8XbIamrwDTy4SsQcn00SUtvl5g=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "freelancer4",
+    "first_name": "free",
+    "last_name": "lancer3",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T06:15:46.499Z",
+    "email": "freelancer4@gmail.com",
+    "country": "india",
+    "city": "indore",
+    "pin_code": 345678,
+    "phone_number": "23456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_NtBAVLa.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "18",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T06:26:10.815Z",
+    "email": "",
+    "country": "",
+    "city": "",
+    "pin_code": null,
+    "phone_number": "",
+    "profile_pic": "",
+    "gender": "",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "client2",
+    "first_name": "client",
+    "last_name": "type",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T10:04:08.504Z",
+    "email": "client2@gmail.com",
+    "country": "india",
+    "city": "Indore",
+    "pin_code": 456389,
+    "phone_number": "342345678",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_Mftmq8W.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "password@123",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "client5",
+    "first_name": "client",
+    "last_name": "company",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T11:08:39.319Z",
+    "email": "client5@gmail.com",
+    "country": "India",
+    "city": "ujjain",
+    "pin_code": 4567890,
+    "phone_number": "123456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_xYhKIiv.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "password@123",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "client6",
+    "first_name": "client6",
+    "last_name": "cle",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T11:20:43.595Z",
+    "email": "client6@gmail.com",
+    "country": "India",
+    "city": "ujjain",
+    "pin_code": 34567890,
+    "phone_number": "3456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_ekjhfV0.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "password@123",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "client8",
+    "first_name": "client",
+    "last_name": "pcom",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T11:43:59.879Z",
+    "email": "client8@gmail.com",
+    "country": "India",
+    "city": "ujjain",
+    "pin_code": 23456789,
+    "phone_number": "3456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_JxwOPs2.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$LEU6kincSaJ56eZNGk4iiA$ka5lkBMFVB7R2OH5r6Ec1ln5TCepHgE44Aq99js2Fjo=",
+    "last_login": "2023-10-09T12:05:32.180Z",
+    "is_superuser": false,
+    "username": "client9",
+    "first_name": "client9",
+    "last_name": "pcom",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T12:01:11.710Z",
+    "email": "client9@gmail.com",
+    "country": "India",
+    "city": "ujjain",
+    "pin_code": 23456789,
+    "phone_number": "3456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_eIIaFET.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$nGS6PlywvElpEPYMmzWPTe$JfhAjG7vR1RmIrKsOcAc3338H4Lalg0nedLz/DcYx5Y=",
+    "last_login": "2023-10-09T12:18:25.427Z",
+    "is_superuser": false,
+    "username": "clientX",
+    "first_name": "client",
+    "last_name": "comp",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T12:18:07.174Z",
+    "email": "clientX@gmail.com",
+    "country": "India",
+    "city": "indoer",
+    "pin_code": 2345678,
+    "phone_number": "23456789",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_rVSfS3k.png",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$zxi8qH6FJ92z6wA5X2clK5$+4pJcChMmzODusPDsK5YA9lPunP1Zl22xhRHOdP++iU=",
+    "last_login": "2023-11-07T16:08:12.559Z",
+    "is_superuser": false,
+    "username": "client11",
+    "first_name": "sdaf",
+    "last_name": "rejw",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T12:49:32Z",
+    "email": "client11@gmail.com",
+    "country": "India",
+    "city": "ujjain",
+    "pin_code": 2345678,
+    "phone_number": "1234567890",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_KJobrba.png",
+    "gender": "M",
+    "bio": "we are software company , since 10 years",
+    "groups": [],
+    "user_permissions": [
+      [
+        "is_client",
+        "accounts",
+        "client"
+      ]
+    ]
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "password@123",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "freelanceru",
+    "first_name": "free",
+    "last_name": "pcom",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T13:10:09Z",
+    "email": "clientu@gmail.com",
+    "country": "India",
+    "city": "ujjain",
+    "pin_code": 234567,
+    "phone_number": "2345678",
+    "profile_pic": "profile_pics/musician.jpeg",
+    "gender": "M",
+    "bio": "I'am a Musician",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$PIyg1p8UBIkCSWYxWgn6bS$6nr1h8CJkGpE03o9CnUKcz1hM00Fjagwec0e2UupysM=",
+    "last_login": "2023-10-16T05:35:12Z",
+    "is_superuser": false,
+    "username": "freelanceri",
+    "first_name": "freelancer",
+    "last_name": "pcom",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-09T13:16:22Z",
+    "email": "clienti@gmail.com",
+    "country": "India",
+    "city": "ujjain",
+    "pin_code": 234567,
+    "phone_number": "2345678",
+    "profile_pic": "profile_pics/developer.jpeg",
+    "gender": "M",
+    "bio": "I'am a Developer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$cImmhobH3GCrR3RtKxwLJO$H4/Ty8tP4eAgWzx/7CNIrPBOIEt/Ca6zwzH4UOWOmfw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "freelancer5",
+    "first_name": "free",
+    "last_name": "lancer",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-10T10:42:30Z",
+    "email": "freelancer5@gmail.com",
+    "country": "India",
+    "city": "ujjain",
+    "pin_code": 456789,
+    "phone_number": "23456789",
+    "profile_pic": "profile_pics/girl1.jpeg",
+    "gender": "M",
+    "bio": "I'am a Writer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$t5p8SkweRE5s38b181HrqW$7zrEZViH1geGOyTxCNNmgQFvCvJ3c/t47JLvNnMVAD8=",
+    "last_login": "2023-10-29T09:12:35.831Z",
+    "is_superuser": false,
+    "username": "freelancer11",
+    "first_name": "nikki",
+    "last_name": "1lancer",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-16T06:03:08.234Z",
+    "email": "freelancer11@gmail.com",
+    "country": "India",
+    "city": "indore",
+    "pin_code": 345678,
+    "phone_number": "12345678",
+    "profile_pic": "profile_pics/zz_2x2_1mb.jpeg",
+    "gender": "F",
+    "bio": "Hi, I'am Desiner",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$9OM6VvsROEv7Gp7yU7dsoB$GiJwHNi53JaltrJcWHJmxdzwpA+KqfuTfwDggWWCSJ4=",
+    "last_login": "2023-11-07T16:28:22.334Z",
+    "is_superuser": false,
+    "username": "rishabh",
+    "first_name": "rishabh",
+    "last_name": "SIr",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T07:36:55Z",
+    "email": "rishabh.senger@codiatic.com",
+    "country": "India",
+    "city": "kanpur",
+    "pin_code": 345678,
+    "phone_number": "9827353860",
+    "profile_pic": "profile_pics/developer_banTyfO.jpeg",
+    "gender": "M",
+    "bio": "Hi, I'am Developer",
+    "groups": [],
+    "user_permissions": [
+      [
+        "is_freelancer",
+        "accounts",
+        "freelancer"
+      ]
+    ]
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$8LzJ8mpNUEQ4TzbVltteTT$F6XKd2C0Fi8jKzTh72rmEgFmqmvQTMYFF95SMXzTkcw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "varun",
+    "first_name": "varun",
+    "last_name": "sir",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T07:46:43Z",
+    "email": "freelancer13@gmail.com",
+    "country": "India",
+    "city": "indore",
+    "pin_code": 23456789,
+    "phone_number": "2345678",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_gCKjQRD.png",
+    "gender": "M",
+    "bio": "Hi, I'am Developer",
+    "groups": [],
+    "user_permissions": [
+      [
+        "is_freelancer",
+        "accounts",
+        "freelancer"
+      ],
+      [
+        "view_freelancer",
+        "accounts",
+        "freelancer"
+      ]
+    ]
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$Le2Rbe1mpRD6OEfr33duI4$ocB2fa1c9iG0/GZsdYjJakGYojKWBN3oS18dtHtvmDU=",
+    "last_login": "2023-11-01T10:50:34.026Z",
+    "is_superuser": false,
+    "username": "akash",
+    "first_name": "akash",
+    "last_name": "sir",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T10:01:59.464Z",
+    "email": "freelancer14@gmail.com",
+    "country": "India",
+    "city": "Indore",
+    "pin_code": 3456789,
+    "phone_number": "2345678",
+    "profile_pic": "profile_pics/developer_Q6EdvPu.jpeg",
+    "gender": "M",
+    "bio": "Hi, I'am Developer",
+    "groups": [],
+    "user_permissions": [
+      [
+        "is_freelancer",
+        "accounts",
+        "freelancer"
+      ]
+    ]
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$hF9FiUKbYH5Owz0sbVxiUN$ZvC3G+SbsuNkmQP6L3diV+a67Bf09SQImy9SOinIWTM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "aditya",
+    "first_name": "aditya",
+    "last_name": "sir",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T10:19:12.560Z",
+    "email": "freelancer@gmail.com",
+    "country": "India",
+    "city": "indore",
+    "pin_code": 24354657,
+    "phone_number": "246777343",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_uKkDa57.png",
+    "gender": "M",
+    "bio": "Hi, I'am Developer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$nrELlo8eZrUazlnY4hQSEn$OyF9JzUt5Ln53y35tinTYmbsInq4C7qRK2zGrAmSjx4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "freelancer",
+    "first_name": "freelancer",
+    "last_name": "lancer",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T10:21:39.277Z",
+    "email": "freelancer16@gmail.com",
+    "country": "India",
+    "city": "indore",
+    "pin_code": 2345678,
+    "phone_number": "22345678",
+    "profile_pic": "profile_pics/Sample-png-image-500kb_sqw15x5.png",
+    "gender": "M",
+    "bio": "Hi, I'am Desiner",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$FI6xhibjETqXPgWismcG8A$4X2ka/F4bk5MxFKwypNh6vSi3hWAWroalZnSFun25rQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "adarsh",
+    "first_name": "adarsh",
+    "last_name": "lancer",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T10:34:01.177Z",
+    "email": "freelancer17@gmail.com",
+    "country": "India",
+    "city": "indore",
+    "pin_code": 34567,
+    "phone_number": "12345678",
+    "profile_pic": "profile_pics/developer_CAIf32G.jpeg",
+    "gender": "M",
+    "bio": "Hi, I'am Developer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$Ce1WvFMDOuQDS0ejj7Vw6t$uuGzPe0uXOpmMLwFjjenCqjj6EQqYbG7jjN5MpnhyRs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "ritik",
+    "first_name": "ritik",
+    "last_name": "lancer",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T10:35:50.131Z",
+    "email": "freelancer19@gmail.com",
+    "country": "India",
+    "city": "indore",
+    "pin_code": 34567,
+    "phone_number": "12345678",
+    "profile_pic": "profile_pics/developer_PasrnOz.jpeg",
+    "gender": "M",
+    "bio": "Hi, I'am Developer",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$BBrbAncYy7zGWUXbitBt92$D0kPrIydbEnTQiSCDnGITd/uKMGORfK26EK7W0Giylw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "pal",
+    "first_name": "pal",
+    "last_name": "pal",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T10:37:51.955Z",
+    "email": "freelancer21@gmail.com",
+    "country": "India",
+    "city": "indore",
+    "pin_code": 34567,
+    "phone_number": "23456789",
+    "profile_pic": "profile_pics/developer_ZCs64sq.jpeg",
+    "gender": "M",
+    "bio": "Hi, I'am Developer",
+    "groups": [],
+    "user_permissions": [
+      [
+        "is_freelancer",
+        "accounts",
+        "freelancer"
+      ]
+    ]
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$O7Jv18DS2WbLwrqEdmdixU$VcgN3Je5U5vXdAEIZDt69wwK8cGvznh7IZvdRTyHCK8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "jitendar",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T10:58:20.420Z",
+    "email": "jitendar@gmail.com",
+    "country": "India",
+    "city": "indore",
+    "pin_code": 23456789,
+    "phone_number": "3456789",
+    "profile_pic": "",
+    "gender": null,
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$94hpx4aVwSsEaND14Zyk37$aUgAjCyaMBnvp/Q90GYfA7iETmpdcGAtZmWxSwWsoQ8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "client5dfg",
+    "first_name": "",
+    "last_name": "khk",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T10:59:33.766Z",
+    "email": "clientisdf@gmail.com",
+    "country": "hkh",
+    "city": "hkh",
+    "pin_code": 209732,
+    "phone_number": "hk",
+    "profile_pic": "",
+    "gender": null,
+    "bio": "hkhk",
+    "groups": [],
+    "user_permissions": [
+      [
+        "is_freelancer",
+        "accounts",
+        "freelancer"
+      ]
+    ]
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$y23KZ5llnnpjP1DnUBheNK$XZlfHpcqMVrNvtCIXQmMDVq8NBl8AZRqnpLB0db6Koo=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "client5sdf",
+    "first_name": "",
+    "last_name": "khkhkjh",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T11:12:30.987Z",
+    "email": "cliensadfgti@gmail.com",
+    "country": "hkh",
+    "city": "hkhkh",
+    "pin_code": 383838,
+    "phone_number": "lkjljlk",
+    "profile_pic": "",
+    "gender": null,
+    "bio": "kj",
+    "groups": [],
+    "user_permissions": [
+      [
+        "is_freelancer",
+        "accounts",
+        "freelancer"
+      ]
+    ]
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$IrtVZF5josyBhbjtk11MAB$tgDlqsAsBwWsz0myrgWhgkxm8Gu4hQPBObVpzV5MstM=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "company",
+    "first_name": "comp",
+    "last_name": "job",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2023-10-19T11:41:41.390Z",
+    "email": "company@gmail.com",
+    "country": "India",
+    "city": "indore",
+    "pin_code": 2345678,
+    "phone_number": "2345678",
+    "profile_pic": "",
+    "gender": null,
+    "bio": "we are software company",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.customuser",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$FyAcdnKayw86mJkmmUkjm8$2K4AdAeqbqD5bjRrqevoOCps/WNKY3vubqNk0Y/nKZI=",
+    "last_login": "2023-11-07T09:45:34.832Z",
+    "is_superuser": true,
+    "username": "codiatic",
+    "first_name": "",
+    "last_name": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2023-11-07T09:44:50.348Z",
+    "email": "superuser@codiatic.com",
+    "country": "",
+    "city": "",
+    "pin_code": null,
+    "phone_number": "",
+    "profile_pic": "",
+    "gender": "M",
+    "bio": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      ""
+    ],
+    "years_of_experience": 9,
+    "resume": "",
+    "created_at": "2023-10-09T06:26:10.819Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "clientu@gmail.com"
+    ],
+    "years_of_experience": 0,
+    "resume": "resumes/resum.txt",
+    "created_at": "2023-10-09T13:10:09.453Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "clienti@gmail.com"
+    ],
+    "years_of_experience": 0,
+    "resume": "resumes/resum_YkINzWJ.txt",
+    "created_at": "2023-10-09T13:16:22.970Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "freelancer5@gmail.com"
+    ],
+    "years_of_experience": 0,
+    "resume": "resumes/resum_1oyKKXO.txt",
+    "created_at": "2023-10-10T10:42:30.786Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "freelancer11@gmail.com"
+    ],
+    "years_of_experience": 1,
+    "resume": "resumes/resum_94EmWqQ.txt",
+    "created_at": "2023-10-16T06:03:08.276Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "rishabh.senger@codiatic.com"
+    ],
+    "years_of_experience": 7,
+    "resume": "resumes/resum_onxjJvW.txt",
+    "created_at": "2023-10-19T07:36:55.735Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "freelancer13@gmail.com"
+    ],
+    "years_of_experience": 3,
+    "resume": "resumes/resum_Jders1o.txt",
+    "created_at": "2023-10-19T07:46:43.529Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "freelancer14@gmail.com"
+    ],
+    "years_of_experience": 5,
+    "resume": "resumes/resum_9toTYbm.txt",
+    "created_at": "2023-10-19T10:01:59.507Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "freelancer@gmail.com"
+    ],
+    "years_of_experience": 8,
+    "resume": "resumes/resum_mrQOnks.txt",
+    "created_at": "2023-10-19T10:19:12.602Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "freelancer16@gmail.com"
+    ],
+    "years_of_experience": 0,
+    "resume": "resumes/resum_Iia7EB7.txt",
+    "created_at": "2023-10-19T10:21:39.320Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "freelancer17@gmail.com"
+    ],
+    "years_of_experience": 0,
+    "resume": "resumes/resum_6V0gPOs.txt",
+    "created_at": "2023-10-19T10:34:01.188Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "freelancer19@gmail.com"
+    ],
+    "years_of_experience": 0,
+    "resume": "resumes/resum_Z3bZ3yq.txt",
+    "created_at": "2023-10-19T10:35:50.144Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "freelancer21@gmail.com"
+    ],
+    "years_of_experience": 0,
+    "resume": "resumes/resum_8wM4qKo.txt",
+    "created_at": "2023-10-19T10:37:51.969Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "jitendar@gmail.com"
+    ],
+    "years_of_experience": 0,
+    "resume": "",
+    "created_at": "2023-10-19T10:58:20.438Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "clientisdf@gmail.com"
+    ],
+    "years_of_experience": 4,
+    "resume": "",
+    "created_at": "2023-10-19T10:59:33.777Z"
+  }
+},
+{
+  "model": "accounts.freelancer",
+  "fields": {
+    "customuser_ptr": [
+      "cliensadfgti@gmail.com"
+    ],
+    "years_of_experience": 5,
+    "resume": "",
+    "created_at": "2023-10-19T11:12:31.006Z"
+  }
+},
+{
+  "model": "accounts.selfskills",
+  "pk": 1,
+  "fields": {
+    "skill_name": "python",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ],
+    "level": "EXP"
+  }
+},
+{
+  "model": "accounts.selfskills",
+  "pk": 2,
+  "fields": {
+    "skill_name": "java",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ],
+    "level": "EXP"
+  }
+},
+{
+  "model": "accounts.selfskills",
+  "pk": 10,
+  "fields": {
+    "skill_name": "ror",
+    "freelancer": [
+      "freelancer11@gmail.com"
+    ],
+    "level": "INT"
+  }
+},
+{
+  "model": "accounts.selfskills",
+  "pk": 24,
+  "fields": {
+    "skill_name": "python",
+    "freelancer": [
+      "freelancer11@gmail.com"
+    ],
+    "level": "INT"
+  }
+},
+{
+  "model": "accounts.selfskills",
+  "pk": 25,
+  "fields": {
+    "skill_name": "java",
+    "freelancer": [
+      "freelancer11@gmail.com"
+    ],
+    "level": "INT"
+  }
+},
+{
+  "model": "accounts.selfskills",
+  "pk": 42,
+  "fields": {
+    "skill_name": "computer",
+    "freelancer": [
+      "freelancer11@gmail.com"
+    ],
+    "level": "EXP"
+  }
+},
+{
+  "model": "accounts.selfskills",
+  "pk": 45,
+  "fields": {
+    "skill_name": "C",
+    "freelancer": [
+      "freelancer11@gmail.com"
+    ],
+    "level": "INT"
+  }
+},
+{
+  "model": "accounts.selfskills",
+  "pk": 47,
+  "fields": {
+    "skill_name": "python",
+    "freelancer": [
+      "rishabh.senger@codiatic.com"
+    ],
+    "level": "EXP"
+  }
+},
+{
+  "model": "accounts.selfskills",
+  "pk": 48,
+  "fields": {
+    "skill_name": "js",
+    "freelancer": [
+      "rishabh.senger@codiatic.com"
+    ],
+    "level": "EXP"
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 1,
+  "fields": {
+    "type": "GD",
+    "degree_name": "Btech",
+    "course": "Computer Science",
+    "college_name": "college",
+    "start_date": "2023-01-01",
+    "end_date": "2027-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 2,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Btech",
+    "course": "Computer Science",
+    "college_name": "college",
+    "start_date": "2023-01-01",
+    "end_date": "2026-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 3,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Mtech",
+    "course": "AI",
+    "college_name": "other",
+    "start_date": "2023-01-01",
+    "end_date": "2026-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 4,
+  "fields": {
+    "type": "GD",
+    "degree_name": "Phd",
+    "course": "AI++",
+    "college_name": "college",
+    "start_date": "2023-01-01",
+    "end_date": "2028-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 5,
+  "fields": {
+    "type": "GD",
+    "degree_name": "Mtech",
+    "course": "AI",
+    "college_name": "col",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 6,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Phd",
+    "course": "ml",
+    "college_name": "col",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 7,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Phd",
+    "course": "course1",
+    "college_name": "college1",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 8,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Phd",
+    "course": "course1",
+    "college_name": "college1",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 9,
+  "fields": {
+    "type": "PG",
+    "degree_name": "master",
+    "course": "course2",
+    "college_name": "college1",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 10,
+  "fields": {
+    "type": "PG",
+    "degree_name": "master",
+    "course": "course2",
+    "college_name": "college1",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 11,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Mtech",
+    "course": "AI",
+    "college_name": "college",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 12,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Masters",
+    "course": "electronics",
+    "college_name": "college",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 13,
+  "fields": {
+    "type": "PG",
+    "degree_name": "bsc",
+    "course": "Physics",
+    "college_name": "college2",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 14,
+  "fields": {
+    "type": "PG",
+    "degree_name": "bsc",
+    "course": "maths",
+    "college_name": "college2",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 15,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Mtech",
+    "course": "english",
+    "college_name": "college",
+    "start_date": "2023-01-01",
+    "end_date": "2030-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 16,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Mtech",
+    "course": "english",
+    "college_name": "college",
+    "start_date": "2023-01-01",
+    "end_date": "2030-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 17,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Mtech",
+    "course": "english",
+    "college_name": "college",
+    "start_date": "2023-01-01",
+    "end_date": "2030-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 18,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Btech",
+    "course": "ml",
+    "college_name": "col",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 19,
+  "fields": {
+    "type": "PG",
+    "degree_name": "Phd",
+    "course": "ml",
+    "college_name": "col",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 20,
+  "fields": {
+    "type": "GD",
+    "degree_name": "aesrdtfgj",
+    "course": "setyughj",
+    "college_name": "fghjn",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "freelancer": [
+      "freelancer5@gmail.com"
+    ]
+  }
+},
+{
+  "model": "accounts.education",
+  "pk": 21,
+  "fields": {
+    "type": "GD",
+    "degree_name": "B.Tech",
+    "course": "Computer Science",
+    "college_name": "Good college",
+    "start_date": "2023-01-01",
+    "end_date": "2024-01-01",
+    "freelancer": [
+      "rishabh.senger@codiatic.com"
+    ]
+  }
+},
+{
+  "model": "accounts.client",
+  "fields": {
+    "customuser_ptr": [
+      "client@gmail.com"
+    ],
+    "type": "individual",
+    "company_name": null,
+    "created_at": "2023-10-05T06:01:39.931Z"
+  }
+},
+{
+  "model": "accounts.client",
+  "fields": {
+    "customuser_ptr": [
+      "client2@gmail.com"
+    ],
+    "type": "Community",
+    "company_name": "new company",
+    "created_at": "2023-10-09T10:04:08.510Z"
+  }
+},
+{
+  "model": "accounts.client",
+  "fields": {
+    "customuser_ptr": [
+      "client5@gmail.com"
+    ],
+    "type": "individual",
+    "company_name": "None",
+    "created_at": "2023-10-09T11:08:39.337Z"
+  }
+},
+{
+  "model": "accounts.client",
+  "fields": {
+    "customuser_ptr": [
+      "client6@gmail.com"
+    ],
+    "type": "individual",
+    "company_name": "hfdsaf",
+    "created_at": "2023-10-09T11:20:43.636Z"
+  }
+},
+{
+  "model": "accounts.client",
+  "fields": {
+    "customuser_ptr": [
+      "client8@gmail.com"
+    ],
+    "type": "individual",
+    "company_name": "hfdsaf",
+    "created_at": "2023-10-09T11:43:59.924Z"
+  }
+},
+{
+  "model": "accounts.client",
+  "fields": {
+    "customuser_ptr": [
+      "client9@gmail.com"
+    ],
+    "type": "individual",
+    "company_name": "hfdsaf",
+    "created_at": "2023-10-09T12:01:11.754Z"
+  }
+},
+{
+  "model": "accounts.client",
+  "fields": {
+    "customuser_ptr": [
+      "clientX@gmail.com"
+    ],
+    "type": "individual",
+    "company_name": "None",
+    "created_at": "2023-10-09T12:18:07.215Z"
+  }
+},
+{
+  "model": "accounts.client",
+  "fields": {
+    "customuser_ptr": [
+      "client11@gmail.com"
+    ],
+    "type": "individual",
+    "company_name": null,
+    "created_at": "2023-10-09T12:49:32.075Z"
+  }
+},
+{
+  "model": "accounts.client",
+  "fields": {
+    "customuser_ptr": [
+      "company@gmail.com"
+    ],
+    "type": "Community",
+    "company_name": "company",
+    "created_at": "2023-10-19T11:41:41.400Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 5,
+  "fields": {
+    "name": "python",
+    "client": null,
+    "created_at": "2023-10-10T06:00:56.113Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 6,
+  "fields": {
+    "name": "java",
+    "client": null,
+    "created_at": "2023-10-10T06:01:21.507Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 7,
+  "fields": {
+    "name": "js",
+    "client": null,
+    "created_at": "2023-10-10T06:02:46.099Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 8,
+  "fields": {
+    "name": "C",
+    "client": null,
+    "created_at": "2023-10-10T06:03:02.023Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 9,
+  "fields": {
+    "name": "c++",
+    "client": null,
+    "created_at": "2023-10-10T09:28:37.864Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 10,
+  "fields": {
+    "name": "php",
+    "client": null,
+    "created_at": "2023-10-10T09:29:20.195Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 11,
+  "fields": {
+    "name": "ror",
+    "client": null,
+    "created_at": "2023-10-10T09:31:12.466Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 12,
+  "fields": {
+    "name": "arm",
+    "client": null,
+    "created_at": "2023-10-10T09:34:36.205Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 13,
+  "fields": {
+    "name": "computer science",
+    "client": null,
+    "created_at": "2023-10-10T09:35:47.063Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 14,
+  "fields": {
+    "name": "react",
+    "client": null,
+    "created_at": "2023-10-10T09:36:50.230Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 15,
+  "fields": {
+    "name": "django",
+    "client": null,
+    "created_at": "2023-10-10T09:41:53.755Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 16,
+  "fields": {
+    "name": "laravel",
+    "client": null,
+    "created_at": "2023-10-10T09:45:04.680Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 17,
+  "fields": {
+    "name": "jobskill",
+    "client": [
+      "client@gmail.com"
+    ],
+    "created_at": "2023-10-20T07:46:13.854Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 18,
+  "fields": {
+    "name": "xdgfcvhjb",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T16:02:51.991Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 19,
+  "fields": {
+    "name": "skill",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T16:05:21.249Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 20,
+  "fields": {
+    "name": "important skill",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T16:46:02.073Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 21,
+  "fields": {
+    "name": "sfd",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T16:53:08.420Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 22,
+  "fields": {
+    "name": "new skill",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:02:05.672Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 23,
+  "fields": {
+    "name": "sajkfa",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:15:14.385Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 24,
+  "fields": {
+    "name": "sxdgcf",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:15:50.222Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 25,
+  "fields": {
+    "name": "fgh",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:20:07.466Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 26,
+  "fields": {
+    "name": "fadshj",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:22:59.933Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 27,
+  "fields": {
+    "name": "fadshj",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:23:03.843Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 28,
+  "fields": {
+    "name": "dfcgvhb",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:23:31.173Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 29,
+  "fields": {
+    "name": "sdfg",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:25:00.167Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 30,
+  "fields": {
+    "name": "asdfg",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:27:18.262Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 31,
+  "fields": {
+    "name": "good skill",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:42:23.110Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 32,
+  "fields": {
+    "name": "df",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T17:47:29.008Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 33,
+  "fields": {
+    "name": "agwagr",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T18:04:10.576Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 34,
+  "fields": {
+    "name": "fake",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T18:11:09.016Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 35,
+  "fields": {
+    "name": "fake",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T18:11:09.017Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 36,
+  "fields": {
+    "name": "qw",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T18:11:48.104Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 37,
+  "fields": {
+    "name": "af",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T18:14:09.572Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 38,
+  "fields": {
+    "name": "afd",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T18:14:16.065Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 39,
+  "fields": {
+    "name": "afd",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-22T18:14:16.077Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 40,
+  "fields": {
+    "name": "skill1",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:14:09.169Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 41,
+  "fields": {
+    "name": "skill2",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:14:16.065Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 42,
+  "fields": {
+    "name": "skill2",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:14:16.075Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 43,
+  "fields": {
+    "name": "skill3",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:14:27.261Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 44,
+  "fields": {
+    "name": "skill3",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:14:27.281Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 45,
+  "fields": {
+    "name": "skill3",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:14:27.292Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 46,
+  "fields": {
+    "name": "skill4",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:18:39.260Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 47,
+  "fields": {
+    "name": "skill5",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:18:47.789Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 48,
+  "fields": {
+    "name": "skill5",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:18:47.791Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 49,
+  "fields": {
+    "name": "skill",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:22:48.870Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 50,
+  "fields": {
+    "name": "skills",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:23:10.545Z"
+  }
+},
+{
+  "model": "accounts.skill",
+  "pk": 51,
+  "fields": {
+    "name": "skills",
+    "client": [
+      "client11@gmail.com"
+    ],
+    "created_at": "2023-10-23T05:23:10.549Z"
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 1,
+  "fields": {
+    "title": "Python Job",
+    "category": "Developer , IT",
+    "experience_required": 1,
+    "description": "DJango",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-20T10:03:41.830Z",
+    "status": "CLOSED",
+    "duration_type": "MONTH",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 10,
+    "created_at": "2023-10-20T10:03:41.830Z",
+    "updated_at": "2023-11-01T08:21:53.193Z",
+    "skill_required": []
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 2,
+  "fields": {
+    "title": "javascript Job",
+    "category": "Developer , IT",
+    "experience_required": 2,
+    "description": "javscript expert familir with buliding frontend",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-20T11:06:08.637Z",
+    "status": "OPEN",
+    "duration_type": "MONTH",
+    "duration": 2,
+    "currency": "RS",
+    "salary": 9,
+    "created_at": "2023-10-20T11:06:08.638Z",
+    "updated_at": "2023-10-20T11:06:08.638Z",
+    "skill_required": []
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 3,
+  "fields": {
+    "title": "job",
+    "category": "fsd",
+    "experience_required": 1,
+    "description": "sdfkjefwoj dnsa kjfsad",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-22T16:53:38.425Z",
+    "status": "OPEN",
+    "duration_type": "WEEK",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 1,
+    "created_at": "2023-10-22T16:53:38.426Z",
+    "updated_at": "2023-10-22T16:53:38.426Z",
+    "skill_required": []
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 4,
+  "fields": {
+    "title": "job",
+    "category": "fsd",
+    "experience_required": 1,
+    "description": "sdfkjefwoj dnsa kjfsad",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-22T16:54:48.982Z",
+    "status": "OPEN",
+    "duration_type": "WEEK",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 1,
+    "created_at": "2023-10-22T16:54:48.982Z",
+    "updated_at": "2023-10-22T16:54:48.982Z",
+    "skill_required": []
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 5,
+  "fields": {
+    "title": "ror jOb",
+    "category": "Developer , IT",
+    "experience_required": 1,
+    "description": "good oop concept",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-22T16:59:29.054Z",
+    "status": "OPEN",
+    "duration_type": "WEEK",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 1,
+    "created_at": "2023-10-22T16:59:29.054Z",
+    "updated_at": "2023-10-22T16:59:29.054Z",
+    "skill_required": []
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 6,
+  "fields": {
+    "title": "ror jOb",
+    "category": "Developer , IT",
+    "experience_required": 1,
+    "description": "good oop concept",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-22T17:01:49.189Z",
+    "status": "OPEN",
+    "duration_type": "WEEK",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 1,
+    "created_at": "2023-10-22T17:01:49.189Z",
+    "updated_at": "2023-10-22T17:01:49.189Z",
+    "skill_required": []
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 7,
+  "fields": {
+    "title": "ror jOb",
+    "category": "Developer , IT",
+    "experience_required": 1,
+    "description": "good oop concept",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-22T17:19:32.002Z",
+    "status": "OPEN",
+    "duration_type": "WEEK",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 1,
+    "created_at": "2023-10-22T17:19:32.002Z",
+    "updated_at": "2023-10-22T17:19:32.002Z",
+    "skill_required": []
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 8,
+  "fields": {
+    "title": "yrtr",
+    "category": "szxdfvg",
+    "experience_required": 6,
+    "description": "szdgf",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-22T17:50:18.312Z",
+    "status": "OPEN",
+    "duration_type": "WEEK",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 12,
+    "created_at": "2023-10-22T17:50:18.313Z",
+    "updated_at": "2023-10-22T17:50:18.313Z",
+    "skill_required": []
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 9,
+  "fields": {
+    "title": "erftgyuihj",
+    "category": "tygvhjn",
+    "experience_required": 7,
+    "description": "wsrethb",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-22T17:55:16.097Z",
+    "status": "OPEN",
+    "duration_type": "MONTH",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 1,
+    "created_at": "2023-10-22T17:55:16.098Z",
+    "updated_at": "2023-10-22T17:55:16.098Z",
+    "skill_required": []
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 10,
+  "fields": {
+    "title": "erftgyuihj",
+    "category": "tygvhjn",
+    "experience_required": 7,
+    "description": "wsrethb",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-22T17:58:30.088Z",
+    "status": "OPEN",
+    "duration_type": "MONTH",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 1,
+    "created_at": "2023-10-22T17:58:30.089Z",
+    "updated_at": "2023-10-22T17:58:30.089Z",
+    "skill_required": [
+      7,
+      8
+    ]
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 11,
+  "fields": {
+    "title": "cgvjhbknlkm",
+    "category": "tfyhuikl",
+    "experience_required": 0,
+    "description": "xdfghjnk",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-22T18:10:15.117Z",
+    "status": "OPEN",
+    "duration_type": "DAY",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 22,
+    "created_at": "2023-10-22T18:10:15.118Z",
+    "updated_at": "2023-10-22T18:10:15.118Z",
+    "skill_required": [
+      14
+    ]
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 12,
+  "fields": {
+    "title": "afs",
+    "category": "ere",
+    "experience_required": 1,
+    "description": "edfwa",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-23T05:08:34.075Z",
+    "status": "OPEN",
+    "duration_type": "DAY",
+    "duration": 1,
+    "currency": "RS",
+    "salary": 1,
+    "created_at": "2023-10-23T05:08:34.075Z",
+    "updated_at": "2023-10-23T05:08:34.075Z",
+    "skill_required": []
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 13,
+  "fields": {
+    "title": "javascript job",
+    "category": "Developer , IT",
+    "experience_required": 1,
+    "description": "javascript , dom manipulation",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-23T05:28:01.742Z",
+    "status": "OPEN",
+    "duration_type": "MONTH",
+    "duration": 2,
+    "currency": "RS",
+    "salary": 34,
+    "created_at": "2023-10-23T05:28:01.742Z",
+    "updated_at": "2023-10-23T05:28:01.742Z",
+    "skill_required": [
+      7
+    ]
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 14,
+  "fields": {
+    "title": "Python Job",
+    "category": "Developer",
+    "experience_required": 5,
+    "description": "I am looking for an experienced Python developer to assist me with web development tasks.\r\n\r\nSpecifically, I have existing code that needs to be worked on, so familiarity with working on existing projects is crucial.\r\n\r\nThe timeline for this project is immediate, with a deadline of less than 1 week.\r\n\r\nIdeal skills and experience for this job include:\r\n\r\n- Strong proficiency in Python programming\r\n- Experience with web development frameworks such as Django or Flask\r\n- Knowledge of HTML, CSS, and JavaScript\r\n- Familiarity with database management systems such as MySQL or PostgreSQL\r\n- Ability to work efficiently and meet tight deadlines",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-23T06:53:44.791Z",
+    "status": "CLOSED",
+    "duration_type": "MONTH",
+    "duration": 5,
+    "currency": "RS",
+    "salary": 100,
+    "created_at": "2023-10-23T06:53:44.791Z",
+    "updated_at": "2023-11-01T10:00:36.808Z",
+    "skill_required": [
+      5,
+      7,
+      15
+    ]
+  }
+},
+{
+  "model": "jobs.jobpost",
+  "pk": 15,
+  "fields": {
+    "title": "Javascript Job",
+    "category": "Computer Science",
+    "experience_required": 2,
+    "description": "Minecraft Render Image\r\n\r\nI am looking for a skilled graphic designer who can create a render image for my website\r\nwww.minecraft-heads.com\r\n\r\nThis image should roughly be 700px width and 350px high and show a few rendered characters decorating with heads and armorstands in Minecraft. For example one could place a head (like a treasure chest or so) on a block, the other one could put a human head on an armorstand which wear a leather outfit already. Some other heads are maybe also already visible around the two.\r\n\r\nThe background is kinda unimportant: Either it's fully transparent or you see it partially and it fades out to transparency. It's important that the render image is no a rectangular image or so, it should fade out to transparency (example: http://prntscr.com/DhhpCpQU0bOC)\r\n\r\nI dont really have a good idea for a render image, that's why I'm placing this job.\r\n\r\nIf you apply for this job, please describe your rough idea, maybe even do a short draft on paper or so and show an example from your Minecraft render images.",
+    "user": [
+      "client11@gmail.com"
+    ],
+    "posted_at": "2023-10-27T09:15:26.352Z",
+    "status": "OPEN",
+    "duration_type": "WEEK",
+    "duration": 2,
+    "currency": "USD",
+    "salary": 2,
+    "created_at": "2023-10-27T09:15:26.353Z",
+    "updated_at": "2023-10-27T09:15:26.353Z",
+    "skill_required": [
+      7
+    ]
+  }
+},
+{
+  "model": "jobs.jobproposal",
+  "pk": 1,
+  "fields": {
+    "job": 14,
+    "user": [
+      "rishabh.senger@codiatic.com"
+    ],
+    "status": "ACCEPTED",
+    "resume": "certificates/resum_EgufrY7.txt",
+    "bid": 40,
+    "currency": "RS",
+    "message": "Im skilled python developer , i will do project on time .",
+    "created_at": "2023-10-25T07:09:27.472Z",
+    "updated_at": "2023-11-01T10:00:42.807Z"
+  }
+},
+{
+  "model": "jobs.jobproposal",
+  "pk": 6,
+  "fields": {
+    "job": 1,
+    "user": [
+      "rishabh.senger@codiatic.com"
+    ],
+    "status": "INPROCESS",
+    "resume": "certificates/resum_2rKfS5l.txt",
+    "bid": 1,
+    "currency": "USD",
+    "message": "ok",
+    "created_at": "2023-10-31T05:58:44.427Z",
+    "updated_at": "2023-11-01T10:37:03.975Z"
+  }
+},
+{
+  "model": "jobs.contract",
+  "pk": 3,
+  "fields": {
+    "proposal": 1,
+    "created_at": "2023-11-01T09:59:39.552Z",
+    "total": 200,
+    "currency": "RS",
+    "remaining": 200
+  }
+},
+{
+  "model": "jobs.review",
+  "pk": 3,
+  "fields": {
+    "rating_by": [
+      "client11@gmail.com"
+    ],
+    "rating_to": [
+      "rishabh.senger@codiatic.com"
+    ],
+    "star_rating": 5,
+    "review_message": "Good Work done by rishabh",
+    "created_at": "2023-11-07T07:15:46.715Z",
+    "updated_at": "2023-11-07T07:16:04.561Z",
+    "job": 14
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2023-09-27T09:34:24.037Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2023-09-27T09:34:45.211Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2023-09-27T09:45:13.449Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Gender\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2023-09-27T09:45:28.743Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super1@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Email address\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2023-09-27T09:45:37.430Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Email address\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2023-09-27T09:46:36.689Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Gender\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2023-09-27T10:17:14.530Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "3",
+    "object_repr": "first@gmail.com",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2023-09-27T11:18:53.073Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Gender\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2023-09-27T11:19:00.045Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Gender\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2023-09-27T13:11:33.032Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Gender\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2023-09-27T13:12:38.448Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Gender\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2023-09-28T07:18:22.898Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2023-09-28T07:33:33.189Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2023-09-28T07:34:51.378Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2023-09-28T08:49:51.612Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2023-09-28T08:53:05.714Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2023-09-28T09:17:12.119Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2023-09-28T09:18:24.428Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2023-09-28T09:19:07.889Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "2",
+    "object_repr": "super2@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2023-09-29T07:01:08.546Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "4",
+    "object_repr": "second@gmail.com",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2023-09-29T07:06:32.259Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "5",
+    "object_repr": "third@gmail.com",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2023-09-29T07:46:53.684Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "6",
+    "object_repr": "forth@gmail.com",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2023-09-29T08:58:21.646Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "customuser"
+    ],
+    "object_id": "7",
+    "object_repr": "fifth@gmail.com",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2023-09-29T10:10:56.966Z",
+    "user": [
+      "super@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "client"
+    ],
+    "object_id": "8",
+    "object_repr": "client@gmail.com",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2023-10-16T05:40:50.383Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "freelancer"
+    ],
+    "object_id": "31",
+    "object_repr": "freelanceri",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\", \"First name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2023-10-16T05:41:36.281Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "freelancer"
+    ],
+    "object_id": "30",
+    "object_repr": "freelanceru",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Username\", \"First name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2023-10-19T06:51:29.542Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "freelancer"
+    ],
+    "object_id": "32",
+    "object_repr": "freelancer5",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2023-10-19T06:52:10.756Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "freelancer"
+    ],
+    "object_id": "32",
+    "object_repr": "freelancer5",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Bio\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2023-10-19T06:56:59.601Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "freelancer"
+    ],
+    "object_id": "31",
+    "object_repr": "freelanceri",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\", \"Bio\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2023-10-19T07:01:09.789Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "freelancer"
+    ],
+    "object_id": "30",
+    "object_repr": "freelanceru",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Profile pic\", \"Bio\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2023-10-19T07:53:04.669Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "freelancer"
+    ],
+    "object_id": "35",
+    "object_repr": "varun",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2023-10-20T09:54:53.975Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "client"
+    ],
+    "object_id": "29",
+    "object_repr": "client11",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2023-10-25T05:47:33.174Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "freelancer"
+    ],
+    "object_id": "34",
+    "object_repr": "rishabh",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"User permissions\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2023-10-26T10:15:44.285Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "client"
+    ],
+    "object_id": "29",
+    "object_repr": "client11",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2023-11-01T10:37:03.976Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "jobproposal"
+    ],
+    "object_id": "6",
+    "object_repr": "INPROCESS",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2023-11-01T10:37:11.167Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "jobproposal"
+    ],
+    "object_id": "7",
+    "object_repr": "INPROCESS",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2023-11-01T10:37:16.973Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "jobproposal"
+    ],
+    "object_id": "5",
+    "object_repr": "INPROCESS",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2023-11-01T10:37:22.633Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "jobproposal"
+    ],
+    "object_id": "4",
+    "object_repr": "INPROCESS",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2023-11-01T10:37:28.379Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "jobproposal"
+    ],
+    "object_id": "3",
+    "object_repr": "INPROCESS",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2023-11-01T10:37:35.586Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "jobproposal"
+    ],
+    "object_id": "2",
+    "object_repr": "INPROCESS",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2023-11-01T10:47:21.014Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "contract"
+    ],
+    "object_id": "1",
+    "object_repr": "client11 - rishabh",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2023-11-01T10:47:26.955Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "contract"
+    ],
+    "object_id": "2",
+    "object_repr": "client11 - rishabh",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2023-11-01T12:12:10.351Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "contract"
+    ],
+    "object_id": "4",
+    "object_repr": "client11 - rishabh",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 44,
+  "fields": {
+    "action_time": "2023-11-01T12:21:57.750Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "contract"
+    ],
+    "object_id": "5",
+    "object_repr": "client11 - rishabh",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2023-11-01T12:24:39.610Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "contract"
+    ],
+    "object_id": "6",
+    "object_repr": "client11 - rishabh",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2023-11-06T11:16:08.242Z",
+    "user": [
+      "super1@gmail.com"
+    ],
+    "content_type": [
+      "jobs",
+      "review"
+    ],
+    "object_id": "1",
+    "object_repr": "0",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2023-11-07T09:46:48.007Z",
+    "user": [
+      "superuser@codiatic.com"
+    ],
+    "content_type": [
+      "jobs",
+      "review"
+    ],
+    "object_id": "2",
+    "object_repr": "4",
+    "action_flag": 3,
+    "change_message": ""
+  }
+}
+]

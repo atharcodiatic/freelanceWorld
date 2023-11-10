@@ -1,5 +1,5 @@
 from django import template
-
+from django.db.models.query import QuerySet
 register = template.Library()
 @register.filter
 def update_variable(value,arg):
@@ -15,5 +15,31 @@ def multiply(value, arg):
 def divide(value, arg):
     converted = int(float(value)) / int(float(arg))
     return float("{:.2f}".format(converted))
+
+@register.filter
+def filter_queryset(obj, user_id):
+    if isinstance(obj,QuerySet):
+        if obj.filter(rating_by=user_id).exists():
+            obj.filter(rating_by=user_id).first().star_rating
+        else:
+            return False
+    
+@register.filter
+def subtract(value,arg):
+    return value-int(arg)
+
+@register.filter
+def filter_proposal(obj,user_id):
+    if isinstance(obj,QuerySet):
+        breakpoint()
+        queryset= obj.filter(user=user_id)
+        if queryset.exists():
+            return True
+        else:
+            return False
+    else:
+        obj
+
+    
  
     

@@ -94,7 +94,6 @@
 
 
 <div class ="Clientprofile">
-    
     <div class='img'>
         <img style='width:300px  ;' src="{{object.user.profile_pic.url}}"> 
     </div>
@@ -194,6 +193,7 @@
                             </div>
                         </div>
                         
+                        
                         {% if user.is_authenticated and user.id == object.user.id %}
                             <div>
                                 <a id="proposal_resume"><button value="{{proposal.resume.url}}" onclick="prepareResume(event)">Open Resume</button></a>
@@ -201,9 +201,12 @@
                             <div>
                                 <form method="post" action="{% url 'jobs:create-contract' proposal.id %}">
                                     {% csrf_token %}
+                                    {% load custom_filter %}
+            
                                     {% if proposal.job.status == "OPEN" %}
                                         <button id = "accept-proposal" onclick="disableButton(event)" type="submit">Accept Proposal</button>
                                     {% endif %}
+                                    
                                 </form>
                             </div>
                         {% endif %}

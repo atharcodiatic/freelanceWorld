@@ -42,15 +42,17 @@
         
         function postRating(event){
             let job_id = localStorage.getItem("job_id")*1
-            let client_id = localStorage.getItem("client_id") *1
-            let freelancer_id = localStorage.getItem('freelancer_id')*1
+            let rating_by = localStorage.getItem("rating_by") *1
+            let rating_to  = localStorage.getItem('rating_to')*1
             let star_rating = event.target.getAttribute('value')*1
 
-            console.log(star_rating)
+            console.log(job_id)
+            console.log(job_id, 's',star_rating,'BY:',rating_by,'TO:',rating_to)
 
             data = {
-                "client_id":client_id,
+                "rating_by":rating_by,
                 "job_id" : job_id,
+                "rating_to":rating_to,
                 "star_rating": star_rating,
                 "message_indicator":false,
             }

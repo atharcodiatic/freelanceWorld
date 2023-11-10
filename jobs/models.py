@@ -40,7 +40,7 @@ class JobPost(models.Model):
 
     user = models.ForeignKey(Client, on_delete = models.CASCADE)
     posted_at = models.DateTimeField(auto_now_add = True)
-    status = models.CharField(max_length = 10, choices = JOB_STATUS,  default=JOB_STATUS[1][0])
+    status = models.CharField(max_length = 10, choices = JOB_STATUS,  default=JOB_STATUS[0][0])
     duration_type = models.CharField( max_length=10, choices = DURATION_CHOICES,)
     duration = models.PositiveIntegerField(null=True, help_text = 'duration must be an integer')
     currency = models.CharField(max_length=3,choices=CURRENCY_CHOICES)
@@ -48,17 +48,14 @@ class JobPost(models.Model):
     skill_required = models.ManyToManyField(Skill)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    
+ 
     class Meta:
         verbose_name = 'Post'
+        ordering = ['-created_at']
 
     def __str__(self):
         return self.title
-    
-
-     
-    
+       
 class JobProposal(models.Model):
     '''
     This model store data of JobProposal , User can send to client to get job
@@ -91,6 +88,8 @@ class JobProposal(models.Model):
 
     def __str__(self):
         return self.status
+    class Meta:
+        ordering = ['-created_at']
     
 
 class Contract(models.Model):
@@ -102,8 +101,7 @@ class Contract(models.Model):
     '''
     
     proposal = models.OneToOneField(JobProposal, on_delete=models.RESTRICT)
-    created_at = models.DateTimeField(auto_now_add = True)
-    
+    created_at = models.DateTimeField(auto_now_add = True) 
     total = models.PositiveIntegerField()
     # def remaining_default(self):
     #     return self.total

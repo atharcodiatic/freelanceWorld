@@ -8,12 +8,14 @@ urlpatterns = [
     path('register/client', views.ClientRegistrationView.as_view(), name= 'register_client'),
     path('register/', views.register_view,name='register'),
     path('login/', views.LoginPageView.as_view(), name='login'),
+    # bug -on logout our view should redirect to  HttpPermanentRedirect
     path('logout', auth_views.LogoutView.as_view(template_name='accounts/freelancer_profile.html',next_page='/login'), name='logout'),
-    path('<pk>/freelancer_profile', views.FreeLancerProfileView.as_view(), name = 'freelancer-profile'),
-    path('<pk>/freelancer_profile_update', views.FreeLancerUpdateView.as_view(), name = 'freelancer-updateprofile'),
-    path('<pk>/education/', views.education_view,name = 'education'),
-    path('<pk>/skill/', views.SkillCreateView.as_view(),name = 'skill'),
-    path('<pk>/clientprofile/', views.ClientProfileView.as_view(),name = 'client-profile'),
+    path('<int:pk>/freelancer_profile', views.FreeLancerProfileView.as_view(), name = 'freelancer-profile'),
+    path('<int:pk>/freelancer_profile_update', views.FreeLancerUpdateView.as_view(), name = 'freelancer-updateprofile'),
+    path('<int:pk>/education/', views.education_view,name = 'education'),
+    path('<int:pk>/skill/', views.SkillCreateView.as_view(),name = 'skill'),
+    path('<int:pk>/clientprofile/', views.ClientProfileView.as_view(),name = 'client-profile'),
+    path('ajax/load-cities/', views.load_cities, name='ajax_load_cities'),
     
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name = "accounts/reset_password.html"), name ='reset_password'),

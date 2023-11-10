@@ -8,13 +8,13 @@
     
 {% endblock head %}
 
-
-
-
 {% block body %}
-<div class="detailheadline">
-    <button class="headlinebutton" onclick="hideOpen(event)" value="feed" > Feed</button>
-    <button class="headlinebutton" onclick="hideOpen(event)"  value="showall">All Jobs</button>
+<div class="detailheadline" style="margin:auto;">
+    <form method="get" action="{%url 'freelancer:freelancerfeed'%}">
+        <button type="submit" style="width:100px;" name="feed" value="feed">Feed</button>
+        <button type="submit" style="width:100px;" name ="showall" value="all_job">All_jobs</button>
+    </form>
+    
 </div>
 
     </div>

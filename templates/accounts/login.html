@@ -1,5 +1,5 @@
-<form method="post" action="{% url 'login' %}">
-
+<form  style="display: flex; width:280px; gap:20px;flex-direction: column ; " method="post" action="{% url 'login' %}">
+<h1>Login</h1>
     {% csrf_token %}
       {{ form }}
         {{message}}

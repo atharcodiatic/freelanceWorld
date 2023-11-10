@@ -1,13 +1,8 @@
 
-
-function jobSkillForm(){
-    console.log('runniing')
-    formButton = document.getElementsByClassName('jobSkillForm')[0]
-    formButton.style.display = 'block';
+window.onload = function(){
 
     let form = document.getElementById("job_skillform"); // selecting the form
-  
-    form.addEventListener('submit', function(event) { // 1
+    form.addEventListener('submit', function(event) { // 1runnibg
     event.preventDefault()
 
     skill= document.getElementById('id_name').value
@@ -18,16 +13,14 @@ function jobSkillForm(){
     axios.defaults.xsrfCookieName = 'csrftoken'
     axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
     axios({
-
         method: 'post',
         url: '/skillcreate/',
         data:data ,
         
       })
       .then(res => {
-        console.log('##############33',res.data)
-        if( res.data.status == "success"){
-            console.log(res.data.id,'())))0000000)')
+          if( res.data.status == "success"){
+              console.log('##############33',res.data)
             id = res.data.id
             let add_skill = document.getElementById('id_skill_required')
 
@@ -41,7 +34,6 @@ function jobSkillForm(){
             checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.name = 'skill_required'
-            id = res.data.id
             console.log(typeof id)
             checkbox.value = id.toString()
             checkbox.id = "id_skill_required_"+id.toString()
@@ -51,11 +43,17 @@ function jobSkillForm(){
             add_skill.appendChild(skillDiv)
             form.reset();
             formButton.style.display = 'none';
-
         }
     
     })
     
 
 })
+
+}
+function formJobSkillAdd(){
+    formButton = document.getElementsByClassName('jobSkillForm')[0]
+    formButton.style.display = 'block';
+    debugger
+    
 }

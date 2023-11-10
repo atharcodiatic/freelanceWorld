@@ -2,10 +2,12 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 {% load static %} 
-
+<link rel="stylesheet" href = "{% static 'css/jobs/browse_fl.css' %}">
     <link rel="stylesheet" href = "{% static 'css/accounts/freelancer.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {% block cssfiles %}
     <link rel="stylesheet" href = "{% static 'css/freelancer/home.css' %}">
+    
     {% endblock cssfiles %}
 <script>
     let pk = "{{object.pk}}"
@@ -14,55 +16,101 @@
 </script>
 <script src="{% static 'scripts/register.js' %}" type="text/javascript"></script> 
 
-{% include 'freelancer/navbar.html' %}
+
+    
+
 {% block body %}
-
+{% if user.id == object.pk %} 
+    {% include 'freelancer/navbar.html' %}
 <div> <a href="/{{object.pk}}/freelancer_profile_update"><button>Edit</button></a></div>
-
+ {% elif user.id != object.pk %}
+    {% include 'jobs/navbar.html' %}
+{% endif %}
+<div style="display: flex ; justify-content: space-evenly;">
+    <div>
+        {% if object.profile_pic %}
 <div class="profile_image"><img class="imgs" src="{{object.profile_pic.url}}"></div>
-
-
+    {%else%}
+    <div><img alt='imgae'></div>
+{% endif %}
 <p>UserName : {{object.username}} </p>
-<p>Name : {{object.first_name}} {{object.lastname}}</p>
+<div>
+    {% with object.average_rating as r%}
+                                    
+                    {% with ''|center:r as range %}
+                        {% for _ in range %}
+                        <span class="fa fa-star checked"></span>
+                        {% endfor %}
+                        {% load custom_filter %}
+
+                        {% with 5|subtract:r as nonstar %}
+                            {% with ''|center:nonstar as non_star %}  
+                                {% for _ in non_star %}
+                                    <span class="fa fa-star "></span>
+                                {% endfor %}
+                            {% endwith %}
+                        {%endwith%}
+                    {% endwith %}
+                {% endwith %}
+</div>
+<p>Name : {{object.first_name|title}} {{object.lastname|title}}</p>
 <p>Experience : {{object.years_of_experience}} </p>
 <p>Bio : {{object.bio}}</p>
-<p>Related:{% for edu in object.education_set.all %}
+    </div>
+    <div style="display: flex; flex-direction: column; overflow:scroll;">
+        {% for reviw in object.rating_to.all %}
+        <div style="border :2px solid black;">
+            
+                <div style="font-weight: Bold;">Review By :{{reviw.rating_by.username}}</div>
+                <div>Star:{{reviw.star_rating}} </div>
+                <div>Review:{{reviw.review_message}}</div>
+                
+            
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+<!-- <p>Related:{% for edu in object.education_set.all %}
         {{edu.course}} 
     {% endfor %}
-</p>
+</p> -->
 
-
+{% if user.id == object.pk %}
 <p>Available Skills : 
     <span>{% for skill in standard_skills %}
     <button id ={{skill.name}} onclick='addSkill()'>{{skill.name}}</button>
     {% endfor %}
     </span>
 </p>
+{% endif %}
 <div id = 'skills'>
 Skills :    
 {% for skill in self_skills %} 
-    <div id = {{skill.skill_name}} style="background-color: wheat;">
+    <div id = {{skill.skill_name}} style="height:40px;background-color: lightgrey;">
+
+        Name: {{skill.skill_name|title }} ,
+
+        Level :{{skill.level}}
+        {% if user.id == object.pk %}
+        <label for="level"></label>
         
-    Name: {{skill.skill_name }} ,
-
-    Level :{{skill.level}}
+        <select  name="level" onchange="selectedLevel(event)" id={{skill.skill_name}}>
+        <option value="BEG">"BEG"</option>
+        <option value="INT">"INT"</option>
+        <option value="EXP">"EXP"</option>
+        </select>
     
-    <label for="level"></label>
 
-    <select  name="level" onchange="selectedLevel(event)" id={{skill.skill_name}}>
-      <option value="BEG">"BEG"</option>
-      <option value="INT">"INT"</option>
-      <option value="EXP">"EXP"</option>
-    </select>
-
-    <button id="id_{{skill.skill_name}}" onclick="deleteSkill(event)">Delete</button>
+        <button id="id_{{skill.skill_name}}" onclick="deleteSkill(event)">Delete</button>
     </div>
+    {% endif %}
     {% endfor %} 
     
 
 </div> 
 
-
+{% if user.id == object.pk %} 
 <button onclick="addFormPop()">Add Skills</button>
 
 <div id="formError" style="color:red"></div>
@@ -72,16 +120,18 @@ Skills :
     {{add_skillform}}
     <input type="submit">
 </form>
-
-<div id = 'education_section'>
+{% endif %}
+<br>
+<div id = 'education_section' style="background-color: white;">
     Education : 
     {% for edu in education %}
-        <span> {{edu.type}} : {{ edu.course}} </span>,
+        <div> {{edu.type}} : {{ edu.course}} </div>
 
     {% endfor%}
     
 
 </div> 
+{% if user.id == object.pk %} 
 <button onclick="formPopup()"> Add</button>
 
 <form method = 'post' id='education' class="education" style = "display:none;" action="/">
@@ -91,13 +141,11 @@ Skills :
 <input type="submit">
 
 </form>
-
-<p>Location : {{object.city}} ,{{object.country}},  </p>
-
+{% endif %}
+<br>
+<div style="background-color: white;">Location : {{object.city}} ,{{object.country}},  </div>
 <p>{{object.selfskills}}</p>
  
 
-
-<img {{profile_pic}}>
 
 {% endblock body %}

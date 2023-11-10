@@ -3,7 +3,7 @@
     flex-direction: column;
     width :900px;
     height: 700px;
-    background-color: grey;
+    background-color: lightgrey;
     border:2px solid black; 
 }
 
@@ -24,4 +24,13 @@
 }
 .rated{
     color:orange
+}
+.all-wrapper{
+    display:flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+.job-wrapper{
+    margin:2px solid black;
+    
 }

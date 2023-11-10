@@ -10,7 +10,8 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from django.conf import settings
+settings.configure(DEBUG=True)
 from pathlib import Path
 import os 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,9 +44,13 @@ INSTALLED_APPS = [
     'jobs',
     # "djstripe",
     'payment',
-    # 'freelancer',
-    # 'common',
+    'freelancer',
+    'common',
+    'django_countries',
+    'cities_light',
+    
 ]
+CITIES_LIGHT_INCLUDE_COUNTRIES = ['FR', 'BE']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,25 +91,25 @@ WSGI_APPLICATION = 'freelanceWorld.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-''' settings for postgress database 
+# settings for postgress database 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':  'freelancer_db',
-        'USER' : 'superuser',
-        'PASSWORD' : 'superuser123',
+        'USER' : 'postgres',
+        'PASSWORD' : 'password123',
         'HOST' : 'localhost',
         'PORT' : '5432',
     }
 }
-'''
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 
@@ -126,6 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization
@@ -191,3 +197,12 @@ STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY",)
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
 
 STRIPE_ENDPOINT_SECRET = "whsec_688cb9a144ce17309c659b2969ca4ce862cd47dd214d447cfaf9f64b338429d2"
+
+
+# import os
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
+
+# import django
+# django.setup()
+
+# from django.core.management import call_command

@@ -69,7 +69,7 @@
                         <div class="detailprofile">
                             <div style="font-weight: bold;" onclick="location.href='{%url 'freelancer-profile' freelancer.id %}'">{{freelancer.username}} </div>
                             <div> Member Since - {{freelancer.created_at}}</div>
-
+                                
                             {% with freelancer.selfskills_set.all.values  as fl_skill %}
                                 <div>
                                     {% for skill in fl_skill %}
@@ -82,15 +82,33 @@
                                             <div>None</div>
                                         {% endif %}
                                     {% endfor %}
+                                    
                                 </div>
                             {% endwith %}
                             <div>
+                                Rating:{% with freelancer.average_rating as r%}
+                                    
+                                    {% with ''|center:r as range %}
+                                        {% for _ in range %}
+                                        <span class="fa fa-star checked"></span>
+                                        {% endfor %}
+                                        {% load custom_filter %}
+
+                                        {% with 5|subtract:r as nonstar %}
+                                            {% with ''|center:nonstar as non_star %}  
+                                                {% for _ in non_star %}
+                                                    <span class="fa fa-star "></span>
+                                                {% endfor %}
+                                            {% endwith %}
+                                        {%endwith%}
+                                    {% endwith %}
+                                {% endwith %}
+                                    
                                 
+                                <!-- <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
                                 <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span> -->
                             </div>
                         </div>
                         

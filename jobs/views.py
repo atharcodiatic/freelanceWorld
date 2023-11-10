@@ -32,7 +32,6 @@ class ClientHomePage(TemplateView):
 class JobCreateView(View):
     template_name = 'jobs/create_job.html'
     form = JobPostForm
-
     def setup(self,request,*args,**kwargs):
         return super().setup(request, *args, **kwargs)
     
@@ -41,7 +40,6 @@ class JobCreateView(View):
         return super().dispatch(request, *args, **kwargs)
         
     def get(self,request,*args,**kwargs):
-        
         print(kwargs)
         context= {}
         context ['job_form'] = self.form()
@@ -50,10 +48,9 @@ class JobCreateView(View):
     
     def post(self,request,*args,**kwargs):
         form = self.form(request.POST)
-        
+        breakpoint()
         if form.is_valid():
             form_obj = form.save(commit=False)
-            
             client_obj = Client.objects.get(id = self.user_id)
             form_obj.user = client_obj
             form_obj.save()
@@ -61,7 +58,6 @@ class JobCreateView(View):
             return redirect(reverse('jobs:clienthome'))
         return HttpResponse('failed', status=500)
         
-
 class SkillCreateView(View):
     """
     This View adds skill data to skill model, skills added by job poster.
@@ -69,19 +65,14 @@ class SkillCreateView(View):
     template_name = 'jobs/create_job.html'
     form = SkillForm
 
-    # def get(self,request,*args,**kwargs):
-    #     context= {}
-    #     context ['skill_form'] = SkillForm()
-    #     return render(request, self.template_name, context)
-
     def post(self,request,*args,**kwargs):
         data = json.loads(request.body)
         skill = data.get('skill')
+        print(skill,"*************")
         client_obj = Client.objects.get(id = request.user.id)
         skill_obj = Skill.objects.create(name=skill, client=client_obj)
         skill_obj.save()
-        
-        return JsonResponse({'status':'success', 'id':skill_obj.id}, status=200)
+        return JsonResponse({'status':'success', 'id':skill_obj.id}, status=201)
     
 
 class JobDetailView(ModelFormMixin, DetailView):
@@ -93,7 +84,6 @@ class JobDetailView(ModelFormMixin, DetailView):
     template_name = 'jobs/job_detail.html'
     form_class = JobPostForm
     
-
     def get_context_data(self,*args,**kwargs):
         context = super().get_context_data(**kwargs)
         context ['job_form'] = self.get_form()
@@ -101,6 +91,7 @@ class JobDetailView(ModelFormMixin, DetailView):
         user_id = self.request.user.id
         context['proposal_exist'] = JobProposal.objects.filter(job= self.object.pk, user=user_id).exists()
         job_prop = JobProposal.objects.filter(job= self.object.pk).exists()
+        context['has_job'] = JobProposal.objects.filter(status="ACCEPTED")
         if job_prop:
             proposals = JobProposal.objects.filter(job= self.object.pk)
             context['job_proposols']  =  proposals
@@ -122,14 +113,12 @@ class JobDetailView(ModelFormMixin, DetailView):
     def form_valid(self, form):
         return super().form_valid(form)
     
-
     def get_initial(self):
         """ 
         This method is passing initial data in form Passing Initial Data in Form
         """
         obj = self.get_object()
         return {  'job_id': obj.title }
-
 
 class JopProposalView(CreateView):
     """
@@ -138,11 +127,11 @@ class JopProposalView(CreateView):
     form_class = JobProposalForm
     model = JobProposal
     job_id = None
+
     def dispatch(self, request, *args, **kwargs):
         setattr(JopProposalView, 'user_id', request.user.id) 
         return super().dispatch(request, *args, **kwargs)
     
-
     def post(self, request, *args, **kwargs):
         """
         Handle POST requests: instantiate a form instance with the passed
@@ -175,17 +164,8 @@ class CreateContract(View):
     """
     This View Create contract (payment details) 
     """
-    
-    """
-    this get method is for testing purpose -> breakpoint
-    def get(self, request, *args, **kwargs):
-        proposal_id = kwargs['pk']
-        prop_obj = JobProposal.objects.get(id = proposal_id)
-    """
 
-    def post(self, request, *args, **kwargs):
-        
-        
+    def post(self, request, *args, **kwargs):    
         proposal_id = kwargs['pk']
         prop_obj = JobProposal.objects.get(id = proposal_id)
         # freelancer Info - bid and currency (prop_obj.user)
@@ -200,9 +180,7 @@ class CreateContract(View):
         total = calculate_total(duration, duration_type, converter[0])
         contract_currency = converter[1]
         redirect_address = request.META.get("HTTP_REFERER")
-        
         Contract.objects.create(proposal = prop_obj, total=total, currency=contract_currency)
-
         job = JobPost.objects.get(id=prop_obj.job.id)
         job.status = 'CLOSED'
         job.save()
@@ -231,7 +209,6 @@ class FreelancerView(ListView):
             object_list = self.get_queryset()
             user_search = request.GET.get("freelancer")
             search_data = ''
-            
             referer = request.META.get("HTTP_REFERER").split('/')[-1].split('=')[-1]
             if '+' in referer:
                 referer = referer.replace('+', ' ')
@@ -241,7 +218,6 @@ class FreelancerView(ListView):
                     search_data = Freelancer.objects.filter(Q(username__icontains=user_search) | Q(selfskills__skill_name__icontains=user_search)|Q(education__course__icontains=user_search)).distinct()
             else:
                 search_data = Freelancer.objects.filter(Q(username__icontains=referer) | Q(selfskills__skill_name__icontains=referer)|Q(education__course__icontains=referer)).distinct()
-            
             context = super(FreelancerView, self).get_context_data(object_list=object_list, *args, **kwargs)
             print(context)
             context['object_list'] = search_data
@@ -251,10 +227,9 @@ class FreelancerView(ListView):
                 if not experience:
                     experience = 0
                 search_data = search_data.filter(Q(Q(selfskills__skill_name__in = skill) and Q(selfskills__level__icontains=level))\
-                                    | Q(education__course__icontains=education)| Q(years_of_experience = experience))
-                
+                                    | Q(education__course__icontains=education)| Q(years_of_experience = experience)) 
                 context['object_list'] = search_data
-
+            context['object_list'] = context['object_list'].annotate(rating=Avg('rating_to__star_rating',default=0))
             return render(request, self.template_name, context)
         else:
             return super().get(request,args,kwargs)
@@ -265,22 +240,12 @@ class MyHireView(View):
     """
     template_name = "jobs/my_hire.html"
     model = Contract
-    # JobProposal.objects.get()
-    # queryset = Contract.objects.get(proposal=)
-
+    
     def get(self, request, *args, **kwargs):
         client_jobs =JobPost.objects.filter(user=request.user.id, status="CLOSED")
-        #<QuerySet [<JobPost: Python Job>, <JobPost: Python Job>]>
-        # proposal = JobProposal.objects.filter(job__id__in=client_jobs) #.values_list("id",flat=True)
-        #<QuerySet [<JobProposal: INPROCESS>, <JobProposal: ACCEPTED>]>
         proposal = JobProposal.objects.filter(job__id__in=client_jobs, status="ACCEPTED") 
-        # <QuerySet [<JobProposal: ACCEPTED>]>
-        proposal.all()
-        # <QuerySet [<JobProposal: ACCEPTED>]>
         contract  = Contract.objects.filter(proposal__in = proposal)
         context ={}
         context['contract_detail'] = contract
         return render(request, self.template_name, context=context)
 
-class RatingReview(View):
-    pass 

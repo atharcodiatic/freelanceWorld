@@ -3,7 +3,15 @@
     <h1> FreelancerHome </h1>
     </div>
     <div>
-        <input type="text" placeholder=" Search...">
+        <form action="{% url 'freelancer:browse' %}" method="get">
+            <input
+              type="search"
+              name="q"
+              placeholder="Search company by skill,name"
+            />
+            <input type="submit" placeholder="submit">
+          </form>
+          
     </div>
     
     

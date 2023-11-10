@@ -5,7 +5,9 @@
   </style>
   {% load static %} 
   
-  <form method="post" enctype= "multipart/form-data" action ="{% url 'register_client' %}">
+  <form method="post" id="personForm" data-cities-url="{% url 'ajax_load_cities' %}"
+   style="display: flex; gap:10px;width:400px; flex-direction: column;"
+  enctype= "multipart/form-data" action ="{% url 'register_client' %}">
       
   
       {% csrf_token %}
@@ -15,3 +17,24 @@
       <h4>Have an account<a href= "{% url 'login' %}"> Login</a> </h4> 
       
   </form>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_country").change(function () {
+        const url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
+        const countryId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'country_id': countryId       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+              console.log(data)  
+              $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+                
+            }
+        });
+
+    });
+</script>

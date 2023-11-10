@@ -11,8 +11,10 @@ from .validators import validate_image
 
 from django.core.validators import FileExtensionValidator,MinValueValidator, MaxValueValidator,EmailValidator
 from django.core.exceptions import ValidationError
-from jobs.models import *
+# from jobs.models import *
 from django.db.models import Avg
+# from django_countries.fields import CountryField
+
 
 class CustomUser(AbstractUser):
     '''
@@ -20,11 +22,10 @@ class CustomUser(AbstractUser):
 
     '''
     email = models.EmailField(_("email address"), unique=True,)
-    country = models.CharField(max_length=50)
-    city = models.CharField(max_length=100)
+    country = models.ForeignKey('cities_light.Country', on_delete=models.SET_NULL, null=True, blank=True) 
+    city = models.ForeignKey('cities_light.City', on_delete=models.SET_NULL, null=True, blank=True)
     pin_code = models.IntegerField(null=True)
     phone_number = models.CharField(max_length=12)
-
     Male = "M"
     Female = "F"
     GENDER_CHOICES = [
@@ -33,19 +34,15 @@ class CustomUser(AbstractUser):
         
 
     ]
-    
     profile_pic = models.ImageField(upload_to='profile_pics/',
                 validators=[validate_image,
                 FileExtensionValidator(
                         allowed_extensions = ["png",'jpeg'],
                         message = 'only jpeg and png extensions allowed'),
-                        ], blank=True, null=True)
-    
+                        ], blank=True, null=True,)
     gender =  models.CharField(max_length = 1, choices=GENDER_CHOICES , blank=True ,null=True)
-    
     bio = models.CharField(max_length=100, blank=True, null=True)
 
-   
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ['username', 'gender']
 
@@ -55,7 +52,8 @@ class CustomUser(AbstractUser):
     
     @property
     def average_rating(self):
-        return Review.objects.filter(rating_by=self).aggregate(Avg('star_rating')).get('rating__avg', 0.00)
+        rating_obj = CustomUser.objects.filter(id=self.id).annotate(raiting=Avg('rating_to__star_rating',default=0))
+        return rating_obj.first().raiting
     
     class Meta:
         verbose_name ='CustomUser'

@@ -24,7 +24,7 @@
 
     
     
-
+{% if contract_detail %}
 <div class="card-body" style = "background-color:white; margin-top:50px;">
     {% for detail in contract_detail %} 
         <div class="card" style=" display:flex; gap: 40px;;flex-direction: row;width: 80rem; height:6rem">
@@ -41,14 +41,59 @@
 
             
             <div>
-                <div>Rate</div>
-                <div onclick="sendData(event,'{{detail.proposal.job.id}}','{{detail.proposal.job.user.id}}', '{{detail.proposal.user.username}}' )">          
+                <div>Rate freelancer</div> 
+                {% with detail.proposal.job.review_set.all as review %}
+                {% if review %}
+                    {% load custom_filter %}
+                        
+                        {% with review|filter_queryset:user.id as r%}
+                            {{r}}
+                            {% if r %}  
+                                {% with ''|center:r as range %}
+                                    <span>rated</span>
+                                    {% for _ in range %}
+                                    <span class="fa fa-star checked"></span>
+                                    {% endfor %}
+                                    {% load custom_filter %}
+            
+                                    {% with 5|subtract:r as nonstar %}
+                                        {% with ''|center:nonstar as non_star %}  
+                                            {% for _ in non_star %}
+                                                <span class="fa fa-star "></span>
+                                            {% endfor %}
+                                        {% endwith %}
+                                    {%endwith%}
+                                {% endwith %}
+                            {%else%}
+                            <div onclick="sendData(event,'{{detail.proposal.job.id}}','{{detail.proposal.job.user.id}}', '{{detail.proposal.user.id}}')">          
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                            </div> 
+                            {%endif%}
+                        {% endwith%}
+                        
+                {% else %}
+                <div onclick="sendData(event,'{{detail.proposal.job.id}}','{{detail.proposal.job.user.id}}', '{{detail.proposal.user.id}}')">          
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                 </div> 
+                {% endif %}
+                
+                {% endwith %}
+<!-- 
+                <div onclick="sendData(event,'{{detail.proposal.job.id}}','{{detail.proposal.job.user.id}}', '{{detail.proposal.user.username}}' )">          
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </div>  -->
             </div>
 
 
@@ -80,4 +125,9 @@
     
     {% endfor %}
   </div>
+{%else%}
+<div>
+    <h1>You have not hired any freelancers</h1>
+</div>
+{%endif%}
 {% endblock body %}

@@ -5,6 +5,8 @@ from django.forms import FileField ,ChoiceField
 from django.core.validators import FileExtensionValidator
 from .validators import validate_image
 from django import forms
+from cities_light.models import City
+from django_countries.widgets import CountrySelectWidget
 
 class CustomUserCreationForm(UserCreationForm): 
 
@@ -25,26 +27,8 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = ("email",) 
 
-# class RegistrationForm(CustomUserCreationForm):
-
-#     ''' rendered on user registration view '''
-
-#     CHOICES =( 
-#     ("FR", "Freelancer"), 
-#     ("CL", "Client"), ) 
-
-#     user_type = forms.ChoiceField(choices =CHOICES, 
-#                       widget = forms.Select(attrs = {'onchange' : "myFunction(this.value);"}))
-    
-#     class Meta(CustomUserCreationForm.Meta):
-#         fields = '__all__' 
-#         exclude = ["last_login","is_superuser",'groups','user_permissions',
-#                    'date_joined','is_active','is_staff','password']
-        
-
 class LoginForm(forms.Form):
     email = forms.EmailField(required=True)
-
     attrs = {
         "type": "password"
     }
@@ -65,12 +49,25 @@ def password_fields():
     
     return [password, confirm_password, ]
 
+
 class FreelancerProfile(forms.ModelForm):
     confirm_password = password_fields()[1]
     password = password_fields()[0]
-
     
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['city'].queryset = City.objects.none()
 
+        if 'country' in self.data:
+            try:
+                country_id = int(self.data.get('country'))
+                self.fields['city'].queryset = City.objects.filter(country=country_id)
+            except (ValueError, TypeError):
+                pass
+        elif self.instance.pk:
+            self.fields['city'].queryset = City.objects.filter(country=self.instance.pk)
+        
+    
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")
@@ -81,15 +78,13 @@ class FreelancerProfile(forms.ModelForm):
                 raise ValidationError(
                     "password does not match."
                 )
-
-    
     
     class Meta:
         model = Freelancer
         fields = '__all__'
-
         exclude = ["last_login", "is_superuser", 'groups', 'user_permissions',
                    'date_joined', 'is_active', 'is_staff', 'skills']
+        
         
 class FreelancerProfileUpdate(forms.ModelForm):
     ''' Form to update freelancer profile '''
@@ -138,6 +133,20 @@ class ClientProfile(forms.ModelForm):
 
     confirm_password = password_fields()[1]
     password = password_fields()[0]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['city'].queryset = City.objects.none()
+
+        if 'country' in self.data:
+            try:
+                country_id = int(self.data.get('country'))
+                self.fields['city'].queryset = City.objects.filter(country=country_id)
+            except (ValueError, TypeError):
+                pass
+        elif self.instance.pk:
+            self.fields['city'].queryset = City.objects.filter(country=self.instance.pk)
+        
 
     def clean(self):
         cleaned_data = super().clean()
