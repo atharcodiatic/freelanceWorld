@@ -37,10 +37,16 @@ class FreelancerHome(TemplateView):
         context={}
         feed = request.GET.get('feed')
         all_job = request.GET.get('showall')
-        if  all_job:
-            context['result'] = all_jobs
-        else:
+        freel_search = request.GET.get('search')
+
+        if freel_search :
+            job_search = JobPost.objects.annotate(search=SearchVector("title", "skill_required__name")).filter(
+            search=freel_search)
+            context['result'] = job_search
+        elif feed:
             context['result'] = res
+        else:
+            context['result'] = all_jobs
         return render(request,self.template_name,context)
     
 

@@ -24,8 +24,8 @@ class CustomUser(AbstractUser):
     email = models.EmailField(_("email address"), unique=True,)
     country = models.ForeignKey('cities_light.Country', on_delete=models.SET_NULL, null=True, blank=True) 
     city = models.ForeignKey('cities_light.City', on_delete=models.SET_NULL, null=True, blank=True)
-    pin_code = models.IntegerField(null=True)
-    phone_number = models.CharField(max_length=12)
+    
+    phone_number = models.CharField(max_length=10)
     Male = "M"
     Female = "F"
     GENDER_CHOICES = [

@@ -18,6 +18,8 @@ from django.db.models import Q
 from django.views.generic import ListView
 from django.views.generic.detail import SingleObjectMixin
 from .utility import *
+from django.contrib.auth.mixins import LoginRequiredMixin
+
  
 class ClientHomePage(TemplateView):
     template_name = 'jobs/home.html'
@@ -75,7 +77,7 @@ class SkillCreateView(View):
         return JsonResponse({'status':'success', 'id':skill_obj.id}, status=201)
     
 
-class JobDetailView(ModelFormMixin, DetailView):
+class JobDetailView(LoginRequiredMixin,ModelFormMixin, DetailView):
     """
     ModelFormMixin provides form to update the jobpost and handles form data with post method , 
     DetailView shows the detail of JobPost with pk.
@@ -83,7 +85,6 @@ class JobDetailView(ModelFormMixin, DetailView):
     model = JobPost
     template_name = 'jobs/job_detail.html'
     form_class = JobPostForm
-    
     def get_context_data(self,*args,**kwargs):
         context = super().get_context_data(**kwargs)
         context ['job_form'] = self.get_form()

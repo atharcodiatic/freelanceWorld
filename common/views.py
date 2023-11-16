@@ -2,7 +2,6 @@ from django.shortcuts import render
 import sys
 sys.path.append("..")
 from accounts.models import *
-
 from django.views.generic.base import TemplateView
 from jobs.forms import *
 from jobs.models import *
@@ -60,3 +59,6 @@ class RatingView(LoginRequiredMixin,TemplateView):
         context = super(RatingView, self).get_context_data(*args,**kwargs)
         context['review_rating_form'] = self.form
         return context
+    
+def my_handler404(request,exception):
+    return render(request, 'common/404.html', status=404)

@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import get_user_model
 from django.views.generic import View , DetailView,ListView
 from django.urls import reverse , reverse_lazy
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import HttpResponse, HttpResponseRedirect
 import datetime
 ''' HttpResponseRedirect for firefox'''
 from django.views.generic.edit import CreateView , UpdateView 
@@ -25,6 +25,9 @@ from django.views.generic.edit import ModelFormMixin
 from jobs.forms import ReviewForm
 from django.forms import modelform_factory
 from cities_light.models import City,Country
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
+
 User =  get_user_model()
 
 def freelancer_registeration_view(request):
@@ -41,7 +44,6 @@ def freelancer_registeration_view(request):
             is_fl_permission = Permission.objects.get(content_type=content_type , codename='is_freelancer')
             user.user_permissions.add(is_fl_permission)
             user_id = user.id
-
             return redirect("/login/")
     else:
         form = FreelancerProfile()
@@ -79,8 +81,7 @@ class LoginPageView(View):
                 if user.has_perm('accounts.is_client'):
                     return redirect(reverse("jobs:clienthome"))
                 else:
-                    return redirect("/"+ str(user_id)+'/freelancer_profile')
-                    
+                    return redirect("/"+ str(user_id)+'/freelancer_profile')                
         message = 'Login failed!'
         return render(request, self.template_name, context={'form': form, 'message': message})
     
@@ -111,22 +112,35 @@ class ClientRegistrationView(CreateView):
         else:
             return self.form_invalid(form) 
  
-from django.core.exceptions import PermissionDenied
-from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
 
 class ClientOwnPer(PermissionRequiredMixin):
-    permission_required = 'accounts.is_client'
+    """ Only Client and Freelancer User has access to Profile View
+    """
+
     def has_permission(self):
         """
         Override this method to customize the way permissions are checked.
         """
-        user = self.request.user
         perms = self.get_permission_required()
-        if not self.request.user.is_authenticated:
-            raise PermissionDenied('not allowed')
-        if (user.has_perms("accounts.is_client") and self.kwargs['pk']==user.id)\
-              or user.has_pemrs("accounts.is_freelancer"):
-            return self.request.user.has_perms(perms)
+
+        if self.request.user.id == self.kwargs.get('pk') and self.request.user.has_perm('accounts.is_client'):
+            perms = ('accounts.is_client',)
+            return perms
+        
+        if self.request.user.has_perm('accounts.is_freelancer'):
+            perms = ('accounts.is_freelancer',)
+            return perms
+        return self.request.user.has_perms(perms)
+    # def dispatch(self, request, *args: Any, **kwargs: Any) -> HttpResponse:
+        
+    #     if not request.user.is_authenticated:
+    #         return self.handle_no_permission()
+    #     if request.user.id == kwargs.get('pk') and request.user.has_perm('accounts.is_client'):
+    #         return super().dispatch(request, *args, **kwargs)
+        
+    #     if request.user.has_perm('accounts.is_freelancer'):
+    #         return super().dispatch(request, *args, **kwargs)
+    #     return HttpResponseForbidden('permission denied')
     
 
 class FreeLancerProfileView(LoginRequiredMixin, DetailView):
@@ -255,8 +269,7 @@ class SkillCreateView(View):
         pk = kwargs['pk']
         request = json.loads(request.body)
         skill_name = request.get('skill')
-        skill_obj = SelfSkills.objects.filter(freelancer=pk, skill_name = skill_name)
-        skill_obj.delete()
+        SelfSkills.objects.filter(freelancer=pk, skill_name = skill_name).delete()
         return JsonResponse({'status':"success" }, status=204)
 
         
@@ -267,6 +280,7 @@ class ClientProfileView(ClientOwnPer,ModelFormMixin, DetailView):
     model = Client
     template_name = "accounts/client_profile.html"
     form_class = ClientProfileUpdate
+    permission_required = ['accounts.is_freelancer','accounts.is_client']
 
     def get_context_data(self, *args, **kwargs):
         context = super(ClientProfileView,

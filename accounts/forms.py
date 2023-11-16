@@ -94,7 +94,7 @@ class FreelancerProfileUpdate(forms.ModelForm):
         fields ='__all__'
         exclude = ["last_login", "is_superuser", 'groups', 'user_permissions',
                    'date_joined', 'is_active', 'is_staff', 'skills', 'password',
-                    'username','password','confirm_password'  ]
+                    'username','password','confirm_password','country','city']
         
 class ClientProfileUpdate(forms.ModelForm):
     ''' Form to update freelancer profile '''
@@ -104,7 +104,7 @@ class ClientProfileUpdate(forms.ModelForm):
         fields ='__all__'
         exclude = ["last_login", "is_superuser", 'groups', 'user_permissions',
                    'date_joined', 'is_active', 'is_staff', 'password',
-                    'username','password','confirm_password'  ]
+                    'username','password','confirm_password','country','city' ]
         
 
 class SelfSkillForm(forms.ModelForm):

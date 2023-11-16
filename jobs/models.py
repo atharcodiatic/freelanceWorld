@@ -32,12 +32,9 @@ class JobPost(models.Model):
     ]
 
     title = models.CharField(max_length=200)
-
     category = models.CharField(max_length=50)
     experience_required = models.PositiveIntegerField()
-
     description = models.TextField()
-
     user = models.ForeignKey(Client, on_delete = models.CASCADE)
     posted_at = models.DateTimeField(auto_now_add = True)
     status = models.CharField(max_length = 10, choices = JOB_STATUS,  default=JOB_STATUS[0][0])
@@ -60,7 +57,6 @@ class JobProposal(models.Model):
     '''
     This model store data of JobProposal , User can send to client to get job
     '''
-
     PROPASAL_STATUS =[
         ('ACCEPTED' , 'ACCEPTED'),
         ('INPROCESS' , 'INPROCESS'),
@@ -70,7 +66,6 @@ class JobProposal(models.Model):
         ('RS','RUPPEES'),
         ('USD','DOLLAR'),
     ]
-
     job = models.ForeignKey(JobPost , on_delete = models.CASCADE)
     user = models.ForeignKey(Freelancer , on_delete = models.CASCADE)
     status = models.CharField(max_length = 10, choices = PROPASAL_STATUS,

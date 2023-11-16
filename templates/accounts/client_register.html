@@ -4,7 +4,7 @@
     }
   </style>
   {% load static %} 
-  
+  <script ></script>
   <form method="post" id="personForm" data-cities-url="{% url 'ajax_load_cities' %}"
    style="display: flex; gap:10px;width:400px; flex-direction: column;"
   enctype= "multipart/form-data" action ="{% url 'register_client' %}">
@@ -15,7 +15,7 @@
   
       <button type="submit">Submit</button>
       <h4>Have an account<a href= "{% url 'login' %}"> Login</a> </h4> 
-      
+
   </form>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
