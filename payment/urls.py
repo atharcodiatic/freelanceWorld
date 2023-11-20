@@ -5,7 +5,8 @@ from . import views
 from django.urls import path
 
 from . import views
-name = 'payment'
+app_name = 'payment'
+
 urlpatterns = [
     path('payment/', views.HomePageView.as_view(), name='home'),
     path('config/', views.stripe_config),  # new
@@ -13,5 +14,6 @@ urlpatterns = [
     path('success/', views.SuccessView.as_view()), # new
     path('cancelled/', views.CancelledView.as_view()),
     path('webhook/', views.stripe_webhook),
+    path('transaction/<int:pk>',views.TransactionView.as_view(), name='trans-view' )
 ]
 

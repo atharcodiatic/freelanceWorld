@@ -32,18 +32,20 @@
                                 {% if r %}
                                     <div>rated</div>
                                     {% with ''|center:r as range %}
-                                        {% for _ in range %}
-                                        <span class="fa fa-star checked"></span>
-                                        {% endfor %}
-                                        {% load custom_filter %}
-                
-                                        {% with 5|subtract:r as nonstar %}
-                                            {% with ''|center:nonstar as non_star %}  
-                                                {% for _ in non_star %}
-                                                    <span class="fa fa-star "></span>
-                                                {% endfor %}
-                                            {% endwith %}
-                                        {%endwith%}
+                                        <div>
+                                            {% for _ in range %}
+                                            <span class="fa fa-star checked"></span>
+                                            {% endfor %}
+                                            {% load custom_filter %}
+                    
+                                            {% with 5|subtract:r as nonstar %}
+                                                {% with ''|center:nonstar as non_star %}  
+                                                    {% for _ in non_star %}
+                                                        <span class="fa fa-star "></span>
+                                                    {% endfor %}
+                                                {% endwith %}
+                                            {%endwith%}
+                                        </div>
                                     {% endwith %}
                                 {% else %}
                                 <div onclick="sendData(event,'{{job.job.id}}','{{job.job.user.id}}','{{job.user.id}}')">          
@@ -87,6 +89,9 @@
                         </tr>
                     
                     </table>
+                </div>
+                <div>
+                    <a href="{%url 'payment:trans-view' job.contract.id%}">Transaction Details</a>
                 </div>
                 <div style="display: flex; gap:10px">
                     

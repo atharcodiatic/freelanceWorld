@@ -33,8 +33,13 @@
     <div class="post" >
 
                 <div class = "imgpro">
+                    
                     <div class="img">
-                        <img style="width:80px ;height:50px;" src="{{res.user.profile_pic.url}}" >
+                        {% if res.user.profile_pic %}
+                            <img style="width:80px ;height:50px;" src="{{res.user.profile_pic.url}}" >
+                        {% else %}
+                            <img style="width:80px ;height:50px;" >
+                        {% endif %}
                     </div>
                     <div>
                         <div style="font-weight:bold ; height:20px;" onclick="location.href='{%url 'client-profile' res.user.id %}'">{{res.user.username}}</div>

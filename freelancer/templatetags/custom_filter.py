@@ -20,7 +20,7 @@ def divide(value, arg):
 def filter_queryset(obj, user_id):
     if isinstance(obj,QuerySet):
         if obj.filter(rating_by=user_id).exists():
-            obj.filter(rating_by=user_id).first().star_rating
+            return obj.filter(rating_by=user_id).first().star_rating
         else:
             return False
     
@@ -31,7 +31,6 @@ def subtract(value,arg):
 @register.filter
 def filter_proposal(obj,user_id):
     if isinstance(obj,QuerySet):
-        breakpoint()
         queryset= obj.filter(user=user_id)
         if queryset.exists():
             return True

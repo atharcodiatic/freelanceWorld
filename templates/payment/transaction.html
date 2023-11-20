@@ -1,0 +1,43 @@
+{% load static %}
+
+<link rel = "stylesheet" href = "{% static 'css/jobs/home.css' %}">
+
+{% if perms.accounts.is_freelancer %}
+ {% include 'freelancer/navbar.html'%}
+
+{%else%}
+    {% include 'jobs/navbar.html' %}
+{% endif %} 
+
+{% if trans_obj %}
+<div style="margin:auto; max-width: 1200px; margin-top:50px;">
+    <table>
+        <tr>
+            <th>Contract Id</th>
+            <th>Amount Paid</th>
+            
+            <th>Total</th>
+            <th>Remaining</th>
+            <th>Paid By </th>
+            <th>Paid to </th>
+            <th>Date</th>
+        </tr>
+    {% for obj in trans_obj %}
+        
+    <tr>
+        <td>{{obj.contract.id}}</td>
+        <td>{{obj.amount}}</td>
+
+        <td>{{obj.contract.total}}</td>
+        <td>{{obj.contract.remaining}}</td>
+        <td>{{obj.contract.proposal.job.user.username}}</td>
+        <td>{{obj.contract.proposal.user.username}}</td>
+        <td>{{obj.created_at}}</td>
+    </tr>
+        
+    {% endfor %}
+    </table>
+</div>
+{% else %}
+ <div> No transaction Made </div>
+{% endif %}

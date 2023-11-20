@@ -26,7 +26,7 @@ from jobs.forms import ReviewForm
 from django.forms import modelform_factory
 from cities_light.models import City,Country
 from django.core.exceptions import PermissionDenied
-from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
+from .permission import *
 
 User =  get_user_model()
 
@@ -113,43 +113,16 @@ class ClientRegistrationView(CreateView):
             return self.form_invalid(form) 
  
 
-class ClientOwnPer(PermissionRequiredMixin):
-    """ Only Client and Freelancer User has access to Profile View
-    """
 
-    def has_permission(self):
-        """
-        Override this method to customize the way permissions are checked.
-        """
-        perms = self.get_permission_required()
 
-        if self.request.user.id == self.kwargs.get('pk') and self.request.user.has_perm('accounts.is_client'):
-            perms = ('accounts.is_client',)
-            return perms
-        
-        if self.request.user.has_perm('accounts.is_freelancer'):
-            perms = ('accounts.is_freelancer',)
-            return perms
-        return self.request.user.has_perms(perms)
-    # def dispatch(self, request, *args: Any, **kwargs: Any) -> HttpResponse:
-        
-    #     if not request.user.is_authenticated:
-    #         return self.handle_no_permission()
-    #     if request.user.id == kwargs.get('pk') and request.user.has_perm('accounts.is_client'):
-    #         return super().dispatch(request, *args, **kwargs)
-        
-    #     if request.user.has_perm('accounts.is_freelancer'):
-    #         return super().dispatch(request, *args, **kwargs)
-    #     return HttpResponseForbidden('permission denied')
-    
-
-class FreeLancerProfileView(LoginRequiredMixin, DetailView):
+class FreeLancerProfileView(FreeelancerOwnPer, DetailView):
     """
     This view shows the Profile Details of FreelancerInstance 
     and uses pk
     """
     template_name = 'accounts/freelancer_profile.html'
     model = Freelancer
+    permission_required = ['accounts.is_freelancer','accounts.is_client']
 
     # def dispatch(self, request, *args, **kwargs):
     #     if request.user.is_authenticated and request.user.id == int(kwargs['pk']):
@@ -225,6 +198,7 @@ class SkillCreateView(View):
     """
     This view adds FreeLancer skills
     """
+    
     def post(self, request, *args, **kwargs):
         """
         Handle POST requests: instantiate a form instance with the passed
@@ -255,12 +229,12 @@ class SkillCreateView(View):
         return JsonResponse(serialized_data, safe=False , status=200) 
     
     def patch(self,request,*args,**kwargs):
+        # pk = request.user.id
         pk = kwargs['pk']
         request = json.loads(request.body)
         skill_name = request.get('skill')
         skill_level = request.get('level')
-        skill_obj = SelfSkills.objects.filter(freelancer=pk, 
-                                                 skill_name = skill_name)[0]
+        skill_obj = SelfSkills.objects.filter(freelancer=pk, skill_name = skill_name).first()
         skill_obj.level = skill_level
         skill_obj.save()
         return JsonResponse({'status':"success" }, status=200)

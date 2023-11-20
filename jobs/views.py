@@ -19,21 +19,25 @@ from django.views.generic import ListView
 from django.views.generic.detail import SingleObjectMixin
 from .utility import *
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
+from django.core.exceptions import PermissionDenied  
  
-class ClientHomePage(TemplateView):
+class ClientHomePage(PermissionRequiredMixin, TemplateView):
     template_name = 'jobs/home.html'
-
-    def get_context_data(self,*args,**kwargs):
+    permission_required = ['accounts.is_client']
+    
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         job = JobPost.objects.filter(user = self.request.user.id)
         context['client_jobs'] = job 
         return context
 
     
-class JobCreateView(View):
+class JobCreateView(PermissionRequiredMixin, View):
     template_name = 'jobs/create_job.html'
     form = JobPostForm
+    permission_required = ['accounts.is_client']
+
     def setup(self,request,*args,**kwargs):
         return super().setup(request, *args, **kwargs)
     
@@ -50,7 +54,6 @@ class JobCreateView(View):
     
     def post(self,request,*args,**kwargs):
         form = self.form(request.POST)
-        breakpoint()
         if form.is_valid():
             form_obj = form.save(commit=False)
             client_obj = Client.objects.get(id = self.user_id)
@@ -85,6 +88,7 @@ class JobDetailView(LoginRequiredMixin,ModelFormMixin, DetailView):
     model = JobPost
     template_name = 'jobs/job_detail.html'
     form_class = JobPostForm
+    login_url = '/login/'
     def get_context_data(self,*args,**kwargs):
         context = super().get_context_data(**kwargs)
         context ['job_form'] = self.get_form()
@@ -235,12 +239,13 @@ class FreelancerView(ListView):
         else:
             return super().get(request,args,kwargs)
     
-class MyHireView(View):
+class MyHireView(PermissionRequiredMixin, View):
     """
     Client can see all his hired freelancers
     """
     template_name = "jobs/my_hire.html"
     model = Contract
+    permission_required = ['accounts.is_client']
     
     def get(self, request, *args, **kwargs):
         client_jobs =JobPost.objects.filter(user=request.user.id, status="CLOSED")

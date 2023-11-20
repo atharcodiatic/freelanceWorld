@@ -108,7 +108,6 @@ class ClientProfileUpdate(forms.ModelForm):
         
 
 class SelfSkillForm(forms.ModelForm):
-    
     class Meta:
         fields = '__all__'
         model = SelfSkills
@@ -128,7 +127,6 @@ class EducationForm(forms.ModelForm):
 
 
 class ClientProfile(forms.ModelForm):
-
     ''' Model Form For Client Profile'''
 
     confirm_password = password_fields()[1]

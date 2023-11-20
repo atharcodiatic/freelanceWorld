@@ -39,7 +39,7 @@ class CustomUser(AbstractUser):
                 FileExtensionValidator(
                         allowed_extensions = ["png",'jpeg'],
                         message = 'only jpeg and png extensions allowed'),
-                        ], blank=True, null=True,)
+                        ], blank=True, null=True, default='default.jpeg')
     gender =  models.CharField(max_length = 1, choices=GENDER_CHOICES , blank=True ,null=True)
     bio = models.CharField(max_length=100, blank=True, null=True)
 

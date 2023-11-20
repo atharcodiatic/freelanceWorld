@@ -1,133 +1,96 @@
-{% extends 'jobs/home.html' %}
-
-{% block head %}
-    {{block.super}}
-    {% load static %}
-    <script src="https://js.stripe.com/v3/"></script>  <!-- new -->
-    <script src="{% static 'scripts/payment/main.js' %}"></script>
+{% extends 'jobs/home.html' %} {% block head %} {{block.super}} {% load static %}
+<script src="https://js.stripe.com/v3/"></script>
+<!-- new -->
+<script src="{% static 'scripts/payment/main.js' %}"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <script>
-    function sendData(event,job_id,client_id,freelancer_id){
+    function sendData(event, job_id, client_id, freelancer_id) {
         localStorage.setItem('job_id', job_id)
         localStorage.setItem('rating_by', client_id)
-        localStorage.setItem('rating_to',freelancer_id)
+        localStorage.setItem('rating_to', freelancer_id)
 
-        location.href="{%url 'common:rating' %}"
+        location.href = "{%url 'common:rating' %}"
 
     }
 </script>
-{% endblock head %}
-{% block body %}
+{% endblock head %} {% block body %} {% if contract_detail %}
+<div class="card-body" style="background-color:white; margin-top:50px;">
+    {% for detail in contract_detail %}
+    <div class="card" style=" display:flex; gap: 40px;;flex-direction: row;width: 80rem; height:6rem">
 
-    
-    
-{% if contract_detail %}
-<div class="card-body" style = "background-color:white; margin-top:50px;">
-    {% for detail in contract_detail %} 
-        <div class="card" style=" display:flex; gap: 40px;;flex-direction: row;width: 80rem; height:6rem">
-            
-            <img src="{{detail.proposal.user.profile_pic.url}}" class="card-img-top" style="width:80px; height: 80px;" alt="...">
-            <div>
-                <div style="font-weight: bold;" >
-                    <a href="{% url 'freelancer-profile' detail.proposal.user.id %}">{{detail.proposal.user.username}}</a>
-                </div>
-                <div>
-                    <a href="{% url 'jobs:jobdetail' detail.proposal.job.id %}"> {{detail.proposal.job.title}}</a>
-                </div>
+        <img src="{{detail.proposal.user.profile_pic.url}}" class="card-img-top" style="width:80px; height: 80px;" alt="...">
+        <div>
+            <div style="font-weight: bold;">
+                <a href="{% url 'freelancer-profile' detail.proposal.user.id %}">{{detail.proposal.user.username}}</a>
             </div>
-
-            
             <div>
-                <div>Rate freelancer</div> 
-                {% with detail.proposal.job.review_set.all as review %}
-                {% if review %}
-                    {% load custom_filter %}
-                        
-                        {% with review|filter_queryset:user.id as r%}
-                            {{r}}
-                            {% if r %}  
-                                {% with ''|center:r as range %}
-                                    <span>rated</span>
-                                    {% for _ in range %}
-                                    <span class="fa fa-star checked"></span>
-                                    {% endfor %}
-                                    {% load custom_filter %}
-            
-                                    {% with 5|subtract:r as nonstar %}
-                                        {% with ''|center:nonstar as non_star %}  
-                                            {% for _ in non_star %}
-                                                <span class="fa fa-star "></span>
-                                            {% endfor %}
-                                        {% endwith %}
-                                    {%endwith%}
-                                {% endwith %}
-                            {%else%}
-                            <div onclick="sendData(event,'{{detail.proposal.job.id}}','{{detail.proposal.job.user.id}}', '{{detail.proposal.user.id}}')">          
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                            </div> 
-                            {%endif%}
-                        {% endwith%}
-                        
-                {% else %}
-                <div onclick="sendData(event,'{{detail.proposal.job.id}}','{{detail.proposal.job.user.id}}', '{{detail.proposal.user.id}}')">          
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                </div> 
-                {% endif %}
-                
-                {% endwith %}
-<!-- 
-                <div onclick="sendData(event,'{{detail.proposal.job.id}}','{{detail.proposal.job.user.id}}', '{{detail.proposal.user.username}}' )">          
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                </div>  -->
-            </div>
-
-
-            <div>
-                <div style="font-weight: bold;">Contract Details</div>
-                <div>
-                    <table style="border:1px solid black;">
-                        <tr style="border:1px solid black;">
-                          <th style="border:1px solid black;">Total</th>
-                          <th style="border:1px solid black;">Remaining</th>
-                          <th style="border:1px solid black;">Currency</th>
-                        </tr>
-                        <tr>
-                          <td style="border:1px solid black;">{{detail.total}}</td>
-                          <td style="border:1px solid black;">{{detail.remaining}}</td>
-                          <td style="border:1px solid black;">{{detail.currency}}</td>
-                         
-                        </tr>
-                        
-                      </table>
-                </div>
-
-                
-            </div>
-            <div style="width: 110px;">
-                <button id="payBtn"  value="{{detail.id}}" style="margin-top: 35px; width: 110px;"> Pay </button>
+                <a href="{% url 'jobs:jobdetail' detail.proposal.job.id %}"> {{detail.proposal.job.title}}</a>
             </div>
         </div>
+
+
+        <div>
+            <div>Rate freelancer</div>
+            {% with detail.proposal.job.review_set.all as review %} {% if review %} {% load custom_filter %} {% with review|filter_queryset:user.id as r%} {% if r %} {% with ''|center:r as range %}
+            <span>rated:{{r}}</span> {% for _ in range %}
+            <span class="fa fa-star checked"></span> {% endfor %} {% load custom_filter %} {% with 5|subtract:r as nonstar %} {% with ''|center:nonstar as non_star %} {% for _ in non_star %}
+            <span class="fa fa-star "></span> {% endfor %} {% endwith %} {%endwith%} {% endwith %} {%else%}
+            <div onclick="sendData(event,'{{detail.proposal.job.id}}','{{detail.proposal.job.user.id}}', '{{detail.proposal.user.id}}')">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+            </div>
+            {%endif%} {% endwith%} {% else %}
+            <div onclick="sendData(event,'{{detail.proposal.job.id}}','{{detail.proposal.job.user.id}}', '{{detail.proposal.user.id}}')">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+            </div>
+            {% endif %} {% endwith %}
+
+        </div>
+
+
+        <div>
+            <div style="font-weight: bold;">Contract Details</div>
+            <div>
+                <table style="border:1px solid black;">
+                    <tr style="border:1px solid black;">
+                        <th style="border:1px solid black;">Total</th>
+                        <th style="border:1px solid black;">Remaining</th>
+                        <th style="border:1px solid black;">Currency</th>
+                    </tr>
+                    <tr>
+                        <td style="border:1px solid black;">{{detail.total}}</td>
+                        <td style="border:1px solid black;">{{detail.remaining}}</td>
+                        <td style="border:1px solid black;">{{detail.currency}}</td>
+
+                    </tr>
+
+                </table>
+            </div>
+
+
+        </div>
+        <div style="width: 110px;">
+            <input type="number" id='pay_amount'>
+            <button id="payBtn" value="{{detail.id}}" style="margin-top: 35px; width: 110px;"> Pay </button>
+        </div>
+        <div>
+            <a href="{%url 'payment:trans-view' detail.id%}">Transaction History</a>
+        </div>
     
-    {% endfor %}
-  </div>
-{%else%}
-<div>
-    <h1>You have not hired any freelancers</h1>
-</div>
-{%endif%}
-{% endblock body %}
+        {% endfor %}
+    </div>
+    {%else%}
+    <div>
+        <h1>You have not hired any freelancers</h1>
+    </div>
+    {%endif%} {% endblock body %}
