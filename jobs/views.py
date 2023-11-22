@@ -38,9 +38,6 @@ class JobCreateView(PermissionRequiredMixin, View):
     form = JobPostForm
     permission_required = ['accounts.is_client']
 
-    def setup(self,request,*args,**kwargs):
-        return super().setup(request, *args, **kwargs)
-    
     def dispatch(self, request, *args, **kwargs):
         setattr(self, 'user_id', request.user.id) 
         return super().dispatch(request, *args, **kwargs)
@@ -73,7 +70,6 @@ class SkillCreateView(View):
     def post(self,request,*args,**kwargs):
         data = json.loads(request.body)
         skill = data.get('skill')
-        print(skill,"*************")
         client_obj = Client.objects.get(id = request.user.id)
         skill_obj = Skill.objects.create(name=skill, client=client_obj)
         skill_obj.save()
@@ -125,12 +121,13 @@ class JobDetailView(LoginRequiredMixin,ModelFormMixin, DetailView):
         obj = self.get_object()
         return {  'job_id': obj.title }
 
-class JopProposalView(CreateView):
+class JopProposalView(PermissionRequiredMixin,CreateView):
     """
-    this view creates a job proposal
+    this view creates a job proposal (a proposal freelancer will sent to client)
     """
     form_class = JobProposalForm
     model = JobProposal
+    permission_required = ['accounts.is_freelancer']
     job_id = None
 
     def dispatch(self, request, *args, **kwargs):
@@ -150,7 +147,7 @@ class JopProposalView(CreateView):
             # bug fixed -> status ok
             self.job_id = request.META.get('HTTP_REFERER').split('/')[-1]
             job_obj = JobPost.objects.get(id = self.job_id)
-            if not JobProposal.objects.filter(job=self.job_id,user=self.user_id).exists():
+            if not JobProposal.objects.filter(job=self.job_id, user=self.user_id).exists():
                 form_obj.user = user_obj
                 form_obj.job = job_obj
                 form_obj.save()
@@ -165,10 +162,11 @@ class JopProposalView(CreateView):
         return reverse_lazy("jobs:jobdetail", kwargs={"pk":self.job_id})
     
 
-class CreateContract(View):
+class CreateContract(LoginRequiredMixin, View):
     """
     This View Create contract (payment details) 
     """
+    login_url ='/login/'
 
     def post(self, request, *args, **kwargs):    
         proposal_id = kwargs['pk']
@@ -185,6 +183,7 @@ class CreateContract(View):
         total = calculate_total(duration, duration_type, converter[0])
         contract_currency = converter[1]
         redirect_address = request.META.get("HTTP_REFERER")
+
         Contract.objects.create(proposal = prop_obj, total=total, currency=contract_currency)
         job = JobPost.objects.get(id=prop_obj.job.id)
         job.status = 'CLOSED'
@@ -199,8 +198,9 @@ class CreateContract(View):
         return response
     
 
-class FreelancerView(ListView):
+class FreelancerView(PermissionRequiredMixin, ListView):
     paginate_by = 4
+    permission_required = ['accounts.is_client']
     template_name = "jobs/browse_freelancer.html"
     model = Freelancer  
     queryset = Freelancer.objects.all().order_by('-selfskills__freelancer_id').distinct()

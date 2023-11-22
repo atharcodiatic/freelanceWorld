@@ -118,6 +118,7 @@ from django.forms.fields import DateField
 
 
 class EducationForm(forms.ModelForm):
+    
     start_date = forms.DateField(widget = forms.SelectDateWidget)
     end_date = forms.DateField(widget = forms.SelectDateWidget)
     class Meta:

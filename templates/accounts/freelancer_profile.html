@@ -13,7 +13,7 @@
 {% endblock head %}
 <script>
     let pk = "{{object.pk}}"
-    console.log(pk,"*************")
+    console.log(pk,"this pk comes from  detailview")
     localStorage.setItem('user_id',pk)
 </script>
 <script src="{% static 'scripts/register.js' %}" type="text/javascript"></script> 

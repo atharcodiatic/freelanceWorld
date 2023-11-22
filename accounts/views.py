@@ -1,5 +1,3 @@
-from typing import Any
-from django import http
 from django.shortcuts import render
 
 # Create your views here.
@@ -7,9 +5,9 @@ from .forms import *
 from django.contrib.auth import login ,authenticate
 from django.shortcuts import redirect 
 from django.contrib.auth import get_user_model
-from django.views.generic import View , DetailView,ListView
+from django.views.generic import View , DetailView
 from django.urls import reverse , reverse_lazy
-from django.shortcuts import HttpResponse, HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect
 import datetime
 ''' HttpResponseRedirect for firefox'''
 from django.views.generic.edit import CreateView , UpdateView 
@@ -17,16 +15,15 @@ from django.contrib.auth import get_user_model
 from django.http import JsonResponse , HttpResponseForbidden
 from django.core.serializers import serialize
 import json
-from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.contrib.auth.models import  Permission
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.edit import ModelFormMixin
 from jobs.forms import ReviewForm
-from django.forms import modelform_factory
-from cities_light.models import City,Country
-from django.core.exceptions import PermissionDenied
+from cities_light.models import City
 from .permission import *
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 User =  get_user_model()
 
@@ -39,15 +36,14 @@ def freelancer_registeration_view(request):
             user = form.save()
             user.set_password(pass_word)
             user.save()
-            breakpoint()
             content_type = ContentType.objects.get_for_model(Freelancer)
             is_fl_permission = Permission.objects.get(content_type=content_type , codename='is_freelancer')
             user.user_permissions.add(is_fl_permission)
             user_id = user.id
             return redirect("/login/")
-    else:
-        form = FreelancerProfile()
-        form.order_fields(['email', 'username', 'firstname', 'lastname'])
+        
+    form = FreelancerProfile()
+    form.order_fields(['email', 'username', 'firstname', 'lastname'])
     return render(request, 'accounts/freelancer_register.html', {'form': form })
 
 
@@ -83,7 +79,7 @@ class LoginPageView(View):
                 else:
                     return redirect("/"+ str(user_id)+'/freelancer_profile')                
         message = 'Login failed!'
-        return render(request, self.template_name, context={'form': form, 'message': message})
+        return render(request, self.template_name, context={'form': form, 'message': message}, status =200)
     
 
 class ClientRegistrationView(CreateView):
@@ -99,6 +95,7 @@ class ClientRegistrationView(CreateView):
         Handle POST requests: instantiate a form instance with the passed
         POST variables and then check if it's valid.
         """
+        self.object=None
         form = self.get_form()
         pass_word = form['password'].data
         if form.is_valid():
@@ -112,9 +109,6 @@ class ClientRegistrationView(CreateView):
         else:
             return self.form_invalid(form) 
  
-
-
-
 class FreeLancerProfileView(FreeelancerOwnPer, DetailView):
     """
     This view shows the Profile Details of FreelancerInstance 
@@ -136,6 +130,7 @@ class FreeLancerProfileView(FreeelancerOwnPer, DetailView):
         
         # add extra field   
         pk  = self.object.pk
+        '''Need to handle exists()'''
         self_skill = SelfSkills.objects.filter(freelancer__id = pk )
         education = Education.objects.filter(freelancer__id = pk)
         all_skills = Skill.objects.all()[0:9]
@@ -173,7 +168,7 @@ def education_view(request, pk):
     This View is responsible for adding freelancer education
     """
     if request.method == 'POST':
-        type = request.POST.get('type')
+        type  = request.POST.get('type')
         degree = request.POST.get('degree')
         course = request.POST.get('course')
         end_date = request.POST.get('end_date').split(',')
@@ -185,20 +180,26 @@ def education_view(request, pk):
         Education.objects.create(type=type, degree_name = degree, course=course, 
                                  college_name = college_name , start_date = start_date_obj ,
                                  end_date = end_date_obj, freelancer = freelancer_obj)
+        return JsonResponse({"status": 'Success'}, status=201)
+    
     elif request.method == "GET":
         education = Education.objects.filter(freelancer__id=int(pk))
         education = [education.last()]
         serialized_data = serialize("json", education)
         serialized_data = json.loads(serialized_data)
         return JsonResponse(serialized_data, safe=False , status=200) 
-    return JsonResponse({"status": 'Success'}) 
+    
 
 
-class SkillCreateView(View):
+class SkillCreateView(LoginRequiredMixin,View):
     """
     This view adds FreeLancer skills
     """
-    
+    login_url = '/login/'
+    def dispatch(self, request, *args, **kwargs):
+        setattr(self,'pk',kwargs['pk'])
+        return super().dispatch(request, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         """
         Handle POST requests: instantiate a form instance with the passed
@@ -208,6 +209,7 @@ class SkillCreateView(View):
         request = json.loads(request.body)
         skill_name = request.get('skill')
         level = request.get('level')
+
         """
         we can handle this validation in forntend, just for learning purpsoes
         """
@@ -218,32 +220,29 @@ class SkillCreateView(View):
         skillpresent = SelfSkills.objects.filter(freelancer=user_id, skill_name = skill_name).exists()
         if not skillpresent:
             freelancer = Freelancer.objects.get(id=user_id)
-            model_obj = SelfSkills.objects.create(skill_name = skill_name, freelancer=freelancer, level = level)
+            SelfSkills.objects.create(skill_name = skill_name, freelancer=freelancer, level = level)
         return JsonResponse({'status':"success" }, status=201)
     
     def get(self,request,*args,**kwargs):
-        pk = kwargs['pk']
-        skill = SelfSkills.objects.filter(freelancer__id=int(pk))
+        skill = SelfSkills.objects.filter(freelancer__id=int(self.pk))
         serialized_data = serialize("json", skill)
         serialized_data = json.loads(serialized_data)
         return JsonResponse(serialized_data, safe=False , status=200) 
     
     def patch(self,request,*args,**kwargs):
-        # pk = request.user.id
-        pk = kwargs['pk']
+
         request = json.loads(request.body)
         skill_name = request.get('skill')
         skill_level = request.get('level')
-        skill_obj = SelfSkills.objects.filter(freelancer=pk, skill_name = skill_name).first()
+        skill_obj = SelfSkills.objects.filter(freelancer=self.pk, skill_name = skill_name).first()
         skill_obj.level = skill_level
         skill_obj.save()
         return JsonResponse({'status':"success" }, status=200)
     
     def delete(self,request,*args,**kwargs):
-        pk = kwargs['pk']
         request = json.loads(request.body)
         skill_name = request.get('skill')
-        SelfSkills.objects.filter(freelancer=pk, skill_name = skill_name).delete()
+        SelfSkills.objects.filter(freelancer=self.pk, skill_name = skill_name).delete()
         return JsonResponse({'status':"success" }, status=204)
 
         
@@ -268,11 +267,11 @@ class ClientProfileView(ClientOwnPer,ModelFormMixin, DetailView):
     def get_initial(self):
         """ This method pass initial data in form"""
         obj = self.get_object()
-        return {  'user_id': obj.username }
+        return {'user_id': obj.username}
     
     def post(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return HttpResponseForbidden()
+        # if not request.user.is_authenticated:
+        #     return HttpResponseForbidden()
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():

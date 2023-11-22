@@ -31,8 +31,6 @@ class CustomUser(AbstractUser):
     GENDER_CHOICES = [
         (Male, "Male"),
         (Female, "Female"),
-        
-
     ]
     profile_pic = models.ImageField(upload_to='profile_pics/',
                 validators=[validate_image,

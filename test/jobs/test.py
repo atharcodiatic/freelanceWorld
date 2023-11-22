@@ -16,11 +16,12 @@ class JobPostTestCase(TestCase):
         client_obj = Client.objects.create(email="ebestpeers@gmail.com",
                                            country=country_obj,
                                            city=city_obj,
-                                           phone_number="982378930912",
+                                           phone_number="982378930978",
                                            first_name='bestpeers',
                                            last_name= 'infosystem',
                                            username= 'bestpeersinfosystem',
                                            )
+        
         skill_obj_1= Skill.objects.create(name="python",client=client_obj)
         skill_obj_2 = Skill.objects.create(name="React",client=client_obj)
         for i in range(10):
@@ -38,7 +39,11 @@ class JobPostTestCase(TestCase):
 
 
     def test_count(self):
+        breakpoint()
         self.assertEqual(JobPost.objects.all().count(),10)
+        
+    # def test_false_data(self):
+    #     self.assertEqual("value too long for type character varying(10)")
 
 
 faker = Factory.create()
@@ -71,7 +76,7 @@ class JobDetailViewTestCase(TestCase):
         
     def test_view(self):
         c = test_client()
-        breakpoint()
+        
         response = c.post(reverse('login'), c.force_login(user=self.client_obj))
         self.assertEqual(response.status_code,200)
         for i in range(1,10):

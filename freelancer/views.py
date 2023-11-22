@@ -1,22 +1,25 @@
-from django.shortcuts import render
+import json
 
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
+from django.contrib.postgres.search import SearchVector
+from django.db.models import Q
+from django.http import HttpResponseForbidden, JsonResponse
+from django.shortcuts import render
 # Create your views here.
 from django.views import View
-from django.views.generic.base import TemplateView
-from accounts.models import *
-from jobs.models import *
-from jobs.forms import *
-from django.db.models import Q
-from django.http import JsonResponse
-import json 
-from django.views.generic.edit import ModelFormMixin , DeletionMixin
-from django.http import HttpResponseForbidden
-from django.contrib.postgres.search import SearchVector 
 from django.views.generic import ListView
+from django.views.generic.base import TemplateView
+from django.views.generic.edit import DeletionMixin, ModelFormMixin
+from accounts.models import *
+from jobs.forms import *
+from jobs.models import *
 
-class FreelancerHome(TemplateView):
+
+class FreelancerHome(PermissionRequiredMixin,TemplateView):
     template_name = 'freelancer/feed.html'
-    #bugs -> fixed
+    permission_required =['accounts.is_freelancer']
+    # TODO
     def get(self, request, *args, **kwargs):
         user_id = self.request.user.id
         edu_names = None
@@ -62,11 +65,12 @@ class FreelancerHome(TemplateView):
     #     return JsonResponse({'status':'success'},status=200)
 
     
-class FreelancerPropsalView(TemplateView):
+class FreelancerPropsalView(PermissionRequiredMixin,TemplateView):
     """
     This View Show all the proposals.
     """
     template_name = 'freelancer/my_proposal.html'
+    permission_required =['accounts.is_freelancer']
 
     def get_context_data(self,*args,**kwargs):
         context = super().get_context_data(**kwargs)
@@ -108,8 +112,11 @@ class ProposalEditView(ModelFormMixin, View,):
         self.model.objects.filter(id=kwargs['pk']).delete()
         return JsonResponse({"status":"deleted successfully"}, status=204)
     
-class MyJobsView(TemplateView):
+class MyJobsView(PermissionRequiredMixin, TemplateView):
+    """ Job That freelancer got from client """
+
     template_name = 'freelancer/my_jobs.html'
+    permission_required =['accounts.is_freelancer']
 
     def get_context_data(self,*args,**kwargs):
         context = super().get_context_data(**kwargs)
@@ -120,21 +127,22 @@ class MyJobsView(TemplateView):
         context["my_jobs"] = user_jobs
         return context
 
-class BrowseView(ListView):
+class BrowseView(PermissionRequiredMixin, ListView):
     paginate_by = 4
     template_name = "freelancer/browse.html"
     model = Client 
     extra_context = None 
+    permission_required = ['accounts.is_freelancer']
 
     def get_queryset(self, *args, **kwargs):
         query = self.request.GET.get("q")
         if query:
             '''doubt - how to filter object by average_rating '''
-            client_obj = Client.objects.annotate(search=SearchVector("username","bio","company_name","jobpost__skill_required__name")).filter(
+            return Client.objects.annotate(search=SearchVector("username","bio","company_name","jobpost__skill_required__name")).filter(
             search=query)
-            return client_obj.distinct("username")
+            
         else:
-            return Client.objects.all().distinct()
+            return Client.objects.all()
 
 
     
