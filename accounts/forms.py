@@ -7,7 +7,7 @@ from .validators import validate_image
 from django import forms
 from cities_light.models import City
 from django_countries.widgets import CountrySelectWidget
-
+import datetime
 class CustomUserCreationForm(UserCreationForm): 
 
     ''' Used in admin panel to create user instance'''
@@ -67,6 +67,10 @@ class FreelancerProfile(forms.ModelForm):
         elif self.instance.pk:
             self.fields['city'].queryset = City.objects.filter(country=self.instance.pk)
         
+    def clean_phone_number(self):
+        data = self.cleaned_data["phone_number"]
+        if len(data)<10:
+            raise ValidationError("contact must be 10 digit")
     
     def clean(self):
         cleaned_data = super().clean()
@@ -116,10 +120,16 @@ class SelfSkillForm(forms.ModelForm):
 from django.contrib.admin.widgets import AdminDateWidget
 from django.forms.fields import DateField
 
+# def __init__(self, *args, **kwargs):
+#         super(EntryForm, self).__init__(*args, **kwargs)
+#         this_year = datetime.date.today().year
+#         years = range(this_year-100, this_year+1)
+#         years.reverse()
 
 class EducationForm(forms.ModelForm):
-    
-    start_date = forms.DateField(widget = forms.SelectDateWidget)
+    this_year = datetime.date.today().year
+    years = range(this_year-100, this_year+8)
+    start_date = forms.DateField(widget = forms.SelectDateWidget(years=years))
     end_date = forms.DateField(widget = forms.SelectDateWidget)
     class Meta:
         fields = '__all__'
@@ -145,7 +155,11 @@ class ClientProfile(forms.ModelForm):
                 pass
         elif self.instance.pk:
             self.fields['city'].queryset = City.objects.filter(country=self.instance.pk)
-        
+    
+    def clean_phone_number(self):
+        data = self.cleaned_data["phone_number"]
+        if len(data)<10:
+            raise ValidationError("contact must be 10 digit")
 
     def clean(self):
         cleaned_data = super().clean()
@@ -158,12 +172,11 @@ class ClientProfile(forms.ModelForm):
                 raise ValidationError(
                     "password does not match."
                 )
-            
+    field_order = ['username', 'email', 'password', 'confirm_password']      
     class Meta:
         
         model = Client
         fields = '__all__'
-        field_order = ['username', 'email', 'password', 'confirm_password']
         exclude = ["last_login", "is_superuser", 'groups', 'user_permissions',
                    'date_joined', 'is_active', 'is_staff',]
         

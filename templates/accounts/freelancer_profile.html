@@ -145,7 +145,11 @@ Skills :
 </form>
 {% endif %}
 <br>
-<div style="background-color: white;">Location : {{object.city}} ,{{object.country}},  </div>
+<div style="background-color: white;">
+    Location : {% if object.city %}
+      {{object.city}} ,{{object.country}},
+      {% endif %}  
+</div>
 <p>{{object.selfskills}}</p>
  
 

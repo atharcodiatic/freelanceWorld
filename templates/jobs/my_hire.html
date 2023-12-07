@@ -80,8 +80,12 @@
 
         </div>
         <div style="width: 110px;">
-            <input type="number" id='pay_amount'>
+            {% if detail.remaining > 0 %}
+            <input type="number" id='pay_amount' max={{detail.remaining}}>
             <button id="payBtn" value="{{detail.id}}" style="margin-top: 35px; width: 110px;"> Pay </button>
+            {% else %}
+                <button>No Dues</button>
+            {%endif %}
         </div>
         <div>
             <a href="{%url 'payment:trans-view' detail.id%}">Transaction History</a>

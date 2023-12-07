@@ -31,6 +31,7 @@ urlpatterns = [
     path('',include('freelancer.urls')),
     # path("stripe/", include("djstripe.urls", namespace="djstripe")),
     path('', include('payment.urls')),
+    path('accounts/', include('allauth.urls'))
 
 ]
 if settings.DEBUG:

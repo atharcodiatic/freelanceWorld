@@ -162,13 +162,14 @@ class JopProposalView(PermissionRequiredMixin,CreateView):
         return reverse_lazy("jobs:jobdetail", kwargs={"pk":self.job_id})
     
 
-class CreateContract(LoginRequiredMixin, View):
+class CreateContract(PermissionRequiredMixin, View):
     """
     This View Create contract (payment details) 
     """
     login_url ='/login/'
+    permission_required = ['accounts.is_client']
 
-    def post(self, request, *args, **kwargs):    
+    def post(self, request, *args, **kwargs):
         proposal_id = kwargs['pk']
         prop_obj = JobProposal.objects.get(id = proposal_id)
         # freelancer Info - bid and currency (prop_obj.user)

@@ -23,6 +23,7 @@ from jobs.forms import ReviewForm
 from cities_light.models import City
 from .permission import *
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 
 
 User =  get_user_model()
@@ -48,6 +49,7 @@ def freelancer_registeration_view(request):
 
 
 def load_cities(request):
+    """Load cities based on country"""
     country_id = request.GET.get('country_id')
     cities = City.objects.filter(country=country_id).all()
     return render(request, 'accounts/city_dropdown_list_options.html', {'cities': cities})
@@ -230,7 +232,6 @@ class SkillCreateView(LoginRequiredMixin,View):
         return JsonResponse(serialized_data, safe=False , status=200) 
     
     def patch(self,request,*args,**kwargs):
-
         request = json.loads(request.body)
         skill_name = request.get('skill')
         skill_level = request.get('level')
@@ -282,11 +283,30 @@ class ClientProfileView(ClientOwnPer,ModelFormMixin, DetailView):
     def form_valid(self, form):
         return super().form_valid(form)
 
+class HandleSocialLogin(View):
+    template_name = 'accounts/set_socialUser.html'
+    user_email = ''
+    content_type_obj = ContentType.objects.get_for_model
+    perm_obj = Permission.objects.get
 
-
-
-
-
+    def get(self, request,*args , **kwargs):
+        self.user_email = request.user.email
+        self.user = get_object_or_404(User, email=self.user_email)
+        breakpoint()
+        if request.GET.get('freelancer'):
+            content_type = self.content_type_obj(Freelancer)
+            fl_permission = self.perm_obj(content_type=content_type , codename='is_freelancer')
+            self.user.user_permissions.add(fl_permission)
+            return redirect(reverse("freelancer:freelancerfeed"))
+        
+        elif request.GET.get('client'):
+            content_type = self.content_type_obj(Client)
+            cl_permission = self.perm_obj(content_type=content_type , codename='is_client')
+            self.user.user_permissions.add(cl_permission)
+            return redirect(reverse("jobs:clienthome"))
+        
+        else:
+            return render(request, self.template_name)
 
 
 

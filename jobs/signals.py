@@ -9,9 +9,8 @@ from .models import *
 @receiver(post_save, sender=Contract)
 def send_email_otp(sender, instance, created, **kwargs):
     breakpoint()
-
+    print('signal running')
     queryset = Contract.objects.filter(id=instance.id).first()
-    
     email = queryset.proposal.user.email
     email_from = settings.EMAIL_HOST_USER
     job_title = queryset.proposal.job.title

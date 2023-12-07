@@ -21,12 +21,13 @@ class FreelancerHome(PermissionRequiredMixin,TemplateView):
     permission_required =['accounts.is_freelancer']
     # TODO
     def get(self, request, *args, **kwargs):
+        breakpoint()
         user_id = self.request.user.id
-        edu_names = None
-        skill_names = None
+        edu_names = ''
+        skill_names = ''
         fl_obj = Freelancer.objects.get(id = user_id)
         experience = fl_obj.years_of_experience
-        res =None
+        res =''
         if Education.objects.filter(freelancer = user_id).exists():
             edu_names = Education.objects.filter(freelancer = user_id).values_list('course',flat=True)   
         if SelfSkills.objects.filter(freelancer = user_id).exists():
@@ -139,7 +140,7 @@ class BrowseView(PermissionRequiredMixin, ListView):
         if query:
             '''doubt - how to filter object by average_rating '''
             return Client.objects.annotate(search=SearchVector("username","bio","company_name","jobpost__skill_required__name")).filter(
-            search=query)
+            search=query).distinct('username')
             
         else:
             return Client.objects.all()

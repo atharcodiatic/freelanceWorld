@@ -48,12 +48,15 @@
     }
 </script>
 {% endblock head%} {{user.is_authenticated}} {% block nav %} {% if user.id == object.user.id %} {{block.super}} {% elif user.id != object.user.id and perms.accounts.is_freelancer and user.is_authenticated %} {% include 'freelancer/navbar.html'%} {% endif%}
-{% endblock nav %} {% block body %} {% if user.is_authenticated and user.id == object.user.id %}
+{% endblock nav %} {% block body %} {% if user.is_authenticated and user.id == object.user.id  %}
+{% if object.status == 'OPEN'%}
+    
 <button style="margin-top: 10px;" onclick="formopen()">Edit</button>
 <form style="display: none" class="job_edit_form" method="post">
     {% csrf_token %} {{job_form.as_div}}
     <input type="submit">
 </form>
+{%endif%}
 {% endif %}
 
 

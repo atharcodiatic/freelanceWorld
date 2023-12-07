@@ -27,9 +27,9 @@ SECRET_KEY = 'django-insecure-db!on)q8(oq43v6=jdw-9h13%-rih=jde30s^p*pcy1qleraoe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0df5-49-249-141-82.ngrok-free.app','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['0df5-49-249-141-82.ngrok-free.app','127.0.0.1','localhost', '1c32-49-249-141-82.ngrok-free.app']
 
-
+# https://1c32-49-249-141-82.ngrok-free.app
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,12 +42,17 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'accounts',
     'jobs',
-    # "djstripe",
     'payment',
     'freelancer',
     'common',
     'django_countries',
     'cities_light',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     
 ]
 CITIES_LIGHT_INCLUDE_COUNTRIES = ['FR', 'BE']
@@ -60,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'freelanceWorld.urls'
@@ -85,6 +91,16 @@ TEMPLATES = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
+
 WSGI_APPLICATION = 'freelanceWorld.wsgi.application'
 
 
@@ -102,16 +118,6 @@ DATABASES = {
         'PORT' : '5432',
     }
 }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 
 
 # Password validation
@@ -184,14 +190,6 @@ EMAIL_USE_TLS = True
 CSRF_COOKIE_NAME = "csrftoken"
 CSRF_HEADER_NAME = "HTTP_X_CSRFTOKEN"
 
-
-# STRIPE_LIVE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY",)
-# STRIPE_LIVE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
-# STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY",)
-# STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY",)
-# STRIPE_LIVE_MODE = False
-# DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx" 
-
 """ Stripe"""
 STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY",)
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY")
@@ -206,3 +204,35 @@ STRIPE_ENDPOINT_SECRET = "whsec_688cb9a144ce17309c659b2969ca4ce862cd47dd214d447c
 # django.setup()
 
 # from django.core.management import call_command
+
+
+SITE_ID = 1
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+        
+        "APPS": [
+            {
+                "client_id": '359106618118-7s7kmahbevhqukjeji9ok1797l1qgmh2.apps.googleusercontent.com',
+                "secret": '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',
+                "key": ""
+            },
+        ],
+}
+}
+
+LOGIN_REDIRECT_URL = 'social_login'
+ACCOUNT_LOGOUT_REDIRECT = 'login'

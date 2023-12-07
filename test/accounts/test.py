@@ -15,11 +15,16 @@ class CreateModelObject(TestCase):
     def setUpTestData(cls):
         cls.country = CountryFactory()
         cls.city = CityFactory(country=cls.country)
-        cls.freelancer = FreelancerFactory(city=cls.city, country=cls.country)
-        cls.skill =  SelfSkillFactory(freelancer=cls.freelancer)
-        cls.client = Client
+        cls.freelancer = FreelancerFactory(username=generate_username() , email=generate_email() ,city=cls.city, country=cls.country)
+        cls.client = ClientFactory(username=generate_username() , email=generate_email() , city=cls.city, country=cls.country)
         cls.c = test_client()
+        cls.self_skill = SelfSkillFactory(freelancer = cls.freelancer)
+        cls.skill = SkillFactory(client = cls.client)
+        cls.job  = JobPostFactory( user=cls.client, skill_required=(cls.skill))
+        cls.job_proposal = JobProposalFactory(user=cls.freelancer, job=cls.job)
+        cls.contract = ContractFactory
 
+    
 class SignUpTestCase(CreateModelObject, TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -66,6 +71,7 @@ class SignUpTestCase(CreateModelObject, TestCase):
         self.assertEqual(200, response.status_code)
         response = self.c.post(reverse('login'), self.client_credentials, 
                                follow=True)
+        self.test_client_login_success.client = self.c
         self.assertEqual(200, response.status_code)
 
     def test_client_signup_fail(self):
@@ -78,6 +84,8 @@ class SignUpTestCase(CreateModelObject, TestCase):
         self.assertEqual(200, response.status_code)
         response = self.c.post(reverse('login'), self.freelancer_crediantials, 
                                follow=True)
+        # function attribute
+        self.test_freelancer_signup_login_success.freelancer = self.c
         self.assertEqual(200, response.status_code)
     
     def test_freelancer_signup_fail(self):
@@ -88,61 +96,59 @@ class SignUpTestCase(CreateModelObject, TestCase):
 
 
 
-# class SkillCreateViewTests(TestCase):
-#     @classmethod
-#     def setUpTestData(cls):
-#         cls.country = CountryFactory()
-#         cls.city = CityFactory(country=cls.country)
-#         cls.freelancer = FreelancerFactory(city=cls.city, country=cls.country)
-#         cls.skill =  SelfSkillFactory(freelancer=cls.freelancer)
+class SkillCreateViewTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.country = CountryFactory()
+        cls.city = CityFactory(country=cls.country)
+        cls.freelancer = FreelancerFactory(city=cls.city, country=cls.country)
+        cls.skill =  SelfSkillFactory(freelancer=cls.freelancer)
         
-#         cls.c = test_client()
-#         data = {'skill': cls.skill.skill_name,'level':cls.skill.level}
-#         cls.json_data = json.dumps(data)
-#         cls.url = reverse(
-#             'skill', 
-#              args=(cls.skill.freelancer.id,)
-#         )
+        cls.c = test_client()
+        data = {'skill': cls.skill.skill_name,'level':cls.skill.level}
+        cls.json_data = json.dumps(data)
+        cls.url = reverse(
+            'skill', 
+             args=(cls.skill.freelancer.id,)
+        )
 
-#         response = cls.c.post(reverse('login'), cls.c.force_login(user=cls.freelancer))
+        response = cls.c.post(reverse('login'), cls.c.force_login(user=cls.freelancer))
 
-#         response = cls.c.post(cls.url, cls.json_data, content_type='application/json' )
-#     '''
-#     def setUp(self):
-#         self.c = test_client()
-#         data = {'skill': self.skill.skill_name,'level':self.skill.level}
-#         self.json_data = json.dumps(data)
-#         self.url = reverse(
-#             'skill', 
-#              args=(self.skill.freelancer.id,)
-#         )
+        response = cls.c.post(cls.url, cls.json_data, content_type='application/json' )
+    '''
+    def setUp(self):
+        self.c = test_client()
+        data = {'skill': self.skill.skill_name,'level':self.skill.level}
+        self.json_data = json.dumps(data)
+        self.url = reverse(
+            'skill', 
+             args=(self.skill.freelancer.id,)
+        )
 
-#         response = self.c.post(reverse('login'), self.c.force_login(user=self.freelancer))
+        response = self.c.post(reverse('login'), self.c.force_login(user=self.freelancer))
 
-#         response = self.c.post(self.url, self.json_data, content_type='application/json' )
-#     '''
+        response = self.c.post(self.url, self.json_data, content_type='application/json' )
+    '''
 
-#     def test_create_method(self):
-#         response = self.c.post(reverse('login'), self.c.force_login(user=self.freelancer))
-#         # response = self.client.post(self.url)
-#         response = self.c.post(self.url, self.json_data, content_type='application/json' )
-#         self.assertEqual(201, response.status_code)
+    def test_create_method(self):
+        response = self.c.post(reverse('login'), self.c.force_login(user=self.freelancer))
+        # response = self.client.post(self.url)
+        response = self.c.post(self.url, self.json_data, content_type='application/json' )
+        self.assertEqual(201, response.status_code)
         
-#     def test_update_method(self):
-#         response = self.c.patch(self.url, self.json_data,\
-#                                  content_type='application/json')
-#         self.assertEqual(200, response.status_code)
+    def test_update_method(self):
+        response = self.c.patch(self.url, self.json_data,\
+                                 content_type='application/json')
+        self.assertEqual(200, response.status_code)
 
-#     def test_delete_method(self):
-#         response = self.c.delete(self.url, self.json_data,\
-#                                  content_type='application/json')
-#         self.assertEqual(204, response.status_code)
+    def test_delete_method(self):
+        response = self.c.delete(self.url, self.json_data,\
+                                 content_type='application/json')
+        self.assertEqual(204, response.status_code)
 
-
-
-# class CustomUserCreationFormTest(TestCase):
-#     def test_renew_form_date_field_help_text(self):
-#         form = CustomUserCreationForm()
-#         field_valdtr = form.fields['profile_pic'].validators
-#         self.assertTrue(any(isinstance(validator,FileExtensionValidator) for validator in field_valdtr))
+class CustomUserCreationFormTest(TestCase):
+    def test_renew_form_date_field_help_text(self):
+        form = CustomUserCreationForm()
+        field_valdtr = form.fields['profile_pic'].validators
+        self.assertTrue(any(isinstance(validator,FileExtensionValidator) for validator in field_valdtr))
 

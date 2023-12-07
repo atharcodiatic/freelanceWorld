@@ -41,7 +41,7 @@ class JobPost(models.Model):
     duration_type = models.CharField( max_length=10, choices = DURATION_CHOICES,)
     duration = models.PositiveIntegerField(null=True, help_text = 'duration must be an integer')
     currency = models.CharField(max_length=3,choices=CURRENCY_CHOICES)
-    salary = models.PositiveIntegerField(help_text = 'job salary per hour')
+    salary = models.PositiveIntegerField(help_text = 'job salary')
     skill_required = models.ManyToManyField(Skill)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -1,13 +1,17 @@
 from django.test import TestCase
+from django.test import Client as test_client
+import unittest
+from django.test import RequestFactory, TestCase
+from cities_light.models import City, Country
+from jobs.views import JobDetailView
 from jobs.models import *
 from accounts.models import *
-import unittest
-from cities_light.models import City, Country
-from django.test import RequestFactory, TestCase
-from jobs.views import JobDetailView
-from django.test import Client as test_client
 import factory
 from faker import Factory
+from ..accounts.test import CreateModelObject
+from unittest import mock
+from django.db.models.signals import  post_save
+faker = Factory.create()
 
 class JobPostTestCase(TestCase):
     def setUp(self):
@@ -16,7 +20,7 @@ class JobPostTestCase(TestCase):
         client_obj = Client.objects.create(email="ebestpeers@gmail.com",
                                            country=country_obj,
                                            city=city_obj,
-                                           phone_number="982378930978",
+                                           phone_number="9823789309",
                                            first_name='bestpeers',
                                            last_name= 'infosystem',
                                            username= 'bestpeersinfosystem',
@@ -39,14 +43,12 @@ class JobPostTestCase(TestCase):
 
 
     def test_count(self):
-        breakpoint()
         self.assertEqual(JobPost.objects.all().count(),10)
         
     # def test_false_data(self):
     #     self.assertEqual("value too long for type character varying(10)")
 
 
-faker = Factory.create()
 class JobDetailViewTestCase(TestCase):
     """ Test case for job detail view """
     def setUp(self):
@@ -87,4 +89,19 @@ class JobDetailViewTestCase(TestCase):
             self.assertIn('proposal_form', response.context)
             self.assertEqual(response.status_code,200)
 
+from unittest.mock import patch
+class TestCreateContractProposal(CreateModelObject, TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        super(TestCreateContractProposal, cls).setUpTestData()
+        
+    def testview(self):
+        with mock.patch('jobs.signals.send_email_otp', autospec=True) as mocked_handler:
+            post_save.connect(mocked_handler, sender=Contract,)
+            self.assertEquals(mocked_handler.call_count, 1)
+
+        self.contract(proposal= self.job_proposal)
+        self.assertEqual(True,True)
+
+        
     

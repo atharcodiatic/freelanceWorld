@@ -73,7 +73,9 @@
         </div>
     </div>
 </div>
+{% if user.id != object.id %}
 <div class="job-section" style="display:flex;flex-direction: column ;overflow: hidden;">
+
     <h1>Jobs By Client</h1>
     {% if object.jobpost_set.all%}
         {% for job in object.jobpost_set.all %}
@@ -85,6 +87,7 @@
             <div>NO Job Post </div>
     {%endif%}
 </div>
+{% endif %}
 </div>
 {% if user.id == object.id %}
 

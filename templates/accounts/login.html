@@ -11,4 +11,8 @@
 
     <a href="/reset_password"> ForgetPassword</a> 
     <a href="/register"> SignUP</a> 
+    {% load socialaccount %}
+    <p>Or via Google:</p>
+    <a href="{% provider_login_url 'google' %}"> LogIn via Google</a>
+  
 </form>

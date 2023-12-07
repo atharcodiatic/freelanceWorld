@@ -16,6 +16,7 @@ urlpatterns = [
     path('<int:pk>/skill/', views.SkillCreateView.as_view(),name = 'skill'),
     path('<int:pk>/clientprofile/', views.ClientProfileView.as_view(),name = 'client-profile'),
     path('ajax/load-cities/', views.load_cities, name='ajax_load_cities'),
+    path('social-login-user/', views.HandleSocialLogin.as_view(), name='social_login'),
     
 
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name = "accounts/reset_password.html"), name ='reset_password'),
