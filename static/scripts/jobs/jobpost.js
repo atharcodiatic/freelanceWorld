@@ -54,6 +54,5 @@ window.onload = function(){
 function formJobSkillAdd(){
     formButton = document.getElementsByClassName('jobSkillForm')[0]
     formButton.style.display = 'block';
-    debugger
-    
+
 }

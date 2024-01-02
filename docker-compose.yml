@@ -1,0 +1,64 @@
+version: "3"
+services:
+  web:
+    build: .
+    command: bash -c " python manage.py makemigrations &&
+                    python manage.py migrate &&
+                    python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - CELERY_BROKER=redis://redis:6379
+      - CELERY_BACKEND=redis://redis:6379
+      
+    stdin_open: True
+    tty: True
+
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres
+    container_name: postgresContainer
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  stripe:
+    container_name: stripeContainer
+    image: stripe/stripe-cli
+    network_mode: host
+    command : "listen --api-key ${STRIPE_TEST_SECRET_KEY} --forward-to 127.0.0.1:8000/webhook/"
+    env_file:
+      - .env
+  celery:
+        build: .
+        command: celery -A freelanceWorld worker -l INFO
+        volumes:
+            - .:/usr/src/app
+        environment:
+            - DEBUG=1
+            - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+            - CELERY_BROKER=redis://redis:6379/0
+            - CELERY_BACKEND=redis://redis:6379/0
+        depends_on:
+            - web
+            - redis
+  redis:
+        image: redislabs/redismod
+        container_name: redis
+        ports:
+          - "6379:6379"
+        
+        
+        
+
+ 

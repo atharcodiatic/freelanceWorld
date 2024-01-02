@@ -115,7 +115,7 @@ def stripe_webhook(request):
         contract_id = meta_data.contract_id
         con_obj = Contract.objects.get(id=contract_id)
         paid_amount = int(meta_data.amount)/100
-        remaining = con_obj.total - paid_amount
+        remaining = con_obj.remaining - paid_amount
         con_obj.remaining = remaining
         con_obj.save()
         Transaction.objects.create(contract=con_obj, amount = paid_amount )
@@ -124,7 +124,6 @@ def stripe_webhook(request):
 
 class TransactionView(TemplateView):
     template_name = 'payment/transaction.html'
-    
     
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)

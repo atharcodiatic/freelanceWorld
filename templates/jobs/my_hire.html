@@ -16,10 +16,13 @@
 
     }
 </script>
-{% endblock head %} {% block body %} {% if contract_detail %}
+{% endblock head %} {% block body %} 
+<div style="display:flex; flex-direction:column;">
+{% if contract_detail %}
+{% for detail in contract_detail %}
 <div class="card-body" style="background-color:white; margin-top:50px;">
-    {% for detail in contract_detail %}
-    <div class="card" style=" display:flex; gap: 40px;;flex-direction: row;width: 80rem; height:6rem">
+    
+    <div class="card" style=" display:flex; gap: 40px;flex-direction: row;width: 80rem; height:6rem">
 
         <img src="{{detail.proposal.user.profile_pic.url}}" class="card-img-top" style="width:80px; height: 80px;" alt="...">
         <div>
@@ -85,16 +88,19 @@
             <button id="payBtn" value="{{detail.id}}" style="margin-top: 35px; width: 110px;"> Pay </button>
             {% else %}
                 <button>No Dues</button>
-            {%endif %}
+            {% endif %}
         </div>
         <div>
             <a href="{%url 'payment:trans-view' detail.id%}">Transaction History</a>
         </div>
     
-        {% endfor %}
+        
     </div>
+    {% endfor %}
     {%else%}
     <div>
         <h1>You have not hired any freelancers</h1>
     </div>
-    {%endif%} {% endblock body %}
+    {%endif%} 
+</div>
+    {% endblock body %}

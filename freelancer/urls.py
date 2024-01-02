@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from django.views.generic.base import TemplateView
+from django.views.decorators.cache import cache_page
 
 
 """
@@ -13,4 +14,5 @@ urlpatterns = [
     path('proposaledit/<int:pk>', views.ProposalEditView.as_view(), name="proposal-edit"),
     path('myjobs/', views.MyJobsView.as_view(), name="my-jobs"),
     path('browse/', views.BrowseView.as_view(), name="browse"),
+    
 ]

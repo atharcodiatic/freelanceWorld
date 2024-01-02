@@ -39,19 +39,23 @@
     <div id="allparent" class="all_parent">
         
         <div class="clientcards">
-            {% for client in client_obj %}
-            <div class = "flcard">
+            {%if client_obj %}
+                {% for client in client_obj %}
+                <div class = "flcard">
 
-                <div class="card" style="width: 12rem;">
-                    <img style='width:200px'class="card-img-top" src="media/{{client.profile_pic}}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Name : {{client.username}}</h5>
-                        <p class="card-text">Bio :{{client.bio}}</p>
-                    
+                    <div class="card" style="width: 12rem;">
+                        <img style='width:200px'class="card-img-top" src="media/{{client.profile_pic}}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Name : {{client.username}}</h5>
+                            <p class="card-text">Bio :{{client.bio}}</p>
+                        
+                        </div>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <h1> None</h1>
+            {% endif %}
             
         </div>
 
@@ -75,14 +79,7 @@
             
         </div>
     </div>
-
-        <!-- <div class="signup">
-            
-            <h1><a href= "{% url 'register_client' %}"> SignUp As Client</a></h1>
-
-            <h1><a href= "{% url 'register_freelancer' %}"> SignUp As Freelancer</a></h1>
-        </div> -->
-
+    
     </div>
     <footer class="footer-wrapper">
         <p>©Copyright 2050 by nobody. All rights reversed.</p>

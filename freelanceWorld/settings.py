@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-db!on)q8(oq43v6=jdw-9h13%-rih=jde30s^p*pcy1qleraoe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0df5-49-249-141-82.ngrok-free.app','127.0.0.1','localhost', '1c32-49-249-141-82.ngrok-free.app']
+ALLOWED_HOSTS = ['*','0df5-49-249-141-82.ngrok-free.app','127.0.0.1','localhost', '1c32-49-249-141-82.ngrok-free.app']
 
 # https://1c32-49-249-141-82.ngrok-free.app
 # Application definition
@@ -47,14 +47,17 @@ INSTALLED_APPS = [
     'common',
     'django_countries',
     'cities_light',
-
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    
+    'django_celery_results',
+    'celery',
+    'debug_toolbar',
 ]
+
+INTERNAL_IPS = ('127.0.0.1', '0.0.0.0', 'localhost',)
 CITIES_LIGHT_INCLUDE_COUNTRIES = ['FR', 'BE']
 
 MIDDLEWARE = [
@@ -62,11 +65,14 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    
 ]
+
 
 ROOT_URLCONF = 'freelanceWorld.urls'
 
@@ -108,17 +114,27 @@ WSGI_APPLICATION = 'freelanceWorld.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # settings for postgress database 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':  'freelancer_db',
+#         'USER' : 'postgres',
+#         'PASSWORD' : 'password123',
+#         'HOST' : 'localhost',
+#         'PORT' : '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':  'freelancer_db',
-        'USER' : 'postgres',
-        'PASSWORD' : 'password123',
-        'HOST' : 'localhost',
-        'PORT' : '5432',
+        'NAME': "postgres",
+        'USER': "postgres",
+        'PASSWORD': "postgres",
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -177,7 +193,6 @@ load_dotenv()
 
 passwd=os.getenv('EMAILPASSWORD')
 
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -227,7 +242,7 @@ SOCIALACCOUNT_PROVIDERS = {
         "APPS": [
             {
                 "client_id": '359106618118-7s7kmahbevhqukjeji9ok1797l1qgmh2.apps.googleusercontent.com',
-                "secret": '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',
+                "secret": os.environ.get("GOOGLE_ACCOUNT_SECRET"),
                 "key": ""
             },
         ],
@@ -236,3 +251,47 @@ SOCIALACCOUNT_PROVIDERS = {
 
 LOGIN_REDIRECT_URL = 'social_login'
 ACCOUNT_LOGOUT_REDIRECT = 'login'
+
+CELERY_BROKER_URL = "redis://redis:6379/0"
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+
+CELERY_CACHE_BACKEND = 'celery'
+
+# django setting.
+CACHES = {
+    'celery': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    },
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/1",
+        
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
+]
+
+
+if DEBUG:
+    import socket  # only if you haven't already imported this
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]

@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include 
-
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import handler404
 from common.views import my_handler404
+import debug_toolbar
 handler404 = my_handler404
 
 urlpatterns = [
@@ -31,7 +31,9 @@ urlpatterns = [
     path('',include('freelancer.urls')),
     # path("stripe/", include("djstripe.urls", namespace="djstripe")),
     path('', include('payment.urls')),
-    path('accounts/', include('allauth.urls'))
+    path('accounts/', include('allauth.urls')),
+    path('__debug__/', include(debug_toolbar.urls)),
+    
 
 ]
 if settings.DEBUG:

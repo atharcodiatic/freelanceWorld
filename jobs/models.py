@@ -4,12 +4,6 @@ from django.db import models
 from accounts.models import Client , Freelancer ,CustomUser , Skill
 from django.core.validators import FileExtensionValidator
 
-
-# class JobSkill(models.Model):
-#     name = models.CharField(max_length=40)
-#     created_at = models.DateTimeField(auto_now_add = True)
-#     updated_at = models.DateTimeField(auto_now=True)
-
 class JobPost(models.Model):
 
     '''
@@ -82,7 +76,7 @@ class JobProposal(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.status
+        return self.status +" "+str(self.id)
     class Meta:
         ordering = ['-created_at']
     

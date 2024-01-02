@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-
+from django.views.decorators.cache import cache_page
 
 app_name ='jobs'
 urlpatterns = [
@@ -13,6 +13,7 @@ urlpatterns = [
     path('createcontract/<int:pk>', views.CreateContract.as_view(), name="create-contract"),
     path('browse_freelancer/', views.FreelancerView.as_view(),name='browse-freelancer'),
     path('myhire/', views.MyHireView.as_view(),name='my-hire'),
+
     # path('browsefreelancer/',views.BrowseFreelancer.as_view(),name='browse-freelancer')
     
 ]

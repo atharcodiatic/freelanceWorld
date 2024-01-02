@@ -14,14 +14,16 @@ from django.views.generic.edit import DeletionMixin, ModelFormMixin
 from accounts.models import *
 from jobs.forms import *
 from jobs.models import *
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 
 class FreelancerHome(PermissionRequiredMixin,TemplateView):
     template_name = 'freelancer/feed.html'
     permission_required =['accounts.is_freelancer']
-    # TODO
+    # TODO 
+    @method_decorator(cache_page(60 * 5))
     def get(self, request, *args, **kwargs):
-        breakpoint()
         user_id = self.request.user.id
         edu_names = ''
         skill_names = ''
@@ -54,18 +56,6 @@ class FreelancerHome(PermissionRequiredMixin,TemplateView):
         return render(request,self.template_name,context)
     
 
-    # def post(self,request,*args,**kwargs):
-    #     data = request.body
-    #     data  = json.loads(data)
-    #     if data['showFeed']:
-    #         self.switch = 'showFeed'
-    #     else:
-    #         self.switch = 'all_job'  
-    #     context = self.get_context_data(self.args,self.kwargs)
-    #     # d = super(FreelancerHome,self).get(request,*args,**kwargs)
-    #     return JsonResponse({'status':'success'},status=200)
-
-    
 class FreelancerPropsalView(PermissionRequiredMixin,TemplateView):
     """
     This View Show all the proposals.
@@ -96,7 +86,6 @@ class ProposalEditView(ModelFormMixin, View,):
         return reverse("freelancer:myproposal")
     
     def post(self, request, *args, **kwargs):
-        breakpoint()
         if not request.user.is_authenticated:
             return HttpResponseForbidden()
         self.object = self.get_object()
@@ -112,7 +101,8 @@ class ProposalEditView(ModelFormMixin, View,):
     def delete(self,request,*args,**kwargs):
         self.model.objects.filter(id=kwargs['pk']).delete()
         return JsonResponse({"status":"deleted successfully"}, status=204)
-    
+
+@method_decorator(cache_page(60 * 15), name = "get")    
 class MyJobsView(PermissionRequiredMixin, TemplateView):
     """ Job That freelancer got from client """
 

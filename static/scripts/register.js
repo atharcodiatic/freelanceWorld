@@ -222,7 +222,6 @@ function addFormPop(){
       "level" : level,
     }
     
-    debugger
     axios({
 
       method: 'post',

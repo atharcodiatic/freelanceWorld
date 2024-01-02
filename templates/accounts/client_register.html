@@ -20,6 +20,7 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
+    console.log('inside script running ')
     $("#id_country").change(function () {
         const url = $("#personForm").attr("data-cities-url");  // get the url of the `load_cities` view
         const countryId = $(this).val();  // get the selected country ID from the HTML input
@@ -32,7 +33,7 @@
             success: function (data) {   // `data` is the return of the `load_cities` view function
               console.log(data)  
               $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
-                
+            console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
             }
         });
 

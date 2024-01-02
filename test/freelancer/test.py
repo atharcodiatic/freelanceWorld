@@ -9,7 +9,6 @@ class JobProposalFormTest(TestCase):
         self.assertTrue(form.fields['resume'].label is not None or form.fields['resume'].label == 'resume')
 
     def test_renew_form_date_field_help_text(self):
-        breakpoint()
         form = JobProposalForm()
         field_valdtr = form.fields['resume'].validators
         self.assertFalse(any(isinstance(validator,FileExtensionValidator) for validator in field_valdtr))

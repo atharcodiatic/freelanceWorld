@@ -24,6 +24,7 @@ from cities_light.models import City
 from .permission import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
+from datetime import datetime
 
 
 User =  get_user_model()
@@ -191,8 +192,6 @@ def education_view(request, pk):
         serialized_data = json.loads(serialized_data)
         return JsonResponse(serialized_data, safe=False , status=200) 
     
-
-
 class SkillCreateView(LoginRequiredMixin,View):
     """
     This view adds FreeLancer skills
@@ -273,13 +272,14 @@ class ClientProfileView(ClientOwnPer,ModelFormMixin, DetailView):
     def post(self, request, *args, **kwargs):
         # if not request.user.is_authenticated:
         #     return HttpResponseForbidden()
+    
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
-        
+
     def form_valid(self, form):
         return super().form_valid(form)
 
@@ -292,19 +292,32 @@ class HandleSocialLogin(View):
     def get(self, request,*args , **kwargs):
         self.user_email = request.user.email
         self.user = get_object_or_404(User, email=self.user_email)
-        breakpoint()
-        if request.GET.get('freelancer'):
+        self.fl = self.user.has_perm('accounts.is_freelancer')
+        self.cl = self.user.has_perm('accounts.is_client')
+        self.fl_redirect = redirect(reverse("freelancer:freelancerfeed"))
+        self.cl_redirect = redirect(reverse("jobs:clienthome"))
+        
+        # user already exist
+        if self.fl or self.cl:
+            if self.fl:
+                return self.fl_redirect
+            elif self.cl:
+                return self.cl_redirect
+        elif request.GET.get('freelancer'):
+            user = Freelancer(created_at =datetime.now() ,pk=self.user.id)
+            user.save_base(raw=True)
             content_type = self.content_type_obj(Freelancer)
             fl_permission = self.perm_obj(content_type=content_type , codename='is_freelancer')
-            self.user.user_permissions.add(fl_permission)
-            return redirect(reverse("freelancer:freelancerfeed"))
+            user.user_permissions.add(fl_permission)  
+            return self.fl_redirect
         
         elif request.GET.get('client'):
+            user = Client(created_at =datetime.now(), type='Community', pk=self.user.id)
+            user.save_base(raw=True)
             content_type = self.content_type_obj(Client)
             cl_permission = self.perm_obj(content_type=content_type , codename='is_client')
             self.user.user_permissions.add(cl_permission)
-            return redirect(reverse("jobs:clienthome"))
-        
+            return self.cl_redirect
         else:
             return render(request, self.template_name)
 

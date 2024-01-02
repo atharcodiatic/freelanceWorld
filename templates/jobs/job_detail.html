@@ -170,9 +170,11 @@
 
                     <div>
                         <form method="post" action="{% url 'jobs:create-contract' proposal.id %}">
-                            {% csrf_token %} {% load custom_filter %} {% if proposal.job.status == "OPEN" %} {% if has_job %} {% load custom_filter %} {% with has_job|filter_proposal:proposal.user.id as job%} {% if job %}
-                            <button>user already has job</button> {% else %}
-                            <button id="accept-proposal" onclick="disableButton(event)" type="submit">Accept Proposal</button> {% endif %} {% endwith %} {% endif %} {% endif %}
+                            {% csrf_token %} {% load custom_filter %} 
+                            {% if proposal.job.status == "OPEN" %} 
+        
+                            <button id="accept-proposal" onclick="disableButton(event)" type="submit">Accept Proposal</button> 
+                            {% endif %}
 
                         </form>
                     </div>

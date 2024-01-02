@@ -19,7 +19,6 @@ from django.db.models import Avg
 class CustomUser(AbstractUser):
     '''
     This is our main user model , contains comman detail for all user_types.
-
     '''
     email = models.EmailField(_("email address"), unique=True,)
     country = models.ForeignKey('cities_light.Country', on_delete=models.SET_NULL, null=True, blank=True) 
@@ -56,12 +55,7 @@ class CustomUser(AbstractUser):
     class Meta:
         verbose_name ='CustomUser'
 
-
-
-
-  
 class Freelancer(CustomUser):
-
     '''
     Profile model for freelancer user_type
     '''
@@ -117,8 +111,6 @@ class SelfSkills(models.Model):
     skill_name = models.CharField(max_length=100)
     freelancer = models.ForeignKey(Freelancer, on_delete=models.CASCADE,null=True)
     level = models.CharField(max_length=3, choices=PROFIENCY_CHOICES)
-
-
 
 
 class Education(models.Model):

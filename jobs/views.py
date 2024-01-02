@@ -20,7 +20,8 @@ from django.views.generic.detail import SingleObjectMixin
 from .utility import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin
-from django.core.exceptions import PermissionDenied  
+from django.core.exceptions import PermissionDenied 
+
  
 class ClientHomePage(PermissionRequiredMixin, TemplateView):
     template_name = 'jobs/home.html'
@@ -168,7 +169,7 @@ class CreateContract(PermissionRequiredMixin, View):
     """
     login_url ='/login/'
     permission_required = ['accounts.is_client']
-
+    
     def post(self, request, *args, **kwargs):
         proposal_id = kwargs['pk']
         prop_obj = JobProposal.objects.get(id = proposal_id)
@@ -185,7 +186,7 @@ class CreateContract(PermissionRequiredMixin, View):
         contract_currency = converter[1]
         redirect_address = request.META.get("HTTP_REFERER")
 
-        Contract.objects.create(proposal = prop_obj, total=total, currency=contract_currency)
+        Contract.objects.create(proposal = prop_obj, total=total, currency=contract_currency, remaining = total)
         job = JobPost.objects.get(id=prop_obj.job.id)
         job.status = 'CLOSED'
         job.save()

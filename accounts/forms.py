@@ -69,15 +69,16 @@ class FreelancerProfile(forms.ModelForm):
         
     def clean_phone_number(self):
         data = self.cleaned_data["phone_number"]
-        if len(data)<10:
+        if len(data)!= 10:
             raise ValidationError("contact must be 10 digit")
+        return data
     
     def clean(self):
         cleaned_data = super().clean()
         password = cleaned_data.get("password")
         confirm_password = cleaned_data.get("confirm_password")
 
-        if confirm_password and password :
+        if confirm_password and password:
             if password != confirm_password:
                 raise ValidationError(
                     "password does not match."
@@ -160,6 +161,7 @@ class ClientProfile(forms.ModelForm):
         data = self.cleaned_data["phone_number"]
         if len(data)<10:
             raise ValidationError("contact must be 10 digit")
+        return data
 
     def clean(self):
         cleaned_data = super().clean()

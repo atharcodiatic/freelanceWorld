@@ -14,10 +14,10 @@
         {% csrf_token %} 
         {{job_form}}
         <input type="submit">
-        <button onclick="formJobSkillAdd()">Add skill</button>
     </form>
   </div>
 <div>
+<button onclick="formJobSkillAdd()">Add skill</button>
 <h1>Add another skill</h1>
 <form id="job_skillform"  class ="jobSkillForm" style = "display:none;" >
     {% csrf_token %}
