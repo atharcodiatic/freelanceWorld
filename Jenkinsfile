@@ -7,7 +7,7 @@ pipeline {
                             }
                 steps {
                     echo "clone successfull"
-                    sh "sudo docker compose up --build" 
+                    sh " docker compose up --build" 
                 }
             }
             
