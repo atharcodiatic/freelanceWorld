@@ -4,13 +4,16 @@ stages {
         stage('build') {
             
             steps {
-                retry(3){
-                echo "clone successfull"
-                sh "sudo docker compose up --build" } 
+                options {
+                timeout(time: 4, unit: 'SECONDS') 
             }
-            timeout(time:20, unit: "SECONDS")
+                
+                echo "clone successfull"
+                sh "sudo docker compose up --build" 
+            }
         }
         stage('test'){
+
             steps{
                 echo "test started"
             }
