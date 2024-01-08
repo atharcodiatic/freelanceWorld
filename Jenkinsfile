@@ -12,15 +12,7 @@ stages {
                 echo "test started"
             }
         }
-        post {
-            always {
-                echo "executing test "
-            }
-            
-            success{
-                echo "finish building"
-            }
-    }
+        
 
         }
 
