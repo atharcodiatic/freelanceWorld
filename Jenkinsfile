@@ -2,10 +2,13 @@ pipeline {
     agent { dockerfile true }
 stages {
         stage('build') {
+            
             steps {
+                retry(3){
                 echo "clone successfull"
-                sh "sudo docker compose up --build"  
+                sh "sudo docker compose up --build" } 
             }
+            timeout(time:20, unit: "SECONDS")
         }
         stage('test'){
             steps{
