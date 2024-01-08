@@ -1,18 +1,20 @@
 pipeline {
     agent { dockerfile true }
 stages {
-        stage('clone') {
+        stage('build') {
             steps {
                 echo "clone successfull"
-                sh 'node --version'
-                sh 'svn --version'
+            
             }
         }
         }
 
 post {
         always {
-            junit 'build/reports/**/*.xml'
+            echo "running build"
+        }
+        success{
+            echo "finish building"
         }
     }
 }
