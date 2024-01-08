@@ -3,7 +3,9 @@ pipeline {
 stages {
         stage('build') {
             steps {
+
                 echo "clone successfull"
+                sh sudo docker compose up --build 
             
             }
         }
