@@ -11,7 +11,7 @@ pipeline {
                     timeout(time: 60, unit: 'SECONDS') 
                             }
                 steps {
-                    withCredentials([usernamePassword(credentials: 'STRIPE_TEST_SECRET_KEY',keyFileVariable: 'KEY_FILE', usernameVariable: User, passwordVariable:PWD)]){
+                    withCredentials([usernamePassword(credentials: 'STRIPE_TEST_SECRET_KEY', usernameVariable: User, passwordVariable:PWD)]){
                         echo " username is ${User} and password${PWD}"
                     }
                     echo "clone successfull"
