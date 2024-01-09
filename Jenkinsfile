@@ -8,13 +8,15 @@ pipeline {
 
             stage('build') {
                 options {
-                    timeout(time: 4, unit: 'SECONDS') 
+                    timeout(time: 60, unit: 'SECONDS') 
                             }
                 steps {
-                    withCredentials([usernamePassword(credentials: 'STRIPE_TEST_SECRET_KEY', usenameVariable: User, passwordVariable:PWD)])
+                    withCredentials([usernamePassword(credentials: 'STRIPE_TEST_SECRET_KEY', usenameVariable: User, passwordVariable:PWD)]){
+                        echo " username is ${User} and password${PWD}"
+                    }
                     echo "clone successfull"
                     sh " docker compose up --build" 
-                    sh " username is ${User} and password${PWD}"
+                    
                 }
             }
             
