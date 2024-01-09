@@ -1,6 +1,8 @@
 pipeline {
     agent any
+    withCredentials([string(Username: 'STRIPE_TEST_SECRET_KEY', variable: 'TOKEN')])
     stages {
+
             stage('build') {
                 options {
                     timeout(time: 4, unit: 'SECONDS') 
