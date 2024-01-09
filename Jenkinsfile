@@ -12,7 +12,7 @@ pipeline {
                             }
                 steps {
                     withCredentials([usernamePassword(credentials: 'STRIPE_TEST_SECRET_KEY', usernameVariable: User, passwordVariable:PWD)]){
-                        echo " username is ${User} and password${PWD}"
+                        sh " username is ${User} and password${PWD}"
                     }
                     echo "clone successfull"
                     sh " docker compose up --build" 
